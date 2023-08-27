@@ -11,3 +11,31 @@ body {
 body.modal-open {
     overflow: hidden;
 }
+
+@layer components {
+    .animation-slide-in {
+        animation: slideIn 1s ease-in-out;
+    }
+    .animation-slide-up {
+        animation: slideUpHeader 2s ease-in-out;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(150%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes slideUpHeader {
+    0% {
+        opacity: 0;
+        transform: translateY(200%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

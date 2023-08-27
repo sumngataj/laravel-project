@@ -6,7 +6,13 @@ export default {
         "./resources/**/**.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                "pink-violet": "#c0a4b4",
+                "dirty-gray": "#f8f8f8",
+                "pink-hover": "#efc4d2",
+            },
+        },
     },
     plugins: [require("@tailwindcss/forms")],
 };

@@ -7,136 +7,50 @@
      <title>Home</title>
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      @vite('resources/css/app.css')
+
  </head>
 
  <body>
+
      @include('components.navbar')
-
+     @include('components.footer')
+     @include('section.package')
      @yield('content')
-     <div style="height: 65vh;" class="lg:w-full md:w-full sm:w-full bg-gray-100">
-     </div>
 
+     <div class="bg-dirty-gray">
+         <div class="max-w-7xl mx-auto">
 
-     <div class="container my-12 mx-auto px-4 md:px-12">
-         <div class="flex flex-wrap -mx-1 lg:-mx-4"
-             data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>
+             <div class="relative">
 
-             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+                 <div class="flex justify-center items-center space-x-10 space-y-2 overflow-hidden">
 
-
-                 <article class="overflow-hidden rounded-lg shadow-lg">
-
-                     <a href="#">
-                         <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random"
-                             loading="lazy">
-                     </a>
-
-                     <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                         <h1 class="text-lg">
-                             <a class="no-underline hover:underline text-black p-2" href="#">
-                                 Basic package
-                             </a>
-                         </h1>
-                         <p class="text-grey-darker text-sm font-semibold rounded-full bg-gray-100 p-2 text-yellow-600">
-                             ₱10000
+                     <div class="w-1/2 px-4 sm:px-6 lg:px-8">
+                         <h2 class="text-5xl font-semibold text-gray-800 animation-slide-up">Lorem Ipsum</h2>
+                         <p class="mt-2 text-gray-600 animation-slide-up">Lorem ipsum dolor sit amet,
+                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                          </p>
-                     </header>
 
-                     <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                         <a class="flex items-center no-underline hover:underline text-black ml-2 text-sm" href="#">
-                             View Details
-                         </a>
-                         <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                             <span class="hidden">Like</span>
-                             <i class="fa fa-heart"></i>
-                         </a>
-                     </footer>
+                         <button
+                             class="bg-pink-violet p-4 text-sm font-semibold mt-5 hover:bg-pink-hover animation-slide-up">
+                             Book Now
+                         </button>
+                     </div>
 
-                 </article>
+                     <div class="flex justify-center items-center w-1/2">
+                         <img src="{{ asset('images/dressedResize.png') }}" class="animation-slide-in" alt="My Image">
+                     </div>
 
-
+                 </div>
              </div>
-
-             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-
-
-                 <article class="overflow-hidden rounded-lg shadow-lg">
-
-                     <a href="#">
-                         <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
-                     </a>
-
-                     <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                         <h1 class="text-lg">
-                             <a class="no-underline hover:underline text-black" href="#">
-                                 Minimum package
-                             </a>
-                         </h1>
-                         <p
-                             class="text-grey-darker text-sm  font-semibold rounded-full bg-gray-100 p-2 text-yellow-600">
-                             ₱14000
-                         </p>
-                     </header>
-
-                     <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                         <a class="flex items-center no-underline hover:underline text-black ml-2 text-sm" href="#">
-                             View Details
-                         </a>
-                         <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                             <span class="hidden">Like</span>
-                             <i class="fa fa-heart"></i>
-                         </a>
-                     </footer>
-
-                 </article>
-
-
-             </div>
-
-             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-
-
-                 <article class="overflow-hidden rounded-lg shadow-lg">
-
-                     <a href="#">
-                         <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
-                     </a>
-
-                     <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                         <h1 class="text-lg">
-                             <a class="no-underline hover:underline text-black" href="#">
-                                 Medium Package
-                             </a>
-                         </h1>
-                         <p
-                             class="text-grey-darker text-sm  font-semibold rounded-full bg-gray-100 p-2 text-yellow-600">
-                             ₱35000
-                         </p>
-                     </header>
-
-                     <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                         <a class="flex items-center no-underline hover:underline text-black ml-2 text-sm" href="#">
-                             View Details
-                         </a>
-                         <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                             <span class="hidden">Like</span>
-                             <i class="fa fa-heart"></i>
-                         </a>
-                     </footer>
-
-                 </article>
-
-
-             </div>
-
-
 
          </div>
      </div>
+
+     @yield('packages')
+
+     @yield('footer')
      @vite('resources/js/app.js')
-     @vite('resources/js/scroll.js')
-     @vite('resources/js/clickedBody.js')
-     @vite('resources/js/navbar.js')
  </body>
 
  </html>
