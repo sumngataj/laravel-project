@@ -4,3 +4,4 @@ import "./modal";
 import "./navbar";
 import "./scroll";
 import "./windowReload";
+import "./sideModal";

@@ -4,7 +4,8 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Home</title>
+     <title>Kaluhas PH | Wedding Booking</title>
+     <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      @vite('resources/css/app.css')
 
@@ -15,12 +16,20 @@
      @include('components.navbar')
      @include('components.footer')
      @include('section.package')
+     @include('components.loginSideModal')
+     @include('section.portfolio')
+     @include('components.floatingNavbar')
+
+     @yield('floatingNavbar')
      @yield('content')
+
+     @yield('loginSideModal')
+
 
      <div class="bg-dirty-gray">
          <div class="max-w-7xl mx-auto">
 
-             <div class="relative">
+             <div class="">
 
                  <div class="flex justify-center items-center space-x-10 space-y-2 overflow-hidden">
 
@@ -31,8 +40,7 @@
                              quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                          </p>
 
-                         <button
-                             class="bg-pink-violet p-4 text-sm font-semibold mt-5 hover:bg-pink-hover animation-slide-up">
+                         <button class="bg-pink-violet p-4 text-sm font-semibold mt-5 animation-slide-up">
                              Book Now
                          </button>
                      </div>
@@ -49,7 +57,10 @@
 
      @yield('packages')
 
+     @yield('portfolio')
+
      @yield('footer')
+
      @vite('resources/js/app.js')
  </body>
 

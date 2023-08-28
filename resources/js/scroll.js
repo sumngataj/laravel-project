@@ -1,12 +1,23 @@
 import "./bootstrap";
 
-document.addEventListener("DOMContentLoaded", function () {
-    window.addEventListener("scroll", function () {
-        const scrollElement = document.getElementById("scroll-container");
-        if (window.scrollY > 20) {
-            scrollElement.classList.add("shadow-md");
+const nav = document.getElementById("scroll-container");
+
+function handleScroll() {
+    const scrollPosition = window.scrollY || window.pageYOffset;
+    const threshold = 200;
+    const visible = 100;
+    if (scrollPosition > visible) {
+        nav.classList.remove("hidden");
+        if (scrollPosition > threshold) {
+            nav.style.opacity = "1";
+            nav.style.transform = "translateY(0)";
         } else {
-            scrollElement.classList.remove("shadow-md");
+            nav.style.opacity = "0";
+            nav.style.transform = "translateY(-100%)";
         }
-    });
-});
+    } else {
+        nav.classList.add("hidden");
+    }
+}
+
+window.addEventListener("scroll", handleScroll);

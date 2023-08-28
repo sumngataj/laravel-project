@@ -8,10 +8,28 @@ body {
     margin: 0;
     padding: 0;
 }
-body.modal-open {
-    overflow: hidden;
+#scroll-container {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 999;
 }
-
+#toggle-div {
+    width: 350px;
+    z-index: 9999;
+}
+.transform.translate-x-full {
+    transform: translateX(100%);
+}
+#overlay {
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.5
+    ); /* Semi-transparent black background */
+    z-index: 1000; /* Place it above other elements */
+}
 @layer components {
     .animation-slide-in {
         animation: slideIn 1s ease-in-out;

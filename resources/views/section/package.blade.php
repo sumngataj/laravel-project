@@ -33,10 +33,7 @@
                 </a>
 
                 <!-- Text with white background -->
-                <div
-                    class="absolute inset-0 flex items-center justify-center text-black bg-black bg-opacity-0 hover:bg-opacity-80 transition-opacity duration-300 opacity-0 hover:opacity-50">
-                    <p class="text-lg bg-white w-full">Hover Text</p>
-                </div>
+
             </article>
 
             <article class="overflow-hidden shadow-lg hover:scale-100 transition-transform duration-300">
@@ -46,10 +43,7 @@
                 </a>
 
                 <!-- Text with white background -->
-                <div
-                    class="absolute inset-0 flex items-center justify-center text-black bg-black bg-opacity-0 hover:bg-opacity-80 transition-opacity duration-300 opacity-0 hover:opacity-50">
-                    <p class="text-lg bg-white w-full">Hover Text</p>
-                </div>
+
             </article>
 
         </div>

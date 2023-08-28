@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const links = document.querySelector("#nav-links");
         const searchBtn = document.querySelector("#searchBtn");
         const loginBtn = document.querySelector("#loginBtn");
-        // const searchIcon = document.querySelector("#icon-open-modal");
         const burgerMenu = document.querySelector("#mobile-menu-button");
 
         console.log(width);
