@@ -31,15 +31,14 @@
     <nav id="" class="bg-white p-4 h-24 ">
 
         <div class="flex justify-between items-center w-full">
-            <div class="flex lg:hidden justify-center items-center">
-                <button id="mobile-menu-button" class="p-2 text-gray-800 dark:text-white focus:outline-none">
-                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="black"
-                        viewBox="0 0 24 24">
-                        <path d="M4 6h16M4 12h16M4 18h16" stroke="black" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
+            <div class="lg:hidden flex justify-center items-center">
+                <button id="menuBtn" class="flex items-center p-2 text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4" fill="black" viewBox="0 0 448 512">
+                        <path
+                            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
                     </svg>
+                    <p class="uppercase hidden ml-2 md:flex">Menu</p>
                 </button>
-                <p class="uppercase hidden md:flex">Menu</p>
             </div>
             <div id="" class="lg:ml-32 lg:w-24 md:flex md:ml-0 sm:flex md:w-full sm:w-full justify-center items-center">
                 <a id="" href="" class="text-black text-left text-2xl font-bold uppercase"> <img
@@ -47,10 +46,16 @@
                 </a>
             </div>
             <div class="flex lg:hidden p-2">
-                <button>
+                <button id="toggleButton">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 512 512">
                         <path
                             d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                    </svg>
+                </button>
+                <button id="toggleClose" class="hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 lg:w-8" viewBox="0 0 384 512">
+                        <path
+                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                     </svg>
                 </button>
             </div>
@@ -60,7 +65,7 @@
                     class="h-10 lg:w-8/12 md:w-6/12 border border-gray-300 text-gray-500 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
                     placeholder="What are you looking for?" />
 
-                <div id="" class="lg:ml-16">
+                <div class="hidden lg:flex lg:ml-16">
                     <button id="toggle-button" class="uppercase text-sm font-semibold tracking-wide">
                         Login / Register
                     </button>
@@ -69,7 +74,8 @@
         </div>
 
     </nav>
-    <nav class="flex flex-wrap justify-between items-center bg-white border-y border-gray-300 p-4 lg:h-16 uppercase">
+    <nav
+        class="flex flex-wrap justify-between items-center bg-white border-t lg:border-y border-gray-300 p-4 lg:h-16 uppercase">
         <div class="hidden lg:flex w-full lg:w-11/12 justify-center space-x-10 text-xs">
             <a href="#" class="hover:opacity-70">Home</a>
             <a href="#" class="hover:opacity-70">About</a>
