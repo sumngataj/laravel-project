@@ -1,12 +1,11 @@
 @section('loginSideModal')
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
 <div id="toggle-div"
-    class="fixed top-0 right-0 h-full w-0 bg-white overflow-hidden transition-transform duration-300 transform translate-x-full">
+    class="fixed top-0 right-0 h-full w-80 bg-white overflow-hidden transition-transform duration-300 transform translate-x-full">
     <div class="flex justify-between items-center border-b border-gray-300 p-4 uppercase">
         <h1 class="text-lg font-semibold">Sign In</h1>
         <button id="close-btn" class="flex flex-wrap justify-center items-center text-sm uppercase"><svg
                 xmlns="http://www.w3.org/2000/svg" class="w-3 mr-1" viewBox="0 0 384 512">
-                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                 <path
                     d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
             </svg>Close</button>

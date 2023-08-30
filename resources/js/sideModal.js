@@ -4,6 +4,7 @@ const toggleDiv = document.getElementById("toggle-div");
 const toggleButton = document.getElementById("toggle-button");
 const overlay = document.getElementById("overlay");
 const closeButton = document.getElementById("close-btn");
+const toggleScrollButton = document.getElementById("toggle-scroll-btn");
 
 function toggleDivVisibility() {
     const isVisible = toggleDiv.style.transform === "translateX(0px)";
@@ -15,5 +16,6 @@ function toggleDivVisibility() {
 }
 
 toggleButton.addEventListener("click", toggleDivVisibility);
+toggleScrollButton.addEventListener("click", toggleDivVisibility);
 closeButton.addEventListener("click", toggleDivVisibility);
 overlay.addEventListener("click", toggleDivVisibility);

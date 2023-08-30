@@ -6,19 +6,13 @@
         data-replace='{ "translate-y-12": "translate-y-0", "opacity-0": "opacity-100" }'>
 
         <div class="my-1  px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-
-
             <article class="overflow-hidden shadow-lg">
-
                 <a href=" #">
                     <img alt="Placeholder" class="h-auto w-full hover:scale-105 transition-transform duration-300"
                         src="https://images.unsplash.com/photo-1599142296733-1c1f2073e6de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
                         loading="lazy">
                 </a>
-
             </article>
-
-
         </div>
         <div class="my-1  px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 

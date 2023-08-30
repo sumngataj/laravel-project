@@ -16,14 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
             searchBtn.classList.add("w-full");
             searchBtn.classList.add("w-full");
             loginBtn.classList.add("hidden");
-            burgerMenu.classList.remove("hidden");
         } else if (width < 565) {
             logoContainer.classList.add("hidden");
         } else {
             logo.classList.remove("hidden");
             links.classList.remove("hidden");
             loginBtn.classList.remove("hidden");
-            burgerMenu.classList.add("hidden");
         }
     });
 });

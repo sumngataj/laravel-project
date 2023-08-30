@@ -4,11 +4,10 @@
 
     <div class="flex justify-between items-center w-full">
         <div class="flex lg:hidden justify-center items-center">
-            <button id="mobile-menu-button" class="p-2 text-gray-800 dark:text-white focus:outline-none">
-                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="black"
-                    viewBox="0 0 24 24">
-                    <path d="M4 6h16M4 12h16M4 18h16" stroke="black" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
+            <button id="burger-scroll" class="p-2 text-gray-800 dark:text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 448 512">
+                    <path
+                        d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
                 </svg>
             </button>
             <p class="uppercase hidden md:flex">Menu</p>
@@ -20,7 +19,7 @@
         </div>
         <div class="hidden lg:hidden md:flex sm:flex p-2">
             <button><svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 512 512">
-                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+
                     <path
                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                 </svg></button>
@@ -33,32 +32,21 @@
                 <a>Packages</a>
                 <a>Gallery</a>
             </div>
-            <div id="" class="">
-                <a class="text-sm font-semibold tracking-wide ">Login / Register</a>
+            <div class="">
+                <button id="toggle-scroll-btn" class="text-sm font-semibold tracking-wide uppercase">Login /
+                    Register</button>
             </div>
 
         </div>
-
-
-
-
-
-
-        <!---->
-
     </div>
-
-
-    <!-- <div id="mobile-menu" class="hidden">
-
-        <a href="#" class="block py-2 px-4 text-gray-600 hover:text-black">Home</a>
-        <a href="#" class="block py-2 px-4 text-gray-600 hover:text-black">Pricing</a>
-        <a href="#" class="block py-2 px-4 text-gray-600 hover:text-black">Packages</a>
-
-    </div> -->
-
     </div>
 
 </nav>
+<button id="buttonUp" class="fixed bottom-16 right-4 bg-pink-violet rounded-full p-2 hidden"><svg
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+</button>
 
 @endsection
