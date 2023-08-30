@@ -5,3 +5,7 @@ import "./navbar";
 import "./scroll";
 import "./windowReload";
 import "./sideModal";
+import "./searchToggle";
+import "./slider";
+import "./chatbox";
+import "./sideMenu";

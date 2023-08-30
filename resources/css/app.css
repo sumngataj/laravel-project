@@ -21,14 +21,78 @@ body {
 .transform.translate-x-full {
     transform: translateX(100%);
 }
+#toggle-menu {
+    z-index: 9999;
+}
+.transform.translate-y-full {
+    transform: translateY(100%);
+}
+.transforms.translate-y-full {
+    transform: translateY(100%);
+}
+#toggleDiv {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    z-index: 998;
+}
+#toggleChat {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    height: 58vh;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    z-index: 998;
+}
+input::placeholder {
+    color: black;
+}
+
+@keyframes slideFromBottom {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+@keyframes slideChat {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.slide-in {
+    animation-name: slideFromBottom;
+}
+
+.slide-out {
+    animation-name: slideFromBottom;
+    animation-direction: reverse;
+}
+.slide-in-chat {
+    animation-name: slideChat;
+}
+
+.slide-out-chat {
+    animation-name: slideChat;
+    animation-direction: reverse;
+}
 #overlay {
-    background-color: rgba(
-        0,
-        0,
-        0,
-        0.5
-    ); /* Semi-transparent black background */
-    z-index: 1000; /* Place it above other elements */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+#overlay-menu {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 @layer components {
     .animation-slide-in {

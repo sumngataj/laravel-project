@@ -1,7 +1,7 @@
 @section('loginSideModal')
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
 <div id="toggle-div"
-    class="fixed top-0 right-0 h-full w-0 bg-white overflow-hidden transition-transform duration-300 transform translate-x-full">
+    class="fixed top-0 right-0 h-full w-80 bg-white overflow-hidden transition-transform duration-300 transform translate-x-full">
     <div class="flex justify-between items-center border-b border-gray-300 p-4 uppercase">
         <h1 class="text-lg font-semibold">Sign In</h1>
         <button id="close-btn" class="flex flex-wrap justify-center items-center text-sm uppercase"><svg
