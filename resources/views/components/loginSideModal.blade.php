@@ -12,25 +12,29 @@
             </svg>Close</button>
     </div>
     <div class="border-b border-gray-300 px-5 py-5">
-        <form>
-
+        <form action="{{ route('authenticate') }}" method="POST">
+            @csrf
             <div class="relative mb-6">
-                <label class="block">
+                <label for="email_or_name" class="block">
                     <span class="text-black font-light">Username or email address <span
                             class="text-red-500">*</span></span>
-                    <input type="email" class="
+                    <input type="text" class="
                     mt-1
                     block
                     w-full
                     border-gray-300
                     shadow-sm
                   focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300
-                  " placeholder="" required>
+                  @error('email_or_name') is-invalid @enderror
+                  " placeholder="" id="email_or_name" name="email_or_name" value="{{ old('email_or_name') }}" autocomplete="email" required>
                 </label>
+                @if ($errors->has('email_or_name'))
+                                <span class="text-red-500">{{ $errors->first('email_or_name') }}</span>
+                            @endif
             </div>
 
             <div class="relative mb-6">
-                <label class="block">
+                <label for="password" class="block">
                     <span class="text-black font-light">Password <span class="text-red-500">*</span></span>
                     <input type="password" class="
                     mt-1
@@ -39,11 +43,15 @@
                     border-gray-300
                     shadow-sm
                    focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300
-                  " placeholder="" required>
+                   form-control @error('password') is-invalid @enderror
+                  " placeholder="" id="password" name="password" required>
                 </label>
+                @if ($errors->has('password'))
+                    <span class="text-red-500">{{ $errors->first('password') }}</span>
+                @endif
             </div>
 
-            <button class="uppercase bg-pink-violet w-full p-3 shadow-sm text-sm hover:bg-pink-hover font-semibold">log
+            <button type="submit" value="Login" class="uppercase bg-pink-violet w-full p-3 shadow-sm text-sm hover:bg-pink-hover font-semibold">log
                 in</button>
         </form>
     </div>
