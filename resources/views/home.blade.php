@@ -22,11 +22,16 @@
      @include('components.loginSideModal')
      @include('section.portfolio')
      @include('components.floatingNavbar')
+     @include('components.searchToggle')
+     @include('components.sideMenu')
+     @include('components.chatBox')
 
+     @yield('sideMenu')
      @yield('floatingNavbar')
      @yield('content')
 
      @yield('loginSideModal')
+     @yield('toggleSearch')
 
 
      <div class="bg-dirty-gray">
@@ -43,7 +48,8 @@
                              quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                          </p>
 
-                         <button class="bg-pink-violet p-4 text-sm font-semibold mt-5 animation-slide-up">
+                         <button
+                             class="bg-pink-violet p-4 text-sm font-semibold mt-5 hover:bg-pink-hover animation-slide-up">
                              Book Now
                          </button>
                      </div>
@@ -59,7 +65,7 @@
      </div>
 
      @yield('packages')
-
+     @yield('chatbox')
      @yield('portfolio')
 
      @yield('footer')
