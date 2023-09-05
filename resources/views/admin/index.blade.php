@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html  x-data="data()" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
   <head>
     <meta charset="UTF-8" />
@@ -20,7 +20,7 @@
 
 
     <div
-      class="flex h-screen bg-gray-50 dark:bg-gray-900"
+      class="flex h-screen bg-gray-50"
       :class="{ 'overflow-hidden': isSideMenuOpen }"
     >
 
@@ -34,7 +34,7 @@
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                   <h2
-                    class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+                    class="my-6 text-2xl font-semibold text-gray-700"
                   >
                     Dashboard
                   </h2>
@@ -42,10 +42,10 @@
                   <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                     <!-- Card -->
                     <div
-                      class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                      class="flex items-center p-4 bg-white rounded-lg shadow-xs"
                     >
                       <div
-                        class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
+                        class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full"
                       >
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                           <path
@@ -55,12 +55,12 @@
                       </div>
                       <div>
                         <p
-                          class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                          class="mb-2 text-sm font-medium text-gray-600"
                         >
                           Total clients
                         </p>
                         <p
-                          class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                          class="text-lg font-semibold text-gray-700"
                         >
                           6389
                         </p>
@@ -68,10 +68,10 @@
                     </div>
                     <!-- Card -->
                     <div
-                      class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                      class="flex items-center p-4 bg-white rounded-lg shadow-xs"
                     >
                       <div
-                        class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
+                        class="p-3 mr-4 text-green-500 bg-green-100 rounded-full"
                       >
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                           <path
@@ -83,12 +83,12 @@
                       </div>
                       <div>
                         <p
-                          class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                          class="mb-2 text-sm font-medium text-gray-600"
                         >
                           Account balance
                         </p>
                         <p
-                          class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                          class="text-lg font-semibold text-gray-700"
                         >
                           $ 46,760.89
                         </p>
@@ -96,10 +96,10 @@
                     </div>
                     <!-- Card -->
                     <div
-                      class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                      class="flex items-center p-4 bg-white rounded-lg shadow-xs"
                     >
                       <div
-                        class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+                        class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full"
                       >
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                           <path
@@ -109,12 +109,12 @@
                       </div>
                       <div>
                         <p
-                          class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                          class="mb-2 text-sm font-medium text-gray-600"
                         >
                           New sales
                         </p>
                         <p
-                          class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                          class="text-lg font-semibold text-gray-700"
                         >
                           376
                         </p>
@@ -122,10 +122,10 @@
                     </div>
                     <!-- Card -->
                     <div
-                      class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                      class="flex items-center p-4 bg-white rounded-lg shadow-xs"
                     >
                       <div
-                        class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
+                        class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full"
                       >
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                           <path
@@ -137,12 +137,12 @@
                       </div>
                       <div>
                         <p
-                          class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                          class="mb-2 text-sm font-medium text-gray-600"
                         >
                           Pending contacts
                         </p>
                         <p
-                          class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                          class="text-lg font-semibold text-gray-700"
                         >
                           35
                         </p>
@@ -154,70 +154,49 @@
         </div>    
     </div>
 
-<script>
-function data() {
-  function getThemeFromLocalStorage() {
-      // if user already changed the theme, use it
-      if (window.localStorage.getItem("dark")) {
-          return JSON.parse(window.localStorage.getItem("dark"));
+    <script>
+      function data() {
+        return {
+          isSideMenuOpen: false,
+          toggleSideMenu() {
+            this.isSideMenuOpen = !this.isSideMenuOpen;
+          },
+          closeSideMenu() {
+            this.isSideMenuOpen = false;
+          },
+          isNotificationsMenuOpen: false,
+          toggleNotificationsMenu() {
+            this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
+          },
+          closeNotificationsMenu() {
+            this.isNotificationsMenuOpen = false;
+          },
+          isProfileMenuOpen: false,
+          toggleProfileMenu() {
+            this.isProfileMenuOpen = !this.isProfileMenuOpen;
+          },
+          closeProfileMenu() {
+            this.isProfileMenuOpen = false;
+          },
+          isPagesMenuOpen: false,
+          togglePagesMenu() {
+            this.isPagesMenuOpen = !this.isPagesMenuOpen;
+          },
+          // Modal
+          isModalOpen: false,
+          trapCleanup: null,
+          openModal() {
+            this.isModalOpen = true;
+            this.trapCleanup = focusTrap(document.querySelector("#modal"));
+          },
+          closeModal() {
+            this.isModalOpen = false;
+            this.trapCleanup();
+          },
+        };
       }
-
-      // else return their preferences
-      return (
-          !!window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-      );
-  }
-
-  function setThemeToLocalStorage(value) {
-      window.localStorage.setItem("dark", value);
-  }
-
-  return {
-      dark: getThemeFromLocalStorage(),
-      toggleTheme() {
-          this.dark = !this.dark;
-          setThemeToLocalStorage(this.dark);
-      },
-      isSideMenuOpen: false,
-      toggleSideMenu() {
-          this.isSideMenuOpen = !this.isSideMenuOpen;
-      },
-      closeSideMenu() {
-          this.isSideMenuOpen = false;
-      },
-      isNotificationsMenuOpen: false,
-      toggleNotificationsMenu() {
-          this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
-      },
-      closeNotificationsMenu() {
-          this.isNotificationsMenuOpen = false;
-      },
-      isProfileMenuOpen: false,
-      toggleProfileMenu() {
-          this.isProfileMenuOpen = !this.isProfileMenuOpen;
-      },
-      closeProfileMenu() {
-          this.isProfileMenuOpen = false;
-      },
-      isPagesMenuOpen: false,
-      togglePagesMenu() {
-          this.isPagesMenuOpen = !this.isPagesMenuOpen;
-      },
-      // Modal
-      isModalOpen: false,
-      trapCleanup: null,
-      openModal() {
-          this.isModalOpen = true;
-          this.trapCleanup = focusTrap(document.querySelector("#modal"));
-      },
-      closeModal() {
-          this.isModalOpen = false;
-          this.trapCleanup();
-      },
-  };
-  }
-</script>
+      </script>
+      
 
 </body>
 </html>

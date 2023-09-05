@@ -1,11 +1,11 @@
 @section('sidebar')
 
 <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 hidden w-64 overflow-y-auto bg-white md:block flex-shrink-0"
       >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
+        <div class="py-4 text-gray-500">
           <a
-            class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+            class="ml-6 text-lg font-bold text-gray-800"
             href="#"
           >
             Admin Dashboard
@@ -20,7 +20,7 @@
               ></span>
               <a
                 x-data="{ isActive: {{ Request::is('admin') ? 'true' : 'false' }} }"
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                 :class="isActive ? 'text-gray-800' : ''"
                 href="{{ url('/admin') }}"
               >
@@ -50,7 +50,7 @@
               ></span>
               <a
                 x-data="{ isActive: {{ Request::is('bookings') ? 'true' : 'false' }} }"
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                 :class="isActive ? 'text-gray-800' : ''"
                 href="{{ url('/bookings') }}"
               >

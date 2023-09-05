@@ -41,13 +41,15 @@ class LoginRegisterController extends Controller
         $request->validate([
             'name' => 'required|string|max:250',
             'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:8|confirmed',
         ]);
 
+        $isAdmin = $request->has('is_admin') && $request->input('is_admin') === '1';
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'is_admin' => $isAdmin,
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -105,7 +107,7 @@ class LoginRegisterController extends Controller
     {
         if(Auth::check())
         {
-            return view('reservation');
+            return view('home');
         }
         
         return redirect()->route('login')

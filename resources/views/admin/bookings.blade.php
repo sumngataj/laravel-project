@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html x-data="data()" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
   <head>
     <meta charset="UTF-8" />
@@ -20,7 +20,7 @@
 
 
     <div
-      class="flex h-screen bg-gray-50 dark:bg-gray-900"
+      class="flex h-screen bg-gray-50"
       :class="{ 'overflow-hidden': isSideMenuOpen }"
     >
 
@@ -34,16 +34,16 @@
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                   <h2
-                    class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+                    class="my-6 text-2xl font-semibold text-gray-700"
                   >
                     Bookings
                   </h2>
-                  <div class="w-full overflow-hidden rounded-lg shadow-xs">
+                  <div class="w-full overflow-hidden rounded-lg shadow-xs"
                     <div class="w-full overflow-x-auto">
                       <table class="w-full whitespace-no-wrap">
                         <thead>
                           <tr
-                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b"
                           >
                             <th class="px-4 py-3">Client</th>
                             <th class="px-4 py-3">Amount</th>
@@ -52,9 +52,9 @@
                           </tr>
                         </thead>
                         <tbody
-                          class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                          class="bg-white divide-y"
                         >
-                          <tr class="text-gray-700 dark:text-gray-400">
+                          <tr class="text-gray-700">
                             <td class="px-4 py-3">
                               <div class="flex items-center text-sm">
                                 <!-- Avatar with inset shadow -->
@@ -74,7 +74,7 @@
                                 </div>
                                 <div>
                                   <p class="font-semibold">Hans Burger</p>
-                                  <p class="text-xs text-gray-600 dark:text-gray-400">
+                                  <p class="text-xs text-gray-600">
                                     10x Developer
                                   </p>
                                 </div>
@@ -85,7 +85,7 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                               <span
-                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"
                               >
                                 Approved
                               </span>
@@ -95,7 +95,7 @@
                             </td>
                           </tr>
       
-                          <tr class="text-gray-700 dark:text-gray-400">
+                          <tr class="text-gray-700">
                             <td class="px-4 py-3">
                               <div class="flex items-center text-sm">
                                 <!-- Avatar with inset shadow -->
@@ -115,7 +115,7 @@
                                 </div>
                                 <div>
                                   <p class="font-semibold">Jolina Angelie</p>
-                                  <p class="text-xs text-gray-600 dark:text-gray-400">
+                                  <p class="text-xs text-gray-600">
                                     Unemployed
                                   </p>
                                 </div>
@@ -126,7 +126,7 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                               <span
-                                class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                                class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full"
                               >
                                 Pending
                               </span>
@@ -136,7 +136,7 @@
                             </td>
                           </tr>
       
-                          <tr class="text-gray-700 dark:text-gray-400">
+                          <tr class="text-gray-700">
                             <td class="px-4 py-3">
                               <div class="flex items-center text-sm">
                                 <!-- Avatar with inset shadow -->
@@ -156,7 +156,7 @@
                                 </div>
                                 <div>
                                   <p class="font-semibold">Sarah Curry</p>
-                                  <p class="text-xs text-gray-600 dark:text-gray-400">
+                                  <p class="text-xs text-gray-600">
                                     Designer
                                   </p>
                                 </div>
@@ -167,7 +167,7 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                               <span
-                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
+                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"
                               >
                                 Denied
                               </span>
@@ -177,7 +177,7 @@
                             </td>
                           </tr>
       
-                          <tr class="text-gray-700 dark:text-gray-400">
+                          <tr class="text-gray-700">
                             <td class="px-4 py-3">
                               <div class="flex items-center text-sm">
                                 <!-- Avatar with inset shadow -->
@@ -197,7 +197,7 @@
                                 </div>
                                 <div>
                                   <p class="font-semibold">Rulia Joberts</p>
-                                  <p class="text-xs text-gray-600 dark:text-gray-400">
+                                  <p class="text-xs text-gray-600">
                                     Actress
                                   </p>
                                 </div>
@@ -208,7 +208,7 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                               <span
-                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"
                               >
                                 Approved
                               </span>
@@ -223,7 +223,7 @@
                       </table>
                     </div>
                     <div
-                      class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+                      class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t"
                     >
                       <span class="flex items-center col-span-3">
                         Showing 21-30 of 100
@@ -325,78 +325,48 @@
         </div>    
     </div>
 
-
-<script>
-  function data() {
-function getThemeFromLocalStorage() {
-    // if user already changed the theme, use it
-    if (window.localStorage.getItem("dark")) {
-        return JSON.parse(window.localStorage.getItem("dark"));
-    }
-
-    // else return their preferences
-    return (
-        !!window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-    );
-}
-
-function setThemeToLocalStorage(value) {
-    window.localStorage.setItem("dark", value);
-}
-
-return {
-    dark: getThemeFromLocalStorage(),
-    toggleTheme() {
-        this.dark = !this.dark;
-        setThemeToLocalStorage(this.dark);
-    },
-    isSideMenuOpen: false,
-    toggleSideMenu() {
-        this.isSideMenuOpen = !this.isSideMenuOpen;
-    },
-    closeSideMenu() {
-        this.isSideMenuOpen = false;
-    },
-    isNotificationsMenuOpen: false,
-    toggleNotificationsMenu() {
-        this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
-    },
-    closeNotificationsMenu() {
-        this.isNotificationsMenuOpen = false;
-    },
-    isProfileMenuOpen: false,
-    toggleProfileMenu() {
-        this.isProfileMenuOpen = !this.isProfileMenuOpen;
-    },
-    closeProfileMenu() {
-        this.isProfileMenuOpen = false;
-    },
-    isPagesMenuOpen: false,
-    togglePagesMenu() {
-        this.isPagesMenuOpen = !this.isPagesMenuOpen;
-    },
-    // Modal
-    isModalOpen: false,
-    trapCleanup: null,
-    openModal() {
-        this.isModalOpen = true;
-        this.trapCleanup = focusTrap(document.querySelector("#modal"));
-    },
-    closeModal() {
-        this.isModalOpen = false;
-        this.trapCleanup();
-    },
-};
-}
-
-</script>
-
-
-
-
-
-
+    <script>
+      function data() {
+        return {
+          isSideMenuOpen: false,
+          toggleSideMenu() {
+            this.isSideMenuOpen = !this.isSideMenuOpen;
+          },
+          closeSideMenu() {
+            this.isSideMenuOpen = false;
+          },
+          isNotificationsMenuOpen: false,
+          toggleNotificationsMenu() {
+            this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
+          },
+          closeNotificationsMenu() {
+            this.isNotificationsMenuOpen = false;
+          },
+          isProfileMenuOpen: false,
+          toggleProfileMenu() {
+            this.isProfileMenuOpen = !this.isProfileMenuOpen;
+          },
+          closeProfileMenu() {
+            this.isProfileMenuOpen = false;
+          },
+          isPagesMenuOpen: false,
+          togglePagesMenu() {
+            this.isPagesMenuOpen = !this.isPagesMenuOpen;
+          },
+          // Modal
+          isModalOpen: false,
+          trapCleanup: null,
+          openModal() {
+            this.isModalOpen = true;
+            this.trapCleanup = focusTrap(document.querySelector("#modal"));
+          },
+          closeModal() {
+            this.isModalOpen = false;
+            this.trapCleanup();
+          },
+        };
+      }
+      </script>
 
 </body>
 </html>

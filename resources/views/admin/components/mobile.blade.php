@@ -11,7 +11,7 @@
         class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
       ></div>
       <aside
-        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white md:hidden"
         x-show="isSideMenuOpen"
         x-transition:enter="transition ease-in-out duration-150"
         x-transition:enter-start="opacity-0 transform -translate-x-20"
@@ -22,9 +22,9 @@
         @click.away="closeSideMenu"
         @keydown.escape="closeSideMenu"
       >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
+        <div class="py-4 text-gray-500">
           <a
-            class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+            class="ml-6 text-lg font-bold text-gray-800"
             href="#"
           >
             Admin Dashboard
@@ -39,7 +39,7 @@
                 ></span>
                 <a
                   x-data="{ isActive: {{ Request::is('admin') ? 'true' : 'false' }} }"
-                  class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                  class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                   :class="isActive ? 'text-gray-800' : ''"
                   href="{{ url('/admin') }}"
                 >
@@ -69,7 +69,7 @@
                 ></span>
                 <a
                   x-data="{ isActive: {{ Request::is('bookings') ? 'true' : 'false' }} }"
-                  class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                  class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                   :class="isActive ? 'text-gray-800' : ''"
                   href="{{ url('/bookings') }}"
                 >

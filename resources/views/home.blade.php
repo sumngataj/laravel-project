@@ -1,5 +1,5 @@
  <!DOCTYPE html>
- <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+ <html lang="en">
 
  <head>
      <meta charset="UTF-8">
@@ -8,10 +8,6 @@
      <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      @vite('resources/css/app.css')
-     <script
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-      defer
-    ></script>
  </head>
 
  <body>
@@ -71,72 +67,72 @@
      @yield('footer')
 
      @vite('resources/js/app.js')
-
      <script>
-        function data() {
-          function getThemeFromLocalStorage() {
-              // if user already changed the theme, use it
-              if (window.localStorage.getItem("dark")) {
-                  return JSON.parse(window.localStorage.getItem("dark"));
-              }
-        
-              // else return their preferences
-              return (
-                  !!window.matchMedia &&
-                  window.matchMedia("(prefers-color-scheme: dark)").matches
-              );
+        const toggleButtons = document.getElementById('toggle-buttons');
+        const contentToToggles = document.getElementById('toggle-divs');
+      
+        toggleButtons.addEventListener('click', function(event) {
+          event.stopPropagation(); // Prevent the event from reaching the document click listener
+          contentToToggles.classList.toggle('hidden');
+        });
+      
+        // Close the dropdown when clicking anywhere outside of it
+        document.addEventListener('click', function(event) {
+          if (!toggleButtons.contains(event.target) && !contentToToggles.contains(event.target)) {
+            contentToToggles.classList.add('hidden');
           }
-        
-          function setThemeToLocalStorage(value) {
-              window.localStorage.setItem("dark", value);
-          }
-        
-          return {
-              dark: getThemeFromLocalStorage(),
-              toggleTheme() {
-                  this.dark = !this.dark;
-                  setThemeToLocalStorage(this.dark);
-              },
-              isSideMenuOpen: false,
-              toggleSideMenu() {
-                  this.isSideMenuOpen = !this.isSideMenuOpen;
-              },
-              closeSideMenu() {
-                  this.isSideMenuOpen = false;
-              },
-              isNotificationsMenuOpen: false,
-              toggleNotificationsMenu() {
-                  this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen;
-              },
-              closeNotificationsMenu() {
-                  this.isNotificationsMenuOpen = false;
-              },
-              isProfileMenuOpen: false,
-              toggleProfileMenu() {
-                  this.isProfileMenuOpen = !this.isProfileMenuOpen;
-              },
-              closeProfileMenu() {
-                  this.isProfileMenuOpen = false;
-              },
-              isPagesMenuOpen: false,
-              togglePagesMenu() {
-                  this.isPagesMenuOpen = !this.isPagesMenuOpen;
-              },
-              // Modal
-              isModalOpen: false,
-              trapCleanup: null,
-              openModal() {
-                  this.isModalOpen = true;
-                  this.trapCleanup = focusTrap(document.querySelector("#modal"));
-              },
-              closeModal() {
-                  this.isModalOpen = false;
-                  this.trapCleanup();
-              },
-          };
-          }
-        </script>
-    
+        });
+
+
+
+        let sliderContainer = document.getElementById("sliderContainer");
+let slider = document.getElementById("slider");
+let cards = slider.getElementsByTagName("li");
+
+let elementsToShow = 3;
+if (document.body.clientWidth < 1000) {
+    elementsToShow = 1;
+} else if (document.body.clientWidth < 1500) {
+    elementsToShow = 2;
+}
+
+let sliderContainerWidth = sliderContainer.clientWidth;
+
+let cardWidth = sliderContainerWidth / elementsToShow;
+
+slider.style.width = cards.length * cardWidth + "px";
+slider.style.transition = "transform 1s";
+
+const nextButton = document.getElementById("nextButton");
+const prevButton = document.getElementById("prevButton");
+
+for (let index = 0; index < cards.length; index++) {
+    const element = cards[index];
+    element.style.width = cardWidth + "px";
+}
+
+let currentIndex = 0;
+
+function prev() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        const translateX = -currentIndex * cardWidth;
+        slider.style.transform = `translateX(${translateX}px)`;
+    }
+}
+
+function next() {
+    if (currentIndex < cards.length - elementsToShow) {
+        currentIndex++;
+        const translateX = -currentIndex * cardWidth;
+        slider.style.transform = `translateX(${translateX}px)`;
+    }
+}
+
+nextButton.addEventListener("click", next);
+prevButton.addEventListener("click", prev);
+      </script>
+      
  </body>
 
  </html>
