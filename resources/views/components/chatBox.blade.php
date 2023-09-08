@@ -10,9 +10,10 @@
 </button>
 
 <div id="toggleChat"
-    class="w-11/12 lg:w-3/12 md:w-1/2 lg:drop-shadow-2xl hidden overflow-hidden rounded-t-lg mx-0 p-0 bg-white border border-gray-300">
+    class="lg:w-3/12 lg:drop-shadow-2xl hidden overflow-hidden rounded-t-lg mx-0 p-0 bg-white border border-gray-300">
     <div class="relative w-full">
-        <header class="flex bg-pink-violet uppercase p-2 font-semibold justify-between items-center">
+        <header id="toggleHeader"
+            class="flex bg-pink-violet uppercase p-2 font-semibold justify-between items-center cursor-pointer">
             <img class="w-8 rounded-full object-cover"
                 src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png">
 
