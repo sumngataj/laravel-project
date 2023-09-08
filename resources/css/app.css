@@ -30,6 +30,9 @@ body {
 .transforms.translate-y-full {
     transform: translateY(100%);
 }
+.chat {
+    transform: translateY(100%);
+}
 #toggleDiv {
     position: fixed;
     bottom: 0;
@@ -52,7 +55,13 @@ body {
 input::placeholder {
     color: black;
 }
-
+#menu {
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+#menu.open {
+    max-height: 400px; /* Adjust the max-height as needed */
+}
 @keyframes slideFromBottom {
     from {
         transform: translateY(0);

@@ -26,11 +26,12 @@
                     shadow-sm
                   focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300
                   @error('email_or_name') is-invalid @enderror
-                  " placeholder="" id="email_or_name" name="email_or_name" value="{{ old('email_or_name') }}" autocomplete="email" required>
+                  " placeholder="" id="email_or_name" name="email_or_name" value="{{ old('email_or_name') }}"
+                        autocomplete="email" required>
                 </label>
                 @if ($errors->has('email_or_name'))
-                                <span class="text-red-500">{{ $errors->first('email_or_name') }}</span>
-                            @endif
+                <span class="text-red-500">{{ $errors->first('email_or_name') }}</span>
+                @endif
             </div>
 
             <div class="relative mb-6">
@@ -47,11 +48,12 @@
                   " placeholder="" id="password" name="password" required>
                 </label>
                 @if ($errors->has('password'))
-                    <span class="text-red-500">{{ $errors->first('password') }}</span>
+                <span class="text-red-500">{{ $errors->first('password') }}</span>
                 @endif
             </div>
 
-            <button type="submit" value="Login" class="uppercase bg-pink-violet w-full p-3 shadow-sm text-sm hover:bg-pink-hover font-semibold">log
+            <button type="submit" value="Login"
+                class="uppercase bg-pink-violet w-full p-3 shadow-sm text-sm hover:bg-pink-hover font-semibold">log
                 in</button>
         </form>
     </div>
@@ -62,7 +64,7 @@
                     d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
             </svg>
             <p class="font-semibold text-xs text-center p-2">No account yet?</p>
-            <a href="" class="font-semibold uppercase tracking-tight text-sm underline">create an
+            <a href="{{ url('register') }}" class="font-semibold uppercase tracking-tight text-sm underline">create an
                 account</a>
         </div>
     </div>

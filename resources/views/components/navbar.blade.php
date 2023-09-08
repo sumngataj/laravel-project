@@ -64,6 +64,7 @@
                 <input type="search"
                     class="h-10 lg:w-8/12 md:w-6/12 border border-gray-300 text-gray-500 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
                     placeholder="What are you looking for?" />
+
                     
                     <div class="lg:ml-16">
                       @guest
@@ -91,15 +92,16 @@
                         </div>
                         @vite('resources/js/app.js')
                       @endguest
+
                     </div>
+                </div>
             </div>
-        </div>
 
     </nav>
     <nav
         class="flex flex-wrap justify-between items-center bg-white border-t lg:border-y border-gray-300 p-4 lg:h-16 uppercase">
         <div class="hidden lg:flex w-full lg:w-11/12 justify-center space-x-10 text-xs">
-            <a href="#" class="hover:opacity-70">Home</a>
+            <a href="{{ url('/') }}" class="hover:opacity-70">Home</a>
             <a href="#" class="hover:opacity-70">About</a>
             <a href="#" class="hover:opacity-70">Packages</a>
             <a href="#" class="hover:opacity-70">Gallery</a>
