@@ -28,7 +28,7 @@
 
      <div class="bg-black p-16">
          <div class="max-w-7xl mx-auto">
-             <div class="flex justify-center items-center space-x-10 space-y-2 overflow-hidden">
+             <div class="flex justify-center p-8 items-center space-x-10 space-y-2 overflow-hidden">
                  <p class="text-white font-semibold text-5xl">My account</p>
              </div>
          </div>

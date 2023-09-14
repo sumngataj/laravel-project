@@ -1,4 +1,4 @@
-@section('toggleSearch')'
+@section('toggleSearch')
 
 <div id="toggleDiv" class="w-full h-4/5 lg:h-5/6 lg:drop-shadow-2xl hidden overflow-hidden mx-0 p-0">
 

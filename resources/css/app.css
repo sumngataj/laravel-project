@@ -7,32 +7,57 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 #scroll-container {
     opacity: 0;
     transform: translateY(-100%);
     transition: opacity 0.5s ease, transform 0.5s ease;
     z-index: 999;
 }
+
 #toggle-div {
     width: 350px;
     z-index: 9999;
 }
+
 .transform.translate-x-full {
     transform: translateX(100%);
 }
 #toggle-menu {
     z-index: 9999;
 }
+
 .transform.translate-y-full {
     transform: translateY(100%);
 }
+
 .transforms.translate-y-full {
     transform: translateY(100%);
 }
+
 .chat {
     transform: translateY(100%);
 }
+
 #toggleDiv {
     position: fixed;
     bottom: 0;
@@ -43,6 +68,7 @@ body {
     animation-timing-function: ease-in-out;
     z-index: 998;
 }
+
 #toggleChat {
     position: fixed;
     bottom: 0;
@@ -52,16 +78,20 @@ body {
     animation-timing-function: ease-in-out;
     z-index: 998;
 }
+
 input::placeholder {
     color: black;
 }
+
 #menu {
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
+
 #menu.open {
     max-height: 400px; /* Adjust the max-height as needed */
 }
+
 @keyframes slideFromBottom {
     from {
         transform: translateY(0);
@@ -70,6 +100,7 @@ input::placeholder {
         transform: translateY(100%);
     }
 }
+
 @keyframes slideChat {
     from {
         transform: translateY(0);
@@ -87,6 +118,7 @@ input::placeholder {
     animation-name: slideFromBottom;
     animation-direction: reverse;
 }
+
 .slide-in-chat {
     animation-name: slideChat;
 }
@@ -95,6 +127,7 @@ input::placeholder {
     animation-name: slideChat;
     animation-direction: reverse;
 }
+
 #overlay {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
@@ -103,6 +136,7 @@ input::placeholder {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
+
 @layer components {
     .animation-slide-in {
         animation: slideIn 1s ease-in-out;
@@ -120,6 +154,7 @@ input::placeholder {
         transform: translateX(0);
     }
 }
+
 @keyframes slideUpHeader {
     0% {
         opacity: 0;
@@ -129,4 +164,47 @@ input::placeholder {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+@keyframes slideInSection {
+    0% {
+        transform: translateX(150%);
+    }
+    100% {
+        transform: translateX(10%);
+    }
+}
+
+.section {
+    overflow: hidden;
+    position: relative;
+    animation: slideInSection 1s ease forwards;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideUpSlider {
+    0% {
+        transform: translateY(150%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+.sliderUpAnimation {
+    overflow: hidden;
+    position: relative;
+    animation: slideUpSlider 1s ease forwards;
+}
+.sliderFloatUpAnimation {
+    animation: slideUpSlider 1s ease forwards;
+}
+
+.sliderFadeInText {
+    animation: fadeIn 1s ease-in;
 }
