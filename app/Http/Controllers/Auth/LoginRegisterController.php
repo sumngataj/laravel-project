@@ -44,12 +44,10 @@ class LoginRegisterController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $isAdmin = $request->has('is_admin') && $request->input('is_admin') === '1';
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'is_admin' => $isAdmin,
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -107,12 +105,12 @@ class LoginRegisterController extends Controller
     {
         if(Auth::check())
         {
-            return view('home');
+            return view('admin.index');
         }
         
         return redirect()->route('login')
             ->withErrors([
-            'email' => 'Please login to access the dashboard.',
+            'email' => 'Please login to access the admin dashboard.',
         ])->onlyInput('email');
     } 
     
@@ -128,7 +126,7 @@ class LoginRegisterController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login')
-            ->withSuccess('You have logged out successfully!');;
+            ->withSuccess('You have logged out successfully!');
     }    
 
 }

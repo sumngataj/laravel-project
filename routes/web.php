@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
-
+use App\Http\Controllers\VenuesController;
+use App\Http\Controllers\PackagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,24 +19,38 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 //     return view('index');
 // });
 
-Route::get('/admin', function () {
-    return view('admin.index'); 
-});
-Route::get('/bookings', function () {
-    return view('admin.bookings');
+// Route::get('/admin', function () {
+//     return view('admin.index'); 
+// });
+// Route::get('admin/bookings', function () {
+//     return view('admin.bookings');
     
-});
+// });
 
 Route::get('/', function () {
     return view('home');
-    
 });
 
-Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/register', 'register')->name('register');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::get('/', 'dashboard')->name('dashboard');
-    Route::post('/logout', 'logout')->name('logout');
+Route::get('/modal', function () {
+    return view('admin.navbarsample');
 });
+
+    
+
+Route::middleware('auth', 'isSuperUser')->group(function(){
+    Route::get('packages', [PackagesController::class, 'index'])->name('admin.packages');
+    // Route::get('/venues', [VenuesController::class, 'index'])->name('admin.venues.index');
+    // Route::post('/venues', [VenuesController::class, 'store'])->name('admin.venues');
+    // Route::post('/venues', [VenuesController::class, 'update'])->name('admin.venues.update');
+    Route::resource('venues', VenuesController::class);
+    Route::get('admin', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
+});
+    
+
+
+    Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
+    Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');
+    Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
+    Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');
+    
+    Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');

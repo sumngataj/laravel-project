@@ -1,8 +1,8 @@
 @section('topbar')
 
-<header class="z-10 py-4 bg-white shadow-md">
+<header class="z-10 py-4 bg-pink-violet shadow-md">
     <div
-      class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600"
+      class="container flex items-center justify-between h-full px-6 mx-auto text-black"
     >
       <!-- Mobile hamburger -->
       <button
@@ -125,12 +125,13 @@
         <!-- Profile menu -->
         <li class="relative">
           <button
-            class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+            class="align-middle flex items-center rounded-full focus:shadow-outline-purple focus:outline-none"
             @click="toggleProfileMenu"
             @keydown.escape="closeProfileMenu"
             aria-label="Account"
             aria-haspopup="true"
           >
+            <span class="mr-2">{{ Auth::user()->name }}</span>
             <img
               class="object-cover w-8 h-8 rounded-full"
               src="{{ asset('images/usericon.png') }}"
@@ -194,9 +195,10 @@
                 </a>
               </li>
               <li class="flex">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="w-full">
+                  @csrf
                 <a
-                  class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                  href="#"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
                 >
                   <svg
                     class="w-4 h-4 mr-3"
@@ -214,6 +216,7 @@
                   </svg>
                   <span>Log out</span>
                 </a>
+                </form>
               </li>
             </ul>
           </template>
