@@ -17,6 +17,7 @@
     @include('admin.components.sidebar')
     @include('admin.components.mobile')
     @include('admin.components.topbar')
+    @include('admin.modalforms.addPackage')
 
 
     <div
@@ -32,115 +33,136 @@
             @yield('topbar')
 
           <main class="h-full overflow-y-auto">
-                <div class="container px-6 mx-auto grid">
-                  <h2
-                    class="my-6 text-2xl font-semibold text-gray-700"
-                  >
-                    Packages
-                  </h2>
-                  <div class="w-full overflow-hidden rounded-lg shadow-xs"
-                    <div class="w-full overflow-x-auto">
-                      <table class="w-full whitespace-no-wrap">
-                        <thead>
-                            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
-                                <th class="px-4 py-3">Package ID</th>
-                                <th class="px-4 py-3">Package Name</th>
-                                <th class="px-4 py-3">Description</th>
-                                <th class="px-4 py-3">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y">
-                          @foreach($packages as $package)
-                          <tr class="text-gray-700">
-                              <td class="px-4 py-3">{{ $package->id }}</td>
-                              <td class="px-4 py-3">{{ $package->package_name }}</td>
-                              <td class="px-4 py-3">{{ $package->description }}</td>
-                              <td class="px-4 py-3">{{ $package->price }}</td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                    </table>
-                    
-                    </div>
-                    <div
-                      class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t"
-                    >
-                      <span class="flex items-center col-span-3">
-                        Showing 21-30 of 100
-                      </span>
-                      <span class="col-span-2"></span>
-                      <!-- Pagination -->
-                      <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                        <nav aria-label="Table navigation">
-                          <ul class="inline-flex items-center">
-                            <li>
-                              <button
-                                class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                                aria-label="Previous"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  class="w-4 h-4 fill-current"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"
-                                    fill-rule="evenodd"
-                                  ></path>
-                                </svg>
-                              </button>
-                            </li>
-                            <li>
-                              <button
-                                class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                              >
-                                1
-                              </button>
-                            </li>
-                            <li>
-                              <button
-                                class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                              >
-                                2
-                              </button>
-                            </li>
-                            <li>
-                              <button
-                                class="px-3 py-1 text-white transition-colors duration-150 bg-pink-violet border border-r-0 border-pink-violet rounded-md focus:outline-none focus:shadow-outline-purple"
-                              >
-                                3
-                              </button>
-                            </li>
-                            
-                            <li>
-                              <button
-                                class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                                aria-label="Next"
-                              >
-                                <svg
-                                  class="w-4 h-4 fill-current"
-                                  aria-hidden="true"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"
-                                    fill-rule="evenodd"
-                                  ></path>
-                                </svg>
-                              </button>
-                            </li>
-                          </ul>
-                        </nav>
-                      </span>
-                    </div>
-                  </div>
-                  
+            @if ($message = Session::get('success'))
+                <div x-data="{show: true}"
+                    x-show="show"
+                    x-init="setTimeout(() => show = false, 3000)"
+                    class="m-3 p-3 rounded-lg bg-green-100 text-green-700 flex items-center">
+                    <span class="mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                            <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    <span>{{ $message }}</span>
                 </div>
+              @endif 
+
+              <div class="container px-6 mx-auto grid">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 relative">
+                  Packages
+                  <button
+                    @click="openModal"
+                    class="absolute top-0 right-0 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-pink-600 border border-transparent rounded-lg active:bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-purple"
+                  >
+                    Add Package
+                  </button>
+                </h2>
+              </div>
+            
+              <div class="w-auto m-2 border border-gray overflow-hidden rounded-lg shadow-lg">
+                <div class="w-full overflow-x-auto">
+                  <table class="w-full whitespace-no-wrap">
+                    <!-- Table Header -->
+                    <thead>
+                      <tr
+                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b"
+                      >
+                        <th class="px-4 py-3">Package Name</th>
+                        <th class="px-4 py-3">Description</th>
+                        <th class="px-4 py-3">Price</th>
+                        <th class="px-4 py-3">Actions</th>
+                      </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody class="bg-white divide-y">
+                      @foreach($packages as $package)
+                      <tr class="text-gray-700">
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
+                              <p class="font-semibold">{{ $package->package_name }}</p>
+                          </div>
+                        </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
+                              <p class="font-semibold">{{ $package->description }}</p>
+                          </div>
+                        </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
+                              <p class="font-semibold">{{ $package->price }}</p>
+                          </div>
+                        </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center space-x-4 text-sm">
+                            <a
+                              {{-- @click="openEditModal" --}}
+                              class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-800 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
+                              aria-label="Edit"
+                              {{-- href="{{ route('admin.venues',$venue->venue_id) }}" --}}
+                            >
+                              <svg
+                                class="w-5 h-5"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                                ></path>
+                              </svg>
+                            </a>
+
+                            <a
+                              class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
+                              aria-label="Delete"
+                            >
+                              <svg
+                                class="w-5 h-5"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                  clip-rule="evenodd"
+                                ></path>
+                              </svg>
+                            </a>
+
+                            <form action="{{ route('packages.destroy',$package->package_id) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                  
+                                <button type="submit" class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200">Delete</button>
+                            </form>
+
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+                <div
+                  class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t bg-gray-50 sm:grid-cols-9"
+                >
+                  <span class="flex items-center col-span-3">
+                    Showing {{ $packages->firstItem() }}-{{ $packages->lastItem() }} of {{ $packages->total() }}
+                  </span>
+                  <span class="col-span-2"></span>
+                  <!-- Pagination -->
+                  <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                    {{ $packages->links('pagination::tailwind') }}
+                  </span>
+                </div>
+              </div>
+
           </main>
         </div>    
     </div>
+
+    @yield('addPackage')
 
     <script>
       function data() {

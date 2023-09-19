@@ -103,7 +103,7 @@
                           <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">
                               <a
-                                @click="openEditModal"
+                                {{-- @click="openEditModal" --}}
                                 class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-800 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
                                 aria-label="Edit"
                                 {{-- href="{{ route('admin.venues',$venue->venue_id) }}" --}}
@@ -137,6 +137,12 @@
                                   ></path>
                                 </svg>
                               </a>
+                            <form action="{{ route('venues.destroy',$venue->venue_id) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                  
+                                <button type="submit" class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200">Delete</button>
+                            </form>
 
                             </div>
                           </td>
