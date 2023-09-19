@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Packages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class PackagesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $packages = DB::table('package')->get();
+        $packages = Packages::latest()->paginate(7);
 
     return view('admin.packages', ['packages' => $packages]);
     }
@@ -31,7 +32,15 @@ class PackagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'package_name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+
+        Packages::create($request->all());
+
+        return back()->with('success', 'Package created successfully.');
     }
 
     /**
@@ -63,6 +72,9 @@ class PackagesController extends Controller
      */
     public function destroy(Packages $packages)
     {
-        //
+        $packages->delete();
+
+        return redirect()->route('packages.index')
+                        ->with('success', 'Packages deleted successfully');
     }
 }

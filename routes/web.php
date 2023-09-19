@@ -35,14 +35,10 @@ Route::get('/modal', function () {
     return view('admin.navbarsample');
 });
 
-    
-
 Route::middleware('auth', 'isSuperUser')->group(function(){
-    Route::get('packages', [PackagesController::class, 'index'])->name('admin.packages');
-    // Route::get('/venues', [VenuesController::class, 'index'])->name('admin.venues.index');
-    // Route::post('/venues', [VenuesController::class, 'store'])->name('admin.venues');
-    // Route::post('/venues', [VenuesController::class, 'update'])->name('admin.venues.update');
+    Route::resource('packages', PackagesController::class);
     Route::resource('venues', VenuesController::class);
+    Route::delete('/venues/{venue}', 'VenuesController@destroy')->name('venues.destroy');
     Route::get('admin', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
 });
     

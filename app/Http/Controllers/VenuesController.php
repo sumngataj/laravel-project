@@ -6,6 +6,7 @@ use App\Models\Venues;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class VenuesController extends Controller
@@ -87,11 +88,11 @@ class VenuesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Venues $venues)
+    public function destroy(Venues $venues): RedirectResponse
     {
         $venues->delete();
          
-        return redirect()->route('admin.venues')
+        return redirect()->route('venues.index')
                         ->with('success','Venue deleted successfully');
     }
 }
