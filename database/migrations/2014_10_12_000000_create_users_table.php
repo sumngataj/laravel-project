@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_admin')->nullable();
+            $table->tinyInteger('is_superuser')->default('0');
+            $table->tinyInteger('is_active')->default('0');
             $table->string('password');
+            $table->dateTime('date_joined')->default(now());
             $table->rememberToken();
             $table->timestamps();
         });
