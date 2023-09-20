@@ -80,24 +80,12 @@
                             rows="3"
                           ></textarea>
                         </label>
-                        <div class="block">
-                          <div class="mt-2">
-                            <div>
-                              <label class="inline-flex items-center">
-                                <input
-                                  type="checkbox"
-                                  class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500"
-                                />
-                                <span class="ml-2">Email me news and special offers</span>
-                              </label>
-                            </div>
-                          </div>
-                        </div>
+                        
                         <button
-            type="submit" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-pink-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-purple"
-          >
-            Submit
-          </button>
+                          type="submit" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-pink-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-purple"
+                        >
+                          Submit
+                        </button>
                       </div>
                     </div>
                     </form>
