@@ -58,41 +58,47 @@ class VenuesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Venues $venues): View
+    public function edit($venue_id)
     {
-        return view('admin.venues',compact('venues'));
+        $venue = Venues::findOrFail($venue_id);
+        return view('admin.modalforms.edit', ['venue' => $venue]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Venue $venue)
+    public function update(Request $request, $venue_id)
     {
-        $request->validate([
+        $venue = Venues::findOrFail($venue_id);
+
+        $data = $request->validate([
             'name' => 'required',
             'location' => 'required',
             'capacity' => 'required',
             'amenities' => 'required',
         ]);
 
-        $venue->update($request->all());
+        $venue->update($data);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Venue updated successfully.',
-            'venue' => $venue->fresh(), // Load the updated venue data
-        ]);
+        return redirect()->route('venues.index')
+                        ->with('success','Venue Updated successfully'); 
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Venues $venues): RedirectResponse
+    public function destroy($venue_id): RedirectResponse
     {
-        $venues->delete();
-         
-        return redirect()->route('venues.index')
-                        ->with('success','Venue deleted successfully');
+        $venue = Venues::findOrFail($venue_id);
+
+        if ($venue) {
+            $venue->delete();
+
+            return redirect()->route('venues.index')
+                            ->with('success', 'Venue deleted successfully');
+        } else {
+            return redirect()->route('venues.index')
+                            ->with('error', 'Venue not found');
+        }
     }
 }
