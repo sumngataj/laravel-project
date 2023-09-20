@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venues extends Model
 {
+    protected $table = 'venues';
+    protected $primaryKey = 'venue_id';
     protected $fillable = [
         'name',
         'location',

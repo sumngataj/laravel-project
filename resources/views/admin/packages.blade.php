@@ -112,7 +112,12 @@
                               </svg>
                             </a>
 
-                            <a
+                            <form action="{{ route('packages.destroy',$package->package_id) }}" method="POST"
+                              onsubmit="return confirm('{{ trans('Do you really want to delete it? ') }}');">
+                              @csrf
+                              @method('DELETE')
+                            <button
+                              type="submit"
                               class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
                               aria-label="Delete"
                             >
@@ -128,13 +133,7 @@
                                   clip-rule="evenodd"
                                 ></path>
                               </svg>
-                            </a>
-
-                            <form action="{{ route('packages.destroy',$package->package_id) }}" method="POST">
-                              @csrf
-                              @method('DELETE')
-                  
-                                <button type="submit" class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200">Delete</button>
+                            </button>
                             </form>
 
                           </div>

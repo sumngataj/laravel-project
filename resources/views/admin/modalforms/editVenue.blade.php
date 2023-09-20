@@ -56,7 +56,7 @@
             Update Venue
           </p>
           {{-- <form action="{{ route('admin.venues'), $venue->id }}" method="POST"> --}}
-          <form action="{{ $venue->venue_id }}" method="POST">
+          <form action="{{ route('venues.update',$venue->venue_id) }}" method="POST">
             @csrf    
             @method('PUT')
             
@@ -69,6 +69,7 @@
                 class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                 placeholder=""
                 {{-- value="{{ $venue->name }}" --}}
+                value="{{old('name',$venue->name)}}"
                 required
               />
             </label>
@@ -80,6 +81,7 @@
                 class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                 placeholder=""
                 {{-- value="{{ $venue->location }}" --}}
+                value="{{old('location',$venue->location)}}"
                 required
               />
             </label>
@@ -91,6 +93,7 @@
                   class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                   placeholder=""
                   {{-- value="{{ $venue->capacity }}" --}}
+                  value="{{old('capacity',$venue->capacity)}}"
                   required
                 />
             </label>
@@ -101,6 +104,7 @@
                 class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                 rows="3"
                 {{-- value="{{ $venue->amenities }}" --}}
+                value="{{old('amenities',$venue->amenities)}}"
               ></textarea>
             </label>
           </div>

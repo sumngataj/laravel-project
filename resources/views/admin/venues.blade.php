@@ -103,10 +103,10 @@
                           <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">
                               <a
-                                {{-- @click="openEditModal" --}}
+                                @click="openEditModal"
                                 class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-800 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
                                 aria-label="Edit"
-                                {{-- href="{{ route('admin.venues',$venue->venue_id) }}" --}}
+                                href="{{ route('venues.edit', $venue->venue_id) }}"
                               >
                                 <svg
                                   class="w-5 h-5"
@@ -120,29 +120,30 @@
                                 </svg>
                               </a>
 
-                              <a
-                                class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
-                                aria-label="Delete"
-                              >
-                                <svg
-                                  class="w-5 h-5"
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
+                              <form action="{{ route('venues.destroy', $venue->venue_id) }}" method="POST"
+                                onsubmit="return confirm('{{ trans('Do you really want to delete it? ') }}');">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                  type="submit"
+                                  class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
+                                  aria-label="Delete"
                                 >
-                                  <path
-                                    fill-rule="evenodd"
-                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                    clip-rule="evenodd"
-                                  ></path>
-                                </svg>
-                              </a>
-                            <form action="{{ route('venues.destroy',$venue->venue_id) }}" method="POST">
-                              @csrf
-                              @method('DELETE')
-                  
-                                <button type="submit" class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-500 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200">Delete</button>
-                            </form>
+                                  <svg
+                                    class="w-5 h-5"
+                                    aria-hidden="true"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                      clip-rule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </button>
+                              </form>
+                          
 
                             </div>
                           </td>
@@ -212,37 +213,50 @@
             this.isModalOpen = false;
             this.trapCleanup();
           },
-          // EditModal
+          //Edit Modal
           isEditModalOpen: false,
           eTrapCleanup: null,
-          editVenueData: null, // To store the fetched venue data
-
-          async openEditModal(venueId) {
-              try {
-                  const response = await axios.put(`/venues/${venueId}`, {
-                      // Provide the updated data here if necessary
-                      name: 'Updated Name',
-                      location: 'Updated Location',
-                      capacity: 'Updated Capacity',
-                      amenities: 'Updated Amenities',
-                  });
-                  
-                  if (response.data.success) {
-                      this.editVenueData = response.data.venue;
-                      this.isEditModalOpen = true;
-                      this.eTrapCleanup = focusTrap(document.querySelector("#editModal"));
-                  } else {
-                      // Handle the error or show an error message
-                      console.error(response.data.message);
-                  }
-              } catch (error) {
-                  console.error(error);
-              }
+          openEditModal() {
+            this.isEditModalOpen = true;
+            this.eTrapCleanup = focusTrap(document.querySelector("#modal"));
           },
           closeEditModal() {
-              this.isEditModalOpen = false;
-              this.eTrapCleanup();
+            this.isEditModalOpen = false;
+            this.eTrapCleanup();
           },
+
+
+          // EditModal
+          // isEditModalOpen: false,
+          // eTrapCleanup: null,
+          // editVenueData: null, // To store the fetched venue data
+
+          // async openEditModal(venueId) {
+          //     try {
+          //         const response = await axios.put(`/venues/${venueId}`, {
+          //             // Provide the updated data here if necessary
+          //             name: 'Updated Name',
+          //             location: 'Updated Location',
+          //             capacity: 'Updated Capacity',
+          //             amenities: 'Updated Amenities',
+          //         });
+                  
+          //         if (response.data.success) {
+          //             this.editVenueData = response.data.venue;
+          //             this.isEditModalOpen = true;
+          //             this.eTrapCleanup = focusTrap(document.querySelector("#editModal"));
+          //         } else {
+          //             // Handle the error or show an error message
+          //             console.error(response.data.message);
+          //         }
+          //     } catch (error) {
+          //         console.error(error);
+          //     }
+          // },
+          // closeEditModal() {
+          //     this.isEditModalOpen = false;
+          //     this.eTrapCleanup();
+          // },
           
         };
       }

@@ -34,11 +34,15 @@ Route::get('/', function () {
 Route::get('/modal', function () {
     return view('admin.navbarsample');
 });
+Route::get('/edit', function () {
+    return view('admin.modalforms.edit');
+});
+
+
 
 Route::middleware('auth', 'isSuperUser')->group(function(){
     Route::resource('packages', PackagesController::class);
     Route::resource('venues', VenuesController::class);
-    Route::delete('/venues/{venue}', 'VenuesController@destroy')->name('venues.destroy');
     Route::get('admin', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
 });
     

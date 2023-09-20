@@ -70,11 +70,18 @@ class PackagesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Packages $packages)
+    public function destroy($package_id)
     {
-        $packages->delete();
+        try {
+            $package = Packages::findOrFail($package_id);
+            $package->delete();
 
-        return redirect()->route('packages.index')
-                        ->with('success', 'Packages deleted successfully');
+            return redirect()->route('packages.index')
+                            ->with('success', 'Venue deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('packages.index')
+                            ->with('error', 'Venue not found');
+        }
     }
+
 }
