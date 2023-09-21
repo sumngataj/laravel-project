@@ -79,7 +79,10 @@
                       <!-- Table Body -->
                       <tbody class="bg-white divide-y">
                         @foreach($venues as $venue)
-                        <tr class="text-gray-700">
+                        <tr class="text-gray-700"
+                          x-show="search === '' || 
+                            '{{ strtolower($venue->name) }}'.includes(search.toLowerCase()) || 
+                            '{{ strtolower($venue->location) }}'.includes(search.toLowerCase())">
                           <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
                                 <p class="font-semibold">{{ $venue->name }}</p>
@@ -121,7 +124,7 @@
                               </a>
 
                               <form action="{{ route('venues.destroy', $venue->venue_id) }}" method="POST"
-                                onsubmit="return confirm('{{ trans('Do you really want to delete it? ') }}');">
+                                onsubmit="return confirm('{{ trans('Do you really want to delete this venue? ') }}');">
                                 @csrf
                                 @method('DELETE')
                                 <button
@@ -225,38 +228,7 @@
             this.eTrapCleanup();
           },
 
-
-          // EditModal
-          // isEditModalOpen: false,
-          // eTrapCleanup: null,
-          // editVenueData: null, // To store the fetched venue data
-
-          // async openEditModal(venueId) {
-          //     try {
-          //         const response = await axios.put(`/venues/${venueId}`, {
-          //             // Provide the updated data here if necessary
-          //             name: 'Updated Name',
-          //             location: 'Updated Location',
-          //             capacity: 'Updated Capacity',
-          //             amenities: 'Updated Amenities',
-          //         });
-                  
-          //         if (response.data.success) {
-          //             this.editVenueData = response.data.venue;
-          //             this.isEditModalOpen = true;
-          //             this.eTrapCleanup = focusTrap(document.querySelector("#editModal"));
-          //         } else {
-          //             // Handle the error or show an error message
-          //             console.error(response.data.message);
-          //         }
-          //     } catch (error) {
-          //         console.error(error);
-          //     }
-          // },
-          // closeEditModal() {
-          //     this.isEditModalOpen = false;
-          //     this.eTrapCleanup();
-          // },
+          search: '',
           
         };
       }

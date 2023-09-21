@@ -54,17 +54,29 @@ class PackagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Packages $packages)
+    public function edit($package_id)
     {
-        //
+        $package = Packages::findOrFail($package_id);
+        return view('admin.modalforms.editPackage', ['package' => $package]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Packages $packages)
+    public function update(Request $request, $package_id)
     {
-        //
+        $package = Packages::findOrFail($package_id);
+
+        $data = $request->validate([
+            'package_name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+        $package->update($data);
+
+        return redirect()->route('packages.index')
+                        ->with('success', 'Package updated successfully');
     }
 
     /**

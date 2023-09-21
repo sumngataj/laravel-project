@@ -76,7 +76,10 @@
                     <!-- Table Body -->
                     <tbody class="bg-white divide-y">
                       @foreach($packages as $package)
-                      <tr class="text-gray-700">
+                      <tr class="text-gray-700"
+                        x-show="search === '' || 
+                        '{{ strtolower($package->package_name) }}'.includes(search.toLowerCase()) || 
+                        '{{ strtolower($package->price) }}'.includes(search.toLowerCase())">
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $package->package_name }}</p>
@@ -98,7 +101,7 @@
                               {{-- @click="openEditModal" --}}
                               class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-800 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
                               aria-label="Edit"
-                              {{-- href="{{ route('admin.venues',$venue->venue_id) }}" --}}
+                              href="{{ route('packages.edit',$package->package_id) }}"
                             >
                               <svg
                                 class="w-5 h-5"
@@ -202,6 +205,7 @@
             this.isModalOpen = false;
             this.trapCleanup();
           },
+          search: '',
         };
       }
       </script>
