@@ -81,7 +81,7 @@ class VenuesController extends Controller
         $venue->update($data);
 
         return redirect()->route('venues.index')
-                        ->with('success','Venue Updated successfully'); 
+                        ->with('success','Venue updated successfully'); 
     }
 
     /**
