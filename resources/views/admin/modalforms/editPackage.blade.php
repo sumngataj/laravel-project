@@ -45,7 +45,7 @@
               
               <div class="py-12">
                 <div class="max-w-4xl mx-auto">
-                  <form action="{{ route('packages.update', $package->package_id) }}" method="POST">
+                  <form action="{{ route('packages.update', $package->package_id) }}" method="POST" enctype="multipart/form-data">
                     @csrf    
                     @method('PUT')
               
@@ -84,6 +84,18 @@
                               rows="3"
                             >{{ $package->description }}</textarea>
                           </label>
+                        </div>
+                        <div class="col-span-1 sm:col-span-1">
+                          <label class="block">
+                            <span class="text-gray-700">Package Image</span>
+                            <input
+                                name="image"
+                                type="file"
+                                class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                            />
+                            <!-- Hidden field to store the current image path -->
+                            <input type="hidden" name="current_image" value="{{ $package->image_path }}">
+                          </label>                        
                         </div>
               
                         <button

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('location');
             $table->integer('capacity');
             $table->string('amenities');
+            $table->string('image_path');
             $table->timestamps();
 
         });
