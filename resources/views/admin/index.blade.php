@@ -206,6 +206,7 @@
             this.isModalOpen = false;
             this.trapCleanup();
           },
+          search: '',
         };
       }
       </script>
