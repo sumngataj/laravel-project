@@ -35,10 +35,22 @@ class PackagesController extends Controller
         $request->validate([
             'package_name' => 'required',
             'description' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'image' => 'required|mimes:jpg,png,jpeg,gif|max:5048'
         ]);
 
-        Packages::create($request->all());
+        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
+        
+        $request->image->move(public_path('images/package_images'), $newImageName);
+
+        $package = new Packages([
+            'package_name' => $request->package_name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image_path' => $newImageName,
+        ]);
+    
+        $package->save();
 
         return back()->with('success', 'Package created successfully.');
     }
@@ -65,19 +77,38 @@ class PackagesController extends Controller
      */
     public function update(Request $request, $package_id)
     {
+        // Find the package by ID
         $package = Packages::findOrFail($package_id);
-
-        $data = $request->validate([
+    
+        // Validate the form input fields
+        $request->validate([
             'package_name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'image' => 'nullable|mimes:jpg,png,jpeg,gif|max:5048',
         ]);
-
-        $package->update($data);
-
+    
+        if ($request->hasFile('image')) {
+            $newImageName = time() . '-' . $request->package_name . '.' . $request->file('image')->extension();
+    
+            $request->file('image')->move(public_path('images/package_images'), $newImageName);
+    
+            if ($package->image_path && file_exists(public_path('images/package_images/' . $package->image_path))) {
+                unlink(public_path('images/package_images/' . $package->image_path));
+            }
+    
+            $package->image_path = $newImageName;
+        }
+    
+        $package->package_name = $request->package_name;
+        $package->description = $request->description;
+        $package->price = $request->price;
+    
+        $package->save();
+    
         return redirect()->route('packages.index')
                         ->with('success', 'Package updated successfully');
-    }
+    }    
 
     /**
      * Remove the specified resource from storage.

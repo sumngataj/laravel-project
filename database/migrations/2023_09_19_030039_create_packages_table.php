@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('package_name');
             $table->string('description');
             $table->integer('price');
+            $table->string('image_path');
             $table->timestamps();
         });
     }

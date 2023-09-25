@@ -45,13 +45,13 @@
               
               <div class="py-12">
                 <div class="max-w-4xl mx-auto">
-                  <form action="{{ route('venues.update', $venue->venue_id) }}" method="POST">
+                  <form action="{{ route('venues.update', $venue->venue_id) }}" method="POST" enctype="multipart/form-data">
                     @csrf    
                     @method('PUT')
               
                     <div class="mt-8 max-w-4xl">
                       <div class="grid grid-cols-2 gap-6">
-                        <div class="col-span-2">
+                        <div class="col-span-2 sm:col-span-1">
                           <label class="block">
                             <span class="text-gray-700">Venue Name</span>
                             <input
@@ -62,6 +62,18 @@
                               placeholder=""
                             />
                           </label>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                          <label class="block">
+                            <span class="text-gray-700">Venue Image</span>
+                            <input
+                                name="image"
+                                type="file"
+                                class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                            />
+                            <!-- Hidden field to store the current image path -->
+                            <input type="hidden" name="current_image" value="{{ $venue->image_path }}">
+                          </label>                        
                         </div>
                         <div class="col-span-2 sm:col-span-1">
                           <label class="block">
@@ -97,7 +109,7 @@
                             >{{ $venue->amenities }}</textarea>
                           </label>
                         </div>
-              
+                        
                         <button
                           type="submit" class="col-span-2 mt-10 w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-pink-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-purple"
                         >

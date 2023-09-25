@@ -13,5 +13,6 @@ class Packages extends Model
         'package_name',
         'description',
         'price',
+        'image_path',
     ];
 }
