@@ -50,102 +50,26 @@
 
             <div id="sliderContainer" class="w-11/12 overflow-hidden translate-y-[150%]">
                 <ul id="slider" class="flex w-full duration-700">
+                    @foreach($packages as $package)
                     <li class="p-5">
                         <div class="h-full">
                             <img class="h-96 w-full object-cover"
-                                src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
-                                alt="MyImage" />
+                                src="{{ asset('images/package_images/' . $package->image_path) }}"
+                                alt="{{ $package->package_name }}" />
                             <div class="flex justify-start items-center mt-4">
-                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">Grand Deluxe</h2>
+                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">{{ $package->package_name }}</h2>
                                 <div class="border-l h-20 border-gold-highlight ml-5">
                                     <div class="ml-3">
-                                        <p class="text-sm">Lorem ipsum dolor sit amet, eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua...</p>
-                                        <a href="#"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
-                                            details</a>
+                                        <p class="text-sm">{{ $package->description }}</p>
+                                        <a href="{{ route('packages.displayById', $package->package_id) }}"
+                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View details</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="p-5">
-                        <div class="h-full">
-                            <img class="h-96 w-full object-cover"
-                                src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
-                                alt="MyImage" />
-                            <div class="flex justify-start items-center mt-4">
-                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">Grand Deluxe</h2>
-                                <div class="border-l h-20 border-gold-highlight ml-5">
-                                    <div class="ml-3">
-                                        <p class="text-sm">Lorem ipsum dolor sit amet, eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua...</p>
-                                        <a href="#"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
-                                            details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="h-full">
-                            <img class="h-96 w-full object-cover"
-                                src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
-                                alt="MyImage" />
-                            <div class="flex justify-start items-center mt-4">
-                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">Grand Deluxe</h2>
-                                <div class="border-l h-20 border-gold-highlight ml-5">
-                                    <div class="ml-3">
-                                        <p class="text-sm">Lorem ipsum dolor sit amet, eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua...</p>
-                                        <a href="#"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
-                                            details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="h-full">
-                            <img class="h-96 w-full object-cover"
-                                src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
-                                alt="MyImage" />
-                            <div class="flex justify-start items-center mt-4">
-                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">Grand Deluxe</h2>
-                                <div class="border-l h-20 border-gold-highlight ml-5">
-                                    <div class="ml-3">
-                                        <p class="text-sm">Lorem ipsum dolor sit amet, eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua...</p>
-                                        <a href="#"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
-                                            details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="p-5">
-                        <div class="h-full">
-                            <img class="h-96 w-full object-cover"
-                                src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
-                                alt="MyImage" />
-                            <div class="flex justify-start items-center mt-4">
-                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">Grand Deluxe</h2>
-                                <div class="border-l h-20 border-gold-highlight ml-5">
-                                    <div class="ml-3">
-                                        <p class="text-sm">Lorem ipsum dolor sit amet, eiusmod tempor incididunt ut
-                                            labore et dolore magna aliqua...</p>
-                                        <a href="#"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
-                                            details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    @endforeach
+                </ul>                
             </div>
         </div>
 </div>
