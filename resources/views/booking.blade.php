@@ -65,7 +65,7 @@
              </div>
 
              <div id="tabContent1" class="tab-content mt-2">
-                 <p class="font-semibold">Details</p>
+                 <p class="font-semibold">{{ $package->description }}</p>
 
              </div>
              <div id="tabContent2" class="tab-content hidden">Content for Tab 2</div>

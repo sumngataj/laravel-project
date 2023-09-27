@@ -17,12 +17,17 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/booking', function () {
-    return view('booking');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::get('/', [PackagesController::class, 'displayAll']);
+
+Route::get('/booking/{package_id}', [PackagesController::class, 'displayById'])->name('packages.displayById');
+
+// Route::get('/booking', function () {
+//     return view('booking');
+// });
 
 
 Route::get('/adminlogin', function () {

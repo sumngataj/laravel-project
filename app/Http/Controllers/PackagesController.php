@@ -19,6 +19,14 @@ class PackagesController extends Controller
     return view('admin.packages', ['packages' => $packages]);
     }
 
+    public function displayAll(): View
+    {
+        $packages = Packages::all();
+
+    return view('home', ['packages' => $packages]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -60,7 +68,13 @@ class PackagesController extends Controller
      */
     public function show(Packages $packages)
     {
-        //
+        // return view('booking',compact('packages'));
+    }
+
+    public function displayById($package_id): View
+    {
+        $package = Packages::findOrFail($package_id);
+        return view('booking', ['package' => $package]);
     }
 
     /**
