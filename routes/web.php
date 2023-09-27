@@ -23,7 +23,7 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', [PackagesController::class, 'displayAll']);
 
-Route::get('/booking/{package_id}', [PackagesController::class, 'displayById'])->name('packages.displayById');
+
 
 // Route::get('/booking', function () {
 //     return view('booking');
@@ -59,14 +59,16 @@ Route::middleware('isSuperUser')->group(function(){
 
 
 Route::middleware('auth')->group(function(){
-    Route::get('/index', function () {
-        return view('index');
-    });
+    Route::get('/booking/{package_id}', [PackagesController::class, 'displayById'])->name('packages.displayById');
 });
 
+    // Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
 
+    Route::controller(LoginRegisterController::class)->group(function() {
+        Route::get('/login', [PackagesController::class, 'displayAll'])->name('login');
+    });
+    
     Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
     Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');
-    Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');   
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
