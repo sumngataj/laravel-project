@@ -81,7 +81,7 @@
     </div>
 
 </nav>
-<button id="buttonUp" class="fixed bottom-16 right-4 bg-pink-violet rounded-full p-2 hidden"><svg
+<button id="buttonUp" class="fixed bottom-16 right-4 bg-pink-violet rounded-full p-2 hidden z-[1000]"><svg
         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />

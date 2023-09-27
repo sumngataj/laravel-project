@@ -20,6 +20,10 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/booking', function () {
+    return view('booking');
+});
+
 
 
 
@@ -37,3 +41,4 @@ Route::middleware('auth', 'isSuperUser')->group(function(){
     Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');   
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
+
