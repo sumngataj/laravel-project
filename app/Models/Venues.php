@@ -14,5 +14,6 @@ class Venues extends Model
         'location',
         'capacity',
         'amenities',
+        'image_path',
     ];
 }

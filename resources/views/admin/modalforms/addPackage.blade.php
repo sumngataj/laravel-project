@@ -55,7 +55,7 @@
           >
             Add Package
           </p>
-          <form  method="POST">
+          <form  method="POST" enctype="multipart/form-data">
             @csrf    
         
           <div class="grid grid-cols-1 gap-6">
@@ -87,7 +87,16 @@
                   required
                 />
             </label>
-            
+            <label class="block">
+              <span class="text-gray-700">Venue Image</span>
+              <input
+                name="image"
+                type="file"
+                class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                required
+              />
+            </label>
+
           </div>
         </div>
         <footer

@@ -62,6 +62,7 @@
 
      @vite('resources/js/app.js')
      <script>
+     
      document.addEventListener("DOMContentLoaded", function() {
          const slider = document.getElementById("slider");
          const indicatorsContainer = document.getElementById("indicators");

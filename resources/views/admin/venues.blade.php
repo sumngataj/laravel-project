@@ -20,6 +20,7 @@
     @include('admin.components.topbar')
     @include('admin.modalforms.addVenue')
     {{-- @include('admin.modalforms.editVenue') --}}
+    @include('admin.modalforms.venueImage')
 
 
     <div
@@ -73,13 +74,17 @@
                           <th class="px-4 py-3">Location</th>
                           <th class="px-4 py-3">Capacity</th>
                           <th class="px-4 py-3">Amenities</th>
+                          <th class="px-5 py-3">Images</th>
                           <th class="px-4 py-3">Actions</th>
                         </tr>
                       </thead>
                       <!-- Table Body -->
                       <tbody class="bg-white divide-y">
                         @foreach($venues as $venue)
-                        <tr class="text-gray-700">
+                        <tr class="text-gray-700"
+                          x-show="search === '' || 
+                            '{{ strtolower($venue->name) }}'.includes(search.toLowerCase()) || 
+                            '{{ strtolower($venue->location) }}'.includes(search.toLowerCase())">
                           <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
                                 <p class="font-semibold">{{ $venue->name }}</p>
@@ -98,6 +103,24 @@
                           <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
                                 <p class="font-semibold">{{ $venue->amenities }}</p>
+                            </div>
+                          </td>
+                          <td class="px-4 py-3">
+                            <div class="flex items-center text-sm">
+                              <button
+                                class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-800 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
+                                @click="openImageModal('{{ asset('images/venue_images/' . $venue->image_path) }}')"
+                              >
+                                <svg
+                                  class="w-5 h-5 mr-2"
+                                  aria-hidden="true"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                </svg>
+                                View Image
+                              </button>
                             </div>
                           </td>
                           <td class="px-4 py-3">
@@ -121,7 +144,7 @@
                               </a>
 
                               <form action="{{ route('venues.destroy', $venue->venue_id) }}" method="POST"
-                                onsubmit="return confirm('{{ trans('Do you really want to delete it? ') }}');">
+                                onsubmit="return confirm('{{ trans('Do you really want to delete this venue? ') }}');">
                                 @csrf
                                 @method('DELETE')
                                 <button
@@ -172,6 +195,7 @@
     </div>
 
     @yield('addVenue')
+    @yield('imageModal')
     {{-- @yield('editVenue') --}}
 
     <script>
@@ -225,38 +249,20 @@
             this.eTrapCleanup();
           },
 
+          search: '',
 
-          // EditModal
-          // isEditModalOpen: false,
-          // eTrapCleanup: null,
-          // editVenueData: null, // To store the fetched venue data
+          //Image Modal
+          isImageModalOpen: false,
+          trapImageCleanup: null,
+          modalImagePath: '',
 
-          // async openEditModal(venueId) {
-          //     try {
-          //         const response = await axios.put(`/venues/${venueId}`, {
-          //             // Provide the updated data here if necessary
-          //             name: 'Updated Name',
-          //             location: 'Updated Location',
-          //             capacity: 'Updated Capacity',
-          //             amenities: 'Updated Amenities',
-          //         });
-                  
-          //         if (response.data.success) {
-          //             this.editVenueData = response.data.venue;
-          //             this.isEditModalOpen = true;
-          //             this.eTrapCleanup = focusTrap(document.querySelector("#editModal"));
-          //         } else {
-          //             // Handle the error or show an error message
-          //             console.error(response.data.message);
-          //         }
-          //     } catch (error) {
-          //         console.error(error);
-          //     }
-          // },
-          // closeEditModal() {
-          //     this.isEditModalOpen = false;
-          //     this.eTrapCleanup();
-          // },
+          openImageModal(imagePath) {
+            this.modalImagePath = imagePath;
+            this.isImageModalOpen = true;
+          },
+          closeImageModal() {
+            this.isImageModalOpen = false;
+          },
           
         };
       }
