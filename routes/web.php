@@ -30,6 +30,10 @@ use App\Http\Controllers\PackagesController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/booking', function () {
+    return view('booking');
+});
+
 
 Route::get('/modal', function () {
     return view('admin.navbarsample');
