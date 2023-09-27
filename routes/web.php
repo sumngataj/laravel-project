@@ -25,15 +25,39 @@ Route::get('/booking', function () {
 });
 
 
+Route::get('/adminlogin', function () {
+    return view('admin.login');
+});
 
+// Route::get('/admin', function () {
+//     return view('reservations.index');
+// });
 
-Route::middleware('auth', 'isSuperUser')->group(function(){
+Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
+Route::middleware('isSuperUser')->group(function(){
     Route::resource('packages', PackagesController::class);
     Route::resource('venues', VenuesController::class);
-    Route::resource('reservations', ReservationController::class);
-    Route::get('admin', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
-});
+
+    Route::controller(LoginRegisterController::class)->group(function() {
+        Route::get('/admin', [ReservationController::class, 'index'])->name('dashboard');
+        Route::resource('reservations', ReservationController::class);
+    });
+    // Route::resource('reservations', ReservationController::class);
     
+    // Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+
+
+    // Route::get('/admin', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
+});
+   
+
+
+Route::middleware('auth')->group(function(){
+    Route::get('/index', function () {
+        return view('index');
+    });
+});
 
 
     Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
@@ -41,4 +65,3 @@ Route::middleware('auth', 'isSuperUser')->group(function(){
     Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');   
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
-
