@@ -24,7 +24,7 @@ class AdminMiddleware
             }
         
         } else {
-            return redirect('/')->with('message', 'You need to Login first');
+            return redirect('/adminlogin')->with('message', 'You need to Login first');
         }
         return $next($request);
     }
