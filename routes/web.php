@@ -34,8 +34,6 @@ Route::middleware('auth', 'isSuperUser')->group(function(){
     Route::get('admin', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
 });
     
-
-
     Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
     Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');
     Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');

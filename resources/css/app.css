@@ -3,7 +3,9 @@
 @tailwind components;
 
 @tailwind utilities;
-
+html {
+    scroll-behavior: smooth;
+}
 body {
     margin: 0;
     padding: 0;
@@ -176,10 +178,10 @@ input::placeholder {
 
 @keyframes slideInSection {
     0% {
-        transform: translateX(150%);
+        transform: translateX(-150%);
     }
     100% {
-        transform: translateX(10%);
+        transform: translateX(-10%);
     }
 }
 

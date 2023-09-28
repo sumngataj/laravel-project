@@ -27,7 +27,7 @@ class LoginRegisterController extends Controller
      */
     public function register()
     {
-        return view('auth.register');
+        return view('register');
     }
 
     /**

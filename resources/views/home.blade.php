@@ -22,6 +22,7 @@
      @include('components.sideMenu')
      @include('components.chatBox')
      @include('section.subheading')
+     @include('section.venues')
      @yield('sideMenu')
      @yield('floatingNavbar')
      @yield('content')
@@ -53,16 +54,26 @@
              </div>
          </div> -->
      </div>
+
      @yield('process')
+
+
      @yield('packages')
+
+
+     @yield('venues')
+
+
      @yield('chatbox')
-     @yield('portfolio')
+     <!-- @yield('portfolio') -->
+     <br>
+     <br>
+     <br>
 
      @yield('footer')
 
      @vite('resources/js/app.js')
      <script>
-     
      document.addEventListener("DOMContentLoaded", function() {
          const slider = document.getElementById("slider");
          const indicatorsContainer = document.getElementById("indicators");
@@ -82,9 +93,11 @@
          function updateIndicators(currentIndex) {
              for (let i = 1; i <= totalCards; i++) {
                  const indicator = document.getElementById(`indicator-${i}`);
+                 const prev = document.getElementById("prevButton");
                  if (i === currentIndex) {
                      indicator.classList.remove("bg-white");
                      indicator.classList.add("bg-gray-300");
+                     prev.classList.remove("hidden");
                  } else {
                      indicator.classList.remove("bg-gray-300");
                      indicator.classList.add("bg-white");
@@ -97,17 +110,17 @@
          const prevButton = document.getElementById("prevButton");
 
          nextButton.addEventListener("click", function() {
-             currentIndex++; // Update the currentIndex when moving to the next slide
+             currentIndex++;
              if (currentIndex > totalCards) {
-                 currentIndex = 1; // Reset to the first slide if at the end
+                 currentIndex = 1;
              }
              updateIndicators(currentIndex);
          });
 
          prevButton.addEventListener("click", function() {
-             currentIndex--; // Update the currentIndex when moving to the previous slide
+             currentIndex--;
              if (currentIndex < 1) {
-                 currentIndex = totalCards; // Loop to the last slide if at the beginning
+                 currentIndex = totalCards;
              }
              updateIndicators(currentIndex);
          });
@@ -118,11 +131,10 @@
      const contentToToggles = document.getElementById('toggle-divs');
 
      toggleButtons.addEventListener('click', function(event) {
-         event.stopPropagation(); // Prevent the event from reaching the document click listener
+         event.stopPropagation();
          contentToToggles.classList.toggle('hidden');
      });
 
-     // Close the dropdown when clicking anywhere outside of it
      document.addEventListener('click', function(event) {
          if (!toggleButtons.contains(event.target) && !contentToToggles.contains(event.target)) {
              contentToToggles.classList.add('hidden');
@@ -132,51 +144,52 @@
 
 
      let sliderContainer = document.getElementById("sliderContainer");
-     let slider = document.getElementById("slider");
-     let cards = slider.getElementsByTagName("li");
+     if (sliderContainer) {
+         let slider = document.getElementById("slider");
+         let cards = slider.getElementsByTagName("li");
 
-     let elementsToShow = 3;
-     if (document.body.clientWidth < 1000) {
-         elementsToShow = 1;
-     } else if (document.body.clientWidth < 1500) {
-         elementsToShow = 2;
-     }
-
-     let sliderContainerWidth = sliderContainer.clientWidth;
-
-     let cardWidth = sliderContainerWidth / elementsToShow;
-
-     slider.style.width = cards.length * cardWidth + "px";
-     slider.style.transition = "transform 1s";
-
-     const nextButton = document.getElementById("nextButton");
-     const prevButton = document.getElementById("prevButton");
-
-     for (let index = 0; index < cards.length; index++) {
-         const element = cards[index];
-         element.style.width = cardWidth + "px";
-     }
-
-     let currentIndex = 0;
-
-     function prev() {
-         if (currentIndex > 0) {
-             currentIndex--;
-             const translateX = -currentIndex * cardWidth;
-             slider.style.transform = `translateX(${translateX}px)`;
+         let elementsToShow = 3;
+         if (document.body.clientWidth < 1000) {
+             elementsToShow = 1;
+         } else if (document.body.clientWidth < 1500) {
+             elementsToShow = 2;
          }
-     }
 
-     function next() {
-         if (currentIndex < cards.length - elementsToShow) {
-             currentIndex++;
-             const translateX = -currentIndex * cardWidth;
-             slider.style.transform = `translateX(${translateX}px)`;
+         let sliderContainerWidth = sliderContainer.clientWidth;
+
+         let cardWidth = sliderContainerWidth / elementsToShow;
+
+         slider.style.width = cards.length * cardWidth + "px";
+         slider.style.transition = "transform 1s";
+
+         const nextButton = document.getElementById("nextButton");
+         const prevButton = document.getElementById("prevButton");
+
+         for (let index = 0; index < cards.length; index++) {
+             const element = cards[index];
+             element.style.width = cardWidth + "px";
          }
-     }
 
-     nextButton.addEventListener("click", next);
-     prevButton.addEventListener("click", prev);
+         let currentIndex = 0;
+
+         function prev() {
+             if (currentIndex > 0) {
+                 currentIndex--;
+                 const translateX = -currentIndex * cardWidth;
+                 slider.style.transform = `translateX(${translateX}px)`;
+             }
+         }
+
+         function next() {
+             if (currentIndex < cards.length - elementsToShow) {
+                 currentIndex++;
+                 const translateX = -currentIndex * cardWidth;
+                 slider.style.transform = `translateX(${translateX}px)`;
+             }
+         }
+         nextButton.addEventListener("click", next);
+         prevButton.addEventListener("click", prev);
+     }
      </script>
 
  </body>
