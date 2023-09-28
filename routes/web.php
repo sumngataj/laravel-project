@@ -22,6 +22,8 @@ use App\Http\Controllers\ReservationController;
 // });
 
 Route::get('/', [PackagesController::class, 'displayAll']);
+Route::get('/get-venue-data/{venueName}', 'VenueController@getVenueData');
+
 
 
 
