@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venues extends Model
 {
+    use HasFactory;
+
     protected $table = 'venues';
+
     protected $primaryKey = 'venue_id';
+    
     protected $fillable = [
         'name',
         'location',
@@ -16,4 +20,10 @@ class Venues extends Model
         'amenities',
         'image_path',
     ];
+
+    public function venue()
+    {
+        return $this->belongsTo(Venues::class, 'venue_id');
+    }
 }
+

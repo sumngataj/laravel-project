@@ -17,7 +17,6 @@
     @include('admin.components.sidebar')
     @include('admin.components.mobile')
     @include('admin.components.topbar')
-    @include('admin.modalforms.addReservation')
     
     <div
       class="flex h-screen bg-gray-50"
@@ -167,12 +166,6 @@
               <div class="container px-6 mx-auto grid">
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 relative">
                   Reservations
-                  <button
-                    @click="openModal"
-                    class="absolute top-0 right-0 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-pink-600 border border-transparent rounded-lg active:bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-purple"
-                  >
-                    Add Reservation
-                  </button>
                 </h2>
               </div>
             
@@ -286,7 +279,6 @@
         </div>    
     </div>
 
-    @yield('addReservation')
 
     <script>
       function data() {

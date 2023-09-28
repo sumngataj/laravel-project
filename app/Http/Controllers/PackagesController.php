@@ -15,9 +15,11 @@ class PackagesController extends Controller
      */
     public function index(): View
     {
-        $packages = Packages::latest()->paginate(7);
+        $venues = Venues::all();
+        $packages = Packages::with(['venue'])->latest()->paginate(7);
+       
 
-    return view('admin.packages', ['packages' => $packages]);
+    return view('admin.packages', ['packages' => $packages] , compact('venues'));
     }
 
     public function displayAll(): View
@@ -74,9 +76,11 @@ class PackagesController extends Controller
 
     public function displayById($package_id): View
     {
-        $package = Packages::findOrFail($package_id);
         $venues = Venues::all();
-        return view('booking', ['package' => $package],['venues'=>$venues]);
+        $packages = Packages::all();
+        $package = Packages::findOrFail($package_id);
+        return view('booking', ['package' => $package], compact('venues', 'packages'));
+
     }
 
     /**

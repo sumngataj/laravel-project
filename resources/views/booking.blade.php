@@ -99,13 +99,20 @@
          </div>
          </div>
 
-         <div id="dateSelection" class="mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[30rem]">
+        <form method="POST" action="{{ route('reservations.store') }}" enctype="multipart/form-data">
+            @csrf
+         <div id="dateSelection" class="lg:max-w-md mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[30rem]">
+
              <div class="1">
                  <div class="p-4">
                      <label>Choose a date:</label>
                      <input id="datepicker"
                          class="w-full bg-white border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                         type="text" placeholder="Select Date">
+                         type="text" placeholder="Select Date"
+                         name="reservation_date"
+                         id="reservation_date"
+                         value="{{ date('Y-m-d') }}"
+                         >
                  </div>
                  <div class="flex justify-center items-center p-2">
                      <button id="bookNowButton" class="bg-pink-violet rounded-full p-2 w-full text-white">
@@ -132,50 +139,59 @@
              </div>
          </div>
 
-         <div id="bookingSummary" class="lg:w-2/4 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[26rem] hidden">
+         <div id="bookingSummary" class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[24rem] hidden custom-width">
+                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="package_id" id="package_id" value="{{ $package->package_id }}">
+
              <div class="2">
                  <div class="p-4">
                      <label class="text-gold-highlight font-light tracking-wide text-xl">Your Booking Summary</label>
                      <div class="flex justify-between items-center mt-2">
-                         <div>
+                         <div class="mr-10">
                              <p class="font-semibold">Event Date</p>
                              <p class="text-sm" name="selectedDate" id="selectedDate">Date will appear here</p>
                          </div>
                          <div>
-                             <p class="font-semibold">Venue</p>
-
-                             <select class="font-light text-sm  focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                                 data-te-select-init data-te-select-filter="true">
-                                 @foreach($venues as $venue)
-                                 <option value="{{$venue->name}}">{{$venue->name}}</option>
-                                 @endforeach
-                             </select>
-
-                         </div>
+                            <p class="font-semibold">Venue</p>
+                            <select
+                                name="venue_id"
+                                id="venue_id"
+                                class="font-light text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 border-0 focus:border-0"
+                                required
+                                onchange="fetchAmenities()"
+                            >
+                                @foreach ($venues as $venue)
+                                    <option value="{{ $venue->venue_id }}">{{ $venue->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>                                            
                      </div>
-                     <p class="font-semibold">Inclusions</p>
-                     <ul class="text-sm">
-                         <li>data</li>
+                     <div id="amenities-container">
+                        <p class="font-semibold mt-3">Inclusions</p>
+                        <ul class="text-sm">
+                            <li id="amenities-placeholder">Select a venue to see amenities.</li>
+                        </ul>
+                    </div>
 
-                     </ul>
                  </div>
                  <center>
                      <div class="border-b-2 border-gray-200 w-11/12"></div>
                  </center>
                  <div class="flex justify-between items-center p-4">
                      <p class="font-semibold text-lg">Total:</p>
-                     <p name="totalPrice" class="font-semibold text-lg">₱{{ $package->price }}</p>
+                     <p class="font-semibold text-lg">₱{{ $package->price }}</p>
                  </div>
                  <div class="flex justify-between items-center p-2 w-full">
                      <button id="backButton" class="bg-pink-violet rounded-full p-2 w-24 text-white">
                          << Back</button>
-                             <button class="bg-pink-violet rounded-full p-2 w-32 text-white">Proceed >></button>
+                             <button type="submit" class="bg-pink-violet rounded-full p-2 w-32 text-white">Proceed >></button>
                  </div>
              </div>
          </div>
+        </form>
+        
 
      </section>
-
 
 
      @yield('chatbox')
@@ -388,6 +404,41 @@
 
      updateStep();
      </script>
+
+
+    <script>
+        var venues = [
+            @foreach ($venues as $venue)
+                {
+                    id: {{ $venue->venue_id }},
+                    amenities: {!! json_encode($venue->amenities) !!}
+                },
+            @endforeach
+        ];
+
+        function fetchAmenities() {
+            // Get the selected venue_id
+            var selectedVenueId = document.getElementById("venue_id").value;
+
+            // Find the venue with the selected ID in the venues array
+            var selectedVenue = venues.find(function (venue) {
+                return venue.id == selectedVenueId;
+            });
+
+            // Display the amenities for the selected venue
+            var amenitiesContainer = document.getElementById("amenities-container");
+            var amenitiesPlaceholder = document.getElementById("amenities-placeholder");
+
+            if (selectedVenue) {
+                amenitiesPlaceholder.style.display = "none";
+                amenitiesContainer.innerHTML = selectedVenue.amenities;
+            } else {
+                amenitiesPlaceholder.style.display = "block";
+                amenitiesContainer.innerHTML = '';
+            }
+        }
+    </script>
+
 
 
  </body>
