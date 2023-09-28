@@ -21,19 +21,22 @@
                                 src="{{ asset('images/package_images/' . $package->image_path) }}"
                                 alt="{{ $package->package_name }}" />
                             <div class="flex justify-start items-center mt-4">
-                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">{{ $package->package_name }}</h2>
+                                <h2 class="font-light tracking-wide text-2xl text-gold-highlight">
+                                    {{ $package->package_name }}</h2>
                                 <div class="border-l h-20 border-gold-highlight ml-5">
                                     <div class="ml-3">
-                                        <p class="text-sm">{{ $package->description }}</p>
+                                        <p class="text-sm">{{ substr($package->description, 0, 100) }}...</p>
+
                                         <a href="{{ route('packages.displayById', $package->package_id) }}"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View details</a>
+                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
+                                            details</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                     @endforeach
-                </ul>                
+                </ul>
             </div>
             <div id="sliderText" class="relative p-18 w-[25%] ml-8 mt-16 opacity-0">
                 <div class="flex items-center">

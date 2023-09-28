@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Packages;
+use App\Models\Venues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -22,10 +23,10 @@ class PackagesController extends Controller
     public function displayAll(): View
     {
         $packages = Packages::all();
+        $venues = Venues::all();
 
-    return view('home', ['packages' => $packages]);
+    return view('home', ['packages' => $packages], ['venues'=>$venues]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -66,7 +67,7 @@ class PackagesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Packages $packages)
+    public function show($id)
     {
         // return view('booking',compact('packages'));
     }
@@ -74,7 +75,8 @@ class PackagesController extends Controller
     public function displayById($package_id): View
     {
         $package = Packages::findOrFail($package_id);
-        return view('booking', ['package' => $package]);
+        $venues = Venues::all();
+        return view('booking', ['package' => $package],['venues'=>$venues]);
     }
 
     /**

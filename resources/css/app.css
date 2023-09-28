@@ -28,6 +28,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 .bg-pink-opacity {
     background-color: rgba(
         255,
