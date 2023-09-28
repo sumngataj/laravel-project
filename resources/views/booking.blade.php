@@ -10,6 +10,20 @@
      <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.css" rel="stylesheet">
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      @vite('resources/css/app.css')
+     <style>
+     /* Add this CSS to control the image size within the comment */
+
+     .avatar {
+         width: 40px;
+         /* Set the width of the avatar image */
+         height: 40px;
+         /* Set the height of the avatar image */
+         margin-right: 10px;
+         /* Add margin for spacing between avatar and content */
+         border-radius: 50%;
+         /* Make the avatar image round */
+     }
+     </style>
  </head>
 
  <body>
@@ -27,16 +41,16 @@
      @yield('loginSideModal')
      @yield('toggleSearch')
 
-     <div class="bg-dirty-gray h-[30rem]">
+     <div class="bg-black p-16">
          <div class="max-w-7xl mx-auto">
-             <div class="relative">
+             <div class="flex justify-center p-8 items-center space-x-10 space-y-2 overflow-hidden">
+                 <p class="text-white font-semibold text-5xl">Package Section</p>
              </div>
          </div>
      </div>
-
      <section class="flex p-12 h-[120rem]">
          <div>
-             <div class="flex cursor-pointer w-[20%]">
+             <!-- <div class="flex cursor-pointer w-[20%]">
                  <img class="thumbnail lg:w-36 h-24 opacity-50"
                      src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
                      alt="Image 1"
@@ -49,13 +63,12 @@
                      src="https://images.unsplash.com/photo-1437226104525-c08c6dd0cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
                      alt="Image 3"
                      onclick="displayImage(this, 'https://images.unsplash.com/photo-1437226104525-c08c6dd0cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80')">
-             </div>
+             </div> -->
              <div class="flex justify-between w-[90%]">
-                 <img id="displayed-image"
-                     src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+                 <img id="displayed-image" src="{{ asset('images/package_images/' . $package->image_path) }}"
                      alt="Displayed Image">
              </div>
-             <h1 class="text-3xl mt-2">Package Name</h1>
+             <h1 class="text-3xl mt-2">{{ $package->package_name }}</h1>
              <div class="flex border-b border-gray w-11/12 mt-5">
                  <button
                      class="tab-link hover:text-gold-highlight p-2 hover:border-b hover:border-pink-violet active:text-blue-700  p-2 bg-gray-300 border-b border-pink-violet rounded-sm"
@@ -64,16 +77,32 @@
                      onclick="showTab(2)">Comments</button>
              </div>
 
-             <div id="tabContent1" class="tab-content mt-2">
-                 <p class="font-semibold">{{ $package->description }}</p>
+             <div id="tabContent1" class="tab-content mt-2 w-10/12">
+                 <p class="font-semibold">Details</p>
+                 <p class="font-light text-justify text-sm">{!! nl2br(e($package->description)) !!}</p>
 
              </div>
-             <div id="tabContent2" class="tab-content hidden">Content for Tab 2</div>
+             <div id="tabContent2" class="tab-content hidden "><textarea id="commentText" name="comment"
+                     class="w-11/12 mt-10 h-56"></textarea>
+                 <div class="w-11/12 flex justify-end items-end mt-4"><button id="appendButton"
+                         onclick="appendComment()" class="bg-pink-violet p-2 rounded-full">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="w-6 h-6">
+                             <path stroke-linecap="round" stroke-linejoin="round"
+                                 d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                         </svg>
+                     </button></div>
+                 <div class="border border-gray-300 w-11/12 mt-4"></div>
+
+                 <div id="commentContainer" class="w-11/12 h-[50rem] overflow-y-auto p-4 mt-8"></div>
+             </div>
+         </div>
          </div>
 
         <form method="POST" action="{{ route('reservations.store') }}" enctype="multipart/form-data">
             @csrf
          <div id="dateSelection" class="lg:max-w-md mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[30rem]">
+
              <div class="1">
                  <div class="p-4">
                      <label>Choose a date:</label>
@@ -113,13 +142,14 @@
          <div id="bookingSummary" class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[24rem] hidden custom-width">
                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="package_id" id="package_id" value="{{ $package->package_id }}">
+
              <div class="2">
                  <div class="p-4">
                      <label class="text-gold-highlight font-light tracking-wide text-xl">Your Booking Summary</label>
                      <div class="flex justify-between items-center mt-2">
                          <div class="mr-10">
                              <p class="font-semibold">Event Date</p>
-                             <p class="text-sm" id="selectedDate">Date will appear here</p>
+                             <p class="text-sm" name="selectedDate" id="selectedDate">Date will appear here</p>
                          </div>
                          <div>
                             <p class="font-semibold">Venue</p>
@@ -142,6 +172,7 @@
                             <li id="amenities-placeholder">Select a venue to see amenities.</li>
                         </ul>
                     </div>
+
                  </div>
                  <center>
                      <div class="border-b-2 border-gray-200 w-11/12"></div>
@@ -168,6 +199,93 @@
 
      @vite('resources/js/app.js')
      <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script>
+     const commentContainer = document.getElementById('commentContainer');
+     const commentText = document.getElementById('commentText');
+
+     function appendComment() {
+         const comment = {
+             avatar: 'https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png',
+             text: commentText.value.trim(),
+         };
+
+         if (comment.text !== '') {
+             const commentElement = document.createElement('div');
+             commentElement.classList.add('comment');
+
+             // Create a flex container for the avatar, username, and text
+             const commentContent = document.createElement('div');
+             commentContent.classList.add('comment-content');
+             commentContent.style.display = 'flex'; // Add flex direction
+
+             // Create an avatar element (img)
+             const avatar = document.createElement('img');
+             avatar.src = comment.avatar;
+             avatar.alt = 'Avatar';
+             avatar.classList.add('avatar');
+             commentContent.appendChild(avatar);
+
+             // Create a div for the username and text
+             const usernameAndText = document.createElement('div');
+             usernameAndText.classList.add('username-text');
+
+             // Create a username element (span)
+             const username = document.createElement('span');
+             username.textContent = comment.username;
+             username.classList.add('username');
+             usernameAndText.appendChild(username);
+
+             // Create a comment text element (p)
+             const commentTextElement = document.createElement('p');
+             commentTextElement.textContent = comment.text;
+             commentTextElement.classList.add('comment-text');
+             commentTextElement.style.backgroundColor = 'white';
+             commentTextElement.style.padding = '10px'; // Add padding for spacing
+             commentTextElement.style.borderRadius = '10px'; // Add rounded corners
+             commentTextElement.style.boxShadow = '0px 2px 4px rgba(0, 0, 0, 0.5)';
+             usernameAndText.appendChild(commentTextElement);
+
+             // Append the username and text container to the comment content
+             commentContent.appendChild(usernameAndText);
+
+             // Append the comment content to the comment element
+             commentElement.appendChild(commentContent);
+
+             const lineBreak = document.createElement('br');
+             commentElement.appendChild(lineBreak);
+             // Append the comment element to the comment container
+             commentContainer.appendChild(commentElement);
+
+             commentText.value = '';
+         }
+     }
+
+
+     $(document).ready(function() {
+         // Attach an event listener to the select element
+         $("#venueSelect").on("change", function() {
+             // Get the selected value
+             var selectedVenue = $(this).val();
+
+             // Send an Ajax request to retrieve data based on the selected venue
+             $.ajax({
+                 url: "/path-to-your-endpoint", // Replace with the actual endpoint
+                 method: "GET",
+                 data: {
+                     venue: selectedVenue
+                 },
+                 success: function(data) {
+                     // Update the ul element with the retrieved data
+                     $("#venueDataList").html(data);
+                 },
+                 error: function(error) {
+                     console.error("Error:", error);
+                 }
+             });
+         });
+     });
+     </script>
      <script>
      flatpickr("#datepicker", {
          dateFormat: "Y-m-d",
@@ -221,12 +339,9 @@
          const datepicker = document.getElementById("datepicker");
          const selectedDate = document.getElementById("selectedDate");
 
-         // Add an event listener to capture date changes
          datepicker.addEventListener("change", function() {
-             // Get the selected date from the date picker
-             const selectedDateString = datepicker.value;
 
-             // Update the content of the "selectedDate" paragraph
+             const selectedDateString = datepicker.value;
              selectedDate.textContent = selectedDateString;
          });
      });

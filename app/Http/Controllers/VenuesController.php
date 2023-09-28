@@ -20,6 +20,14 @@ class VenuesController extends Controller
 
     return view('admin.venues', ['venues' => $venues]);
     }
+      
+    public function displayAllVenues(): View
+    {
+        $venues = Venues::all();
+
+    return view('home', ['venues' => $venues]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

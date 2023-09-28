@@ -26,3 +26,4 @@ class Venues extends Model
         return $this->belongsTo(Venues::class, 'venue_id');
     }
 }
+

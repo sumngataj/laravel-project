@@ -25,10 +25,10 @@ class PackagesController extends Controller
     public function displayAll(): View
     {
         $packages = Packages::all();
+        $venues = Venues::all();
 
-    return view('home', ['packages' => $packages]);
+    return view('home', ['packages' => $packages], ['venues'=>$venues]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -69,7 +69,7 @@ class PackagesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Packages $packages)
+    public function show($id)
     {
         // return view('booking',compact('packages'));
     }
@@ -80,6 +80,7 @@ class PackagesController extends Controller
         $packages = Packages::all();
         $package = Packages::findOrFail($package_id);
         return view('booking', ['package' => $package], compact('venues', 'packages'));
+
     }
 
     /**
