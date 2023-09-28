@@ -15,20 +15,18 @@ class PackagesController extends Controller
      */
     public function index(): View
     {
-        $venues = Venues::all();
-        $packages = Packages::with(['venue'])->latest()->paginate(7);
-       
+        $packages = Packages::latest()->paginate(7);
 
-    return view('admin.packages', ['packages' => $packages] , compact('venues'));
+    return view('admin.packages', ['packages' => $packages]);
     }
 
     public function displayAll(): View
     {
         $packages = Packages::all();
-        $venues = Venues::all();
 
-    return view('home', ['packages' => $packages], ['venues'=>$venues]);
+    return view('home', ['packages' => $packages]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,7 +67,7 @@ class PackagesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Packages $packages)
     {
         // return view('booking',compact('packages'));
     }
@@ -80,7 +78,6 @@ class PackagesController extends Controller
         $packages = Packages::all();
         $package = Packages::findOrFail($package_id);
         return view('booking', ['package' => $package], compact('venues', 'packages'));
-
     }
 
     /**
