@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Packages;
+use App\Models\Venues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -14,9 +15,11 @@ class PackagesController extends Controller
      */
     public function index(): View
     {
-        $packages = Packages::latest()->paginate(7);
+        $venues = Venues::all();
+        $packages = Packages::with(['venue'])->latest()->paginate(7);
+       
 
-    return view('admin.packages', ['packages' => $packages]);
+    return view('admin.packages', ['packages' => $packages] , compact('venues'));
     }
 
     public function displayAll(): View
@@ -73,8 +76,10 @@ class PackagesController extends Controller
 
     public function displayById($package_id): View
     {
+        $venues = Venues::all();
+        $packages = Packages::all();
         $package = Packages::findOrFail($package_id);
-        return view('booking', ['package' => $package]);
+        return view('booking', ['package' => $package], compact('venues', 'packages'));
     }
 
     /**

@@ -21,7 +21,7 @@ class ReservationController extends Controller
         $packages = Packages::all();
         $venues = Venues::all();
 
-        $reservations = Reservation::with(['user', 'venue', 'package'])->paginate(7);
+        $reservations = Reservation::with(['user', 'venue', 'package'])->latest()->paginate(7);
 
         return view('admin.index', compact('reservations', 'packages', 'venues', 'users'));
     }
@@ -49,7 +49,6 @@ class ReservationController extends Controller
             'venue_id' => 'required|numeric',
             'package_id' => 'required|numeric',
             'reservation_date' => 'required|date',
-            // Add validation rules for other fields here
         ]);
 
         // Create a new reservation record
@@ -58,19 +57,17 @@ class ReservationController extends Controller
         $reservation->venue_id = $validatedData['venue_id'];
         $reservation->package_id = $validatedData['package_id'];
         $reservation->reservation_date = $validatedData['reservation_date'];
-        // Set other fields here
 
-
-        // Reservation::create($request->all());
 
         try {
             $reservation->save();
         } catch (\Exception $e) {
             // Log or print the exception message for debugging
             dd($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while saving the reservation.');
         }
         
-        return redirect()->route('reservations.index')->with('success', 'Reservation created successfully.');
+        return back()->with('success', 'Reservation created successfully.');
     }
 
     // public function store(Request $request)
