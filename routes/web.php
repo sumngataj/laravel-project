@@ -50,6 +50,7 @@ Route::middleware('isSuperUser')->group(function(){
     });
     // Route::resource('reservations', ReservationController::class);
     
+
     // Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 
 
@@ -67,7 +68,7 @@ Route::middleware('auth')->group(function(){
     Route::controller(LoginRegisterController::class)->group(function() {
         Route::get('/login', [PackagesController::class, 'displayAll'])->name('login');
     });
-    
+
     Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
     Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');   

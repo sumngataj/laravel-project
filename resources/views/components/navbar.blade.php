@@ -65,45 +65,54 @@
                     class="h-10 lg:w-8/12 md:w-6/12 border border-gray-300 text-gray-500 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
                     placeholder="What are you looking for?" />
 
-                    
-                    <div class="lg:ml-16">
-                      @guest
-                        <button id="toggle-button" class="uppercase text-sm font-semibold tracking-wide">
-                            Login / Register
-                        </button>
-                        @else
-                        <div class="relative ml-8">
-                          <div class="ml-3 relative">
-                            <div>
-                              <button id="toggle-buttons" class="max-w-xs  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-white" aria-haspopup="true">
-                                <span class="mr-2">{{ Auth::user()->name }}</span>
-                                <img class="h-8 w-8 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
-                              </button>
-                            </div>
-                            <div id="toggle-divs" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your Profile</a>
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover-bg-gray-100" role="menuitem">Settings</a>
-                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="w-full">
-                                  @csrf
-                                  <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      @endguest
 
+                <div class="lg:ml-16">
+                    @guest
+                    <button id="toggle-button" class="uppercase text-sm font-semibold tracking-wide">
+                        Login / Register
+                    </button>
+                    @else
+                    <div class="relative ml-8">
+                        <div class="ml-3 relative">
+                            <div>
+                                <button id="toggle-buttons"
+                                    class="max-w-xs  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-white"
+                                    aria-haspopup="true">
+                                    <span class="mr-2">{{ Auth::user()->name }}</span>
+                                    <img class="h-8 w-8 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
+                                </button>
+                            </div>
+                            <div id="toggle-divs"
+                                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden"
+                                role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    role="menuitem">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover-bg-gray-100"
+                                    role="menuitem">Settings</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="w-full">
+                                    @csrf
+                                    <a href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem">Sign out</a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
+                    @endguest
+
                 </div>
             </div>
+        </div>
 
     </nav>
     <nav
         class="flex flex-wrap justify-between items-center bg-white border-t lg:border-y border-gray-300 p-4 lg:h-16 uppercase">
         <div class="hidden lg:flex w-full lg:w-11/12 justify-center space-x-10 text-xs">
             <a href="{{ url('/') }}" class="hover:opacity-70">Home</a>
-            <a href="#" class="hover:opacity-70">About</a>
-            <a href="#" class="hover:opacity-70">Packages</a>
-            <a href="#" class="hover:opacity-70">Gallery</a>
+            <a href="#section1" class="hover:opacity-70">About</a>
+            <a href="#section2" class="hover:opacity-70">Packages</a>
+            <a href="#section3" class="hover:opacity-70">Venues</a>
         </div>
 
     </nav>
