@@ -55,22 +55,35 @@
           >
             Add Reservation
           </p>
-          <form method="POST" action="{{ route('reservations.store') }}">
+          <form method="POST" action="{{ route('reservations.store') }}" enctype="multipart/form-data">
             @csrf
         
             <div class="grid grid-cols-1 gap-6">
-                <label for="package_id" class="block">
-                    <span class="text-gray-700">Package</span>
-                    <select
-                        name="package_id"
-                        id="package_id"
-                        class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        required
-                    >
-                        @foreach ($packages as $item)
-                            <option value="{{ $item->package_id }}">{{ $item->package_name }}</option>
-                        @endforeach
-                    </select>
+              <label for="user_id" class="block">
+                <span class="text-gray-700">User</span>
+                  <select
+                    name="user_id"
+                    id="user_id"
+                    class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    required
+                  >
+                  @foreach ($users as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                  @endforeach
+                  </select>
+              </label>
+              <label for="package_id" class="block">
+                <span class="text-gray-700">Package</span>
+                  <select
+                    name="package_id"
+                    id="package_id"
+                    class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    required
+                  >
+                  @foreach ($packages as $item)
+                    <option value="{{ $item->package_id }}">{{ $item->package_name }}</option>
+                  @endforeach
+                  </select>
                 </label>
         
                 <label for="venue_id" class="block">

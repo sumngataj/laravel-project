@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Packages;
 use App\Models\Venues;
 use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -16,12 +17,13 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $users = User::all();
         $packages = Packages::all();
         $venues = Venues::all();
 
         $reservations = Reservation::with(['user', 'venue', 'package'])->paginate(7);
 
-        return view('admin.reservations', compact('reservations', 'packages', 'venues'));
+        return view('admin.index', compact('reservations', 'packages', 'venues', 'users'));
     }
 
     /**
@@ -29,10 +31,10 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $venues = Venues::all();
-        $packages = Packages::all();
+        // $venues = Venues::all();
+        // $packages = Packages::all();
 
-        return view('admin.reservation', compact('venues', 'packages'));
+        // return view('admin.reservation', compact('venues', 'packages'));
     }
 
     /**
@@ -46,13 +48,13 @@ class ReservationController extends Controller
             'user_id' => 'required|numeric',
             'venue_id' => 'required|numeric',
             'package_id' => 'required|numeric',
-            'reservation_date' => 'required',
+            'reservation_date' => 'required|date',
             // Add validation rules for other fields here
         ]);
 
         // Create a new reservation record
         $reservation = new Reservation();
-        $reservation->user_id = $sessionId;
+        $reservation->user_id = $validatedData[ 'user_id' ];
         $reservation->venue_id = $validatedData['venue_id'];
         $reservation->package_id = $validatedData['package_id'];
         $reservation->reservation_date = $validatedData['reservation_date'];
