@@ -48,6 +48,14 @@
              </div>
          </div>
      </div>
+     
+     @if ($message = Session::get('success'))
+        <script>
+            window.alert('{{ $message }}');
+        </script>
+    @endif
+ 
+
      <section class="flex p-12 h-[120rem]">
          <div>
              <!-- <div class="flex cursor-pointer w-[20%]">
@@ -142,6 +150,7 @@
          <div id="bookingSummary" class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[24rem] hidden custom-width">
                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="package_id" id="package_id" value="{{ $package->package_id }}">
+                <input type="hidden" name="venue_id" id="venue_id" value="{{ $package->venue_id }}">
 
              <div class="2">
                  <div class="p-4">
@@ -151,7 +160,11 @@
                              <p class="font-semibold">Event Date</p>
                              <p class="text-sm" name="selectedDate" id="selectedDate">Date will appear here</p>
                          </div>
-                         <div>
+                         <div class="ml-3">
+                            <p class="font-semibold">Venue</p>
+                            <p class="text-sm">{{ $package->venue->name }}</p>
+                        </div>
+                         {{-- <div>
                             <p class="font-semibold">Venue</p>
                             <select
                                 name="venue_id"
@@ -164,12 +177,15 @@
                                     <option value="{{ $venue->venue_id }}">{{ $venue->name }}</option>
                                 @endforeach
                             </select>
-                        </div>                                            
+                        </div>                                             --}}
                      </div>
                      <div id="amenities-container">
                         <p class="font-semibold mt-3">Inclusions</p>
-                        <ul class="text-sm">
+                        {{-- <ul class="text-sm">
                             <li id="amenities-placeholder">Select a venue to see amenities.</li>
+                        </ul> --}}
+                        <ul class="text-sm">
+                            <li>{!! nl2br(e($package->venue->amenities)) !!}</li>
                         </ul>
                     </div>
 
@@ -406,7 +422,7 @@
      </script>
 
 
-    <script>
+    {{-- <script>
         var venues = [
             @foreach ($venues as $venue)
                 {
@@ -437,7 +453,7 @@
                 amenitiesContainer.innerHTML = '';
             }
         }
-    </script>
+    </script> --}}
 
 
 
