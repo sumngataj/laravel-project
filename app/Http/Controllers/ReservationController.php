@@ -42,8 +42,6 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $sessionId = session()->getId();
-
         $validatedData = $request->validate([
             'user_id' => 'required|numeric',
             'venue_id' => 'required|numeric',

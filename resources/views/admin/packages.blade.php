@@ -89,6 +89,11 @@
                         </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
+                              <p class="font-semibold">{{ $package->venue->name }}</p>
+                          </div>
+                        </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $package->description }}</p>
                           </div>
                         </td>

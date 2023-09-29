@@ -75,16 +75,6 @@
                             />
                           </label>
                         </div>
-                        <div class="col-span-2">
-                          <label class="block">
-                            <span class="text-gray-700">Description</span>
-                            <textarea
-                              class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                              name="description"
-                              rows="3"
-                            >{{ $package->description }}</textarea>
-                          </label>
-                        </div>
                         <div class="col-span-1 sm:col-span-1">
                           <label class="block">
                             <span class="text-gray-700">Package Image</span>
@@ -97,6 +87,34 @@
                             <input type="hidden" name="current_image" value="{{ $package->image_path }}">
                           </label>                        
                         </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="venue_id" class="block">
+                                <span class="text-gray-700">Venue</span>
+                                <select
+                                    name="venue_id"
+                                    id="venue_id"
+                                    class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    required
+                                >
+                                    @foreach ($venues as $item)
+                                        <option value="{{ $item->venue_id }}" {{ $item->venue_id == $package->venue_id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>                      
+                        <div class="col-span-2">
+                          <label class="block">
+                            <span class="text-gray-700">Description</span>
+                            <textarea
+                              class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                              name="description"
+                              rows="3"
+                            >{{ $package->description }}</textarea>
+                          </label>
+                        </div>
+                        
               
                         <button
                           type="submit" class="col-span-2 mt-10 w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-pink-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-pink-600 hover:bg-pink-700 focus:outline-none focus:shadow-outline-purple"

@@ -15,16 +15,19 @@ class PackagesController extends Controller
      */
     public function index(): View
     {
-        $packages = Packages::latest()->paginate(7);
+        $venues = Venues::all();
 
-    return view('admin.packages', ['packages' => $packages]);
+        $packages = Packages::with(['venue'])->latest()->paginate(7);
+
+    return view('admin.packages', compact('packages', 'venues'));
     }
 
     public function displayAll(): View
     {
         $packages = Packages::all();
+        $venues = Venues::all();
 
-    return view('home', ['packages' => $packages]);
+    return view('home', ['packages' => $packages, 'venues' => $venues]);
     }
 
 
@@ -42,27 +45,31 @@ class PackagesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'venue_id' => 'required|numeric',
             'package_name' => 'required',
             'description' => 'required',
             'price' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg,gif|max:5048'
         ]);
 
-        $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
-        
+        // Generate a unique image name
+        $newImageName = time() . '-' . $request->package_name . '.' . $request->image->extension();
+
+        // Move the uploaded image to the desired directory
         $request->image->move(public_path('images/package_images'), $newImageName);
 
-        $package = new Packages([
+        // Create a new package using mass assignment
+        $package = Packages::create([
+            'venue_id' => $request->venue_id,
             'package_name' => $request->package_name,
             'description' => $request->description,
             'price' => $request->price,
             'image_path' => $newImageName,
         ]);
-    
-        $package->save();
 
         return back()->with('success', 'Package created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -86,7 +93,8 @@ class PackagesController extends Controller
     public function edit($package_id)
     {
         $package = Packages::findOrFail($package_id);
-        return view('admin.modalforms.editPackage', ['package' => $package]);
+        $venues = Venues::all();
+        return view('admin.modalforms.editPackage', ['package' => $package, 'venues' => $venues]);
     }
 
     /**
@@ -99,6 +107,7 @@ class PackagesController extends Controller
     
         // Validate the form input fields
         $request->validate([
+            'venue_id' => 'required|numeric',
             'package_name' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -116,7 +125,8 @@ class PackagesController extends Controller
     
             $package->image_path = $newImageName;
         }
-    
+        
+        $package->venue_id = $request->venue_id;
         $package->package_name = $request->package_name;
         $package->description = $request->description;
         $package->price = $request->price;
