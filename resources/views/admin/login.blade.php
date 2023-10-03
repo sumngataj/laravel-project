@@ -17,6 +17,12 @@
     <script src="../assets/js/init-alpine.js"></script>
   </head>
   <body>
+    @if ($message = Session::get('message'))
+        <script>
+            window.alert('{{ $message }}');
+        </script>
+    @endif
+
     <div class="flex items-center min-h-screen p-6 bg-gray-50">
       <div
         class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl"

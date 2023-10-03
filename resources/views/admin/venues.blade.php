@@ -67,6 +67,7 @@
                                     <th class="px-4 py-3">Capacity</th>
                                     <th class="px-4 py-3">Amenities</th>
                                     <th class="px-5 py-3">Images</th>
+                                    <th class="px-5 py-3">Venue Price</th>
                                     <th class="px-4 py-3">Actions</th>
                                 </tr>
                             </thead>
@@ -94,6 +95,11 @@
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
                                             <p class="font-semibold">{{ $venue->amenities }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center text-sm">
+                                            <p class="font-semibold">{{ $venue->price }}</p>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3">

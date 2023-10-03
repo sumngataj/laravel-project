@@ -18,6 +18,8 @@ class Reservation extends Model
         'venue_id',
         'package_id',
         'reservation_date',
+        'status',
+        'price',
     ];
 
     public function user()

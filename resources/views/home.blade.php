@@ -29,6 +29,24 @@
      @yield('loginSideModal')
      @yield('toggleSearch')
 
+     @if ($message = Session::get('message'))
+        <script>
+            window.alert('{{ $message }}');
+        </script>
+    @endif
+    @if(session('success'))
+        <script>
+            window.alert('{{ session('success') }}');
+        </script>
+    @endif
+    @if($errors->has('email'))
+    <script>
+        console.log('Script is executing'); // Add this line to check
+        window.alert('{{ $errors->first('email') }}');
+    </script>
+@endif
+
+
 
      <div
          class="bg-[url('https://www.henann.com/boracay/henanngarden/uploads/slider/overview3.jpg')] bg-no-repeat h-[35rem] bg-cover bg-center bg-fixed w-full">

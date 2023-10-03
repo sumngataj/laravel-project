@@ -193,9 +193,20 @@
                  <center>
                      <div class="border-b-2 border-gray-200 w-11/12"></div>
                  </center>
-                 <div class="flex justify-between items-center p-4">
-                     <p class="font-semibold text-lg">Total:</p>
-                     <p class="font-semibold text-lg">₱{{ $package->price }}</p>
+                 <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <p class="font-semibold text-xs">Package:</p>
+                        <p class="font-semibold text-xs" id="package-price">{{ $package->price }}</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="font-semibold text-xs">Venue:</p>
+                        <p class="font-semibold text-xs" id="venue-price">{{ $package->venue->price }}</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="font-semibold text-lg">Total:</p>
+                        <p class="font-semibold text-lg" id="total-price">₱</p>
+                    </div>
+                    <input type="hidden" name="price" id="price" value="">                    
                  </div>
                  <div class="flex justify-between items-center p-2 w-full">
                      <button id="backButton" class="bg-pink-violet rounded-full p-2 w-24 text-white">
@@ -420,6 +431,23 @@
 
      updateStep();
      </script>
+
+    <script>
+        const packagePriceElement = document.getElementById('package-price');
+        const venuePriceElement = document.getElementById('venue-price');
+        const totalPriceElement = document.getElementById('total-price');
+        const priceInput = document.getElementById('price');
+
+        const packagePrice = parseFloat(packagePriceElement.textContent);
+        const venuePrice = parseFloat(venuePriceElement.textContent);
+
+        const totalPrice = packagePrice + venuePrice;
+
+        totalPriceElement.textContent = `₱${totalPrice.toFixed(2)}`;
+
+        priceInput.value = totalPrice.toFixed(2);
+    </script>
+
 
 
     {{-- <script>

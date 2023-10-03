@@ -101,7 +101,7 @@
                 />
             </label>
             <label class="block">
-              <span class="text-gray-700">Venue Image</span>
+              <span class="text-gray-700">Package Image</span>
               <input
                 name="image"
                 type="file"

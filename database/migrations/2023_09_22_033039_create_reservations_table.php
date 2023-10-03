@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('venue_id')->constrained('venues', 'venue_id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('package_id')->constrained('packages', 'package_id')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('reservation_date');
+            $table->string('status');
+            $table->integer('price');
             $table->timestamps();
         });
     }
