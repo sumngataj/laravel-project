@@ -46,7 +46,7 @@
             x-model="search"
             class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md focus:placeholder-gray-500 focus:bg-white focus:border-pink-300 focus:outline-none focus:shadow-outline-pink form-input"
             type="text"
-            placeholder="Search for projects"
+            placeholder="Search..."
             aria-label="Search"
           />
         </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('capacity');
             $table->string('amenities');
             $table->string('image_path');
+            $table->integer('price');
             $table->timestamps();
 
         });
