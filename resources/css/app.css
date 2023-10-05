@@ -37,7 +37,9 @@ body {
         0.7
     ); /* Adjust the opacity level (0.7 in this example) */
 }
-
+.venue {
+    display: none;
+}
 #scroll-container {
     opacity: 0;
     transform: translateY(-100%);
@@ -119,6 +121,33 @@ input::placeholder {
     to {
         transform: translateY(100%);
     }
+}
+#slideInCaterings {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInCaterings.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+#slideInCakes {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInCakes.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+#slideInFlowers {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInFlowers.open {
+    max-height: 1500px; /* Adjust the max height as needed */
 }
 
 .slide-in {
