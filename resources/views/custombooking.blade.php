@@ -177,78 +177,84 @@
                  </div>
                  <div class="flex justify-between items-center mt-2">
                      <p class="text-lg font-semibold">Total:</p>
-                     <p id="totalSummaryPrice" class="text-lg font-semibold">₱0.00</p>
+                     <div>
+                         <span class="text-lg font-semibold">₱</span><span id="totalSummaryPrice"
+                             class="text-lg font-semibold">0</span><span class="text-lg font-semibold">.00</span>
+                     </div>
                  </div>
              </div>
          </div>
          </div>
-         <div id="guestDetails" class="relative w-1/2 ml-20 border border-gray-400 p-4 hidden">
-             <h1 class="text-gold-highlight font-light text-2xl tracking-wide">Contact Info</h1>
-             <div class="flex justify-between items-center space-x-4">
-                 @guest
-                 <input type="text" class="w-full" placeholder="Fullname" />
-                 @else
-                 <div class="relative w-full">
-                     <label class="text-sm font-light">Full Name *</label>
-                     <input type="text" name="fullname" class="w-full font-light" value="{{ Auth::user()->name }}" />
+         <div id="guestDetails" class="relative hidden">
+             <div class="relative w-1/2 ml-20 border border-gray-400 p-4">
+                 <h1 class="text-gold-highlight font-light text-2xl tracking-wide">Contact Info</h1>
+                 <div class="flex justify-between items-center space-x-4">
+                     @guest
+                     <input type="text" class="w-full" placeholder="Fullname" />
+                     @else
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">Full Name *</label>
+                         <input type="text" name="fullname" class="w-full font-light"
+                             value="{{ Auth::user()->name }}" />
+                     </div>
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">Last Name *</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
                  </div>
-                 <div class="relative w-full">
-                     <label class="text-sm font-light">Last Name *</label>
-                     <input type="text" name="fullname" class="w-full font-light" />
+                 <div class="flex justify-between items-center space-x-4 mt-4">
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">Phone</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">Mobile Number</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
                  </div>
-             </div>
-             <div class="flex justify-between items-center space-x-4 mt-4">
-                 <div class="relative w-full">
-                     <label class="text-sm font-light">Phone</label>
-                     <input type="text" name="fullname" class="w-full font-light" />
+                 <div class="relative w-[49%] mt-4">
+                     <label class="text-sm font-light">Email Address *</label>
+                     <input type="text" name="fullname" class="w-full font-light" value="{{ Auth::user()->email }}" />
                  </div>
-                 <div class="relative w-full">
-                     <label class="text-sm font-light">Mobile Number</label>
-                     <input type="text" name="fullname" class="w-full font-light" />
-                 </div>
-             </div>
-             <div class="relative w-[49%] mt-4">
-                 <label class="text-sm font-light">Email Address *</label>
-                 <input type="text" name="fullname" class="w-full font-light" value="{{ Auth::user()->email }}" />
-             </div>
-             @endguest
-             <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">Address</h1>
-             <div class="relative w-[49%]">
-                 <select id="countrySelect"
-                     class="block font-light w-full hover:border-gray-500 px-3 py-2 pr-8 focus:outline-none focus:shadow-outline">
-                     <option value="" selected disabled>Select a country</option>
-                 </select>
-                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-
-                 </div>
-             </div>
-             <div class="flex justify-between items-center space-x-4 mt-4">
-                 <div class="relative w-full">
-                     <select id="countryProvince"
+                 @endguest
+                 <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">Address</h1>
+                 <div class="relative w-[49%]">
+                     <select id="countrySelect"
                          class="block font-light w-full hover:border-gray-500 px-3 py-2 pr-8 focus:outline-none focus:shadow-outline">
-                         <option value="" selected disabled>Select Province</option>
+                         <option value="" selected disabled>Select a country</option>
                      </select>
                      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
 
                      </div>
                  </div>
-                 <div class="relative w-full">
-                     <input type="text" name="fullname" class="w-full font-light" />
+                 <div class="flex justify-between items-center space-x-4 mt-4">
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">City *</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">City *</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
+                 </div>
+                 <div class="flex justify-between items-center space-x-4 mt-4">
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">Barangay / Purok / Street *</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
+                     <div class="relative w-full">
+                         <label class="text-sm font-light">Zip / Postal Code *</label>
+                         <input type="text" name="fullname" class="w-full font-light" />
+                     </div>
+                 </div>
+                 <div class="flex justify-center items-center p-2 border-b border-gray-400 mt-4"></div>
+                 <div class="relative">
+                     <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">Payment Options</h1>
                  </div>
              </div>
-             <div class="flex justify-between items-center space-x-4 mt-4">
-                 <div class="relative w-full">
-                     <label class="text-sm font-light">Barangay / Purok / Street *</label>
-                     <input type="text" name="fullname" class="w-full font-light" />
-                 </div>
-                 <div class="relative w-full">
-                     <label class="text-sm font-light">Zip / Postal Code *</label>
-                     <input type="text" name="fullname" class="w-full font-light" />
-                 </div>
-             </div>
-             <div class="flex justify-center items-center p-2 border-b border-gray-400 mt-4"></div>
-             <div class="relative">
-                 <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">Payment Options</h1>
+             <div class="flex justify-end items-end ml-20 w-1/2 mt-4">
+                 <button id="continueStep4"
+                     class="bg-pink-violet p-2 w-40 text-white uppercase tracking-wide font-lightbold">Continue</button>
              </div>
          </div>
          <div id="adOns" class="relative w-1/2 ml-20 space-y-5 hidden">
@@ -369,9 +375,13 @@
                      </div>
                      <div class="flex justify-end items-end w-full border-t border-gray-400 mt-4">
                          <div class="relative mt-2">
-                             <p id="venuePrice" name="price" class="font-bold leading-wide text-xl text-right">₱26,000
-                             </p>
-                             <button id="bookNowButton" class="bg-pink-violet p-2 uppercase text-white mt-2 text-sm">
+                             <div class="flex justify-end items-end">
+                                 <span class="font-bold leading-wide text-xl text-right">₱</span>
+                                 <p id="venuePrice" name="price" class="font-bold leading-wide text-xl text-right">
+                                     {{$venue->price}}
+                             </div>
+                             <button class="book-now-button bg-pink-violet p-2 uppercase text-white mt-2 text-sm"
+                                 data-venue-id="{{$venue->venue_id}}" data-venue-price="{{$venue->price}}">
                                  BOOK NOW</button>
                          </div>
                      </div>
@@ -434,7 +444,7 @@
      });
      document.addEventListener('DOMContentLoaded', () => {
 
-         const bookNowButton = document.getElementById('bookNowButton');
+         const bookNowButtons = document.querySelectorAll('.book-now-button');
          const venuePriceElement = document.getElementById('venuePrice');
          const totalSummaryPriceElement = document.getElementById('totalSummaryPrice');
          const step2Btn = document.getElementById('continueStep3');
@@ -444,34 +454,37 @@
          const venueListings = document.getElementById('venueListings');
          const stepHeading = document.getElementById('stepHeading');
 
-         function updateTotalSummaryPrice() {
-             const venuePriceText = venuePriceElement.textContent;
-             totalSummaryPriceElement.textContent = venuePriceText;
+         function updateTotalSummaryPrice(price) {
+             totalSummaryPriceElement.textContent = price;
          }
 
-         bookNowButton.addEventListener('click', () => {
-             const step1 = document.getElementById('step1');
-             const step1Label = document.getElementById('step1Label');
-             const step1Connector = document.getElementById('step1Connector');
-             const step2 = document.getElementById('step2');
-             const step2Label = document.getElementById('step2Label');
-             const step1Check = document.getElementById('step1Check');
-             step1.innerHTML = '&#10003';
-             step1.classList.remove('bg-pink-violet');
-             step1.classList.add('bg-gold-highlight');
-             step1Label.classList.add('font-light', 'text-gold-highlight');
-             step1Connector.classList.remove('border-gray-300');
-             step1Connector.classList.add('border-gold-highlight');
-             step1Check.classList.remove('hidden');
-             step2.classList.remove('bg-white', 'border');
-             step2.classList.add('bg-pink-violet', 'text-white');
-             step2Label.classList.remove('font-light');
-             step2Label.classList.add('font-bold');
-             venueListings.style.display = 'none';
-             firstBtns.style.display = 'none';
-             stepHeading.classList.remove('mt-6');
-             stepHeading.querySelector('p').textContent = 'Select your add ons';
-             addOns.classList.remove('hidden');
+         bookNowButtons.forEach((button) => {
+             button.addEventListener('click', () => {
+                 const venuePrice = button.getAttribute('data-venue-price');
+                 updateTotalSummaryPrice(venuePrice);
+                 const step1 = document.getElementById('step1');
+                 const step1Label = document.getElementById('step1Label');
+                 const step1Connector = document.getElementById('step1Connector');
+                 const step2 = document.getElementById('step2');
+                 const step2Label = document.getElementById('step2Label');
+                 const step1Check = document.getElementById('step1Check');
+                 step1.innerHTML = '&#10003';
+                 step1.classList.remove('bg-pink-violet');
+                 step1.classList.add('bg-gold-highlight');
+                 step1Label.classList.add('font-light', 'text-gold-highlight');
+                 step1Connector.classList.remove('border-gray-300');
+                 step1Connector.classList.add('border-gold-highlight');
+                 step1Check.classList.remove('hidden');
+                 step2.classList.remove('bg-white', 'border');
+                 step2.classList.add('bg-pink-violet', 'text-white');
+                 step2Label.classList.remove('font-light');
+                 step2Label.classList.add('font-bold');
+                 venueListings.style.display = 'none';
+                 firstBtns.style.display = 'none';
+                 stepHeading.classList.remove('mt-6');
+                 stepHeading.querySelector('p').textContent = 'Select your add ons';
+                 addOns.classList.remove('hidden');
+             });
          });
          step2Btn.addEventListener('click', () => {
              const step2 = document.getElementById('step2');
