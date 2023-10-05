@@ -29,9 +29,13 @@
         <h1 class="font-lightbold text-3xl text-gold-highlight tracking-wide">Kaluhas offers</h1>
         <p class="text-sm mt-6">Take advantage of unique offers and events brought to you by Kaluhas wedding and events
             specialist.</p>
-        <button class="bg-pink-violet p-4 text-sm font-semibold mt-16 hover:bg-pink-hover animation-slide-up w-full">
-            Book Now
-        </button>
+        <a href="{{ route('custom.booking') }}">
+            <button
+                class="bg-pink-violet p-4 text-sm font-semibold mt-16 hover:bg-pink-hover animation-slide-up w-full">
+                Book Now
+
+            </button>
+        </a>
     </div>
     <div class="flex justify-start items-start space-x-5 w-8/12">
         <div class="max-w-sm overflow-hidden border border-gold-highlight text-center">

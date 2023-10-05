@@ -26,7 +26,7 @@
         </div>
 
         <div class="lg:flex lg:w-full lg:ml-10 md:hidden hidden uppercase text-xs">
-            <div class="flex lg:w-8/12 md:w-6/12 space-x-10">
+            <div class="flex items-center lg:w-8/12 md:w-6/12 space-x-10">
                 <a href="#" class="hover:border-b border-gray-300">Home</a>
                 <a>About</a>
                 <a>Packages</a>

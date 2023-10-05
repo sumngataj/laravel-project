@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\VenuesController;
 use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\CustomBookingController;
 use App\Http\Controllers\ReservationController;
 
 /*
@@ -22,7 +23,9 @@ use App\Http\Controllers\ReservationController;
 // });
 
 Route::get('/', [PackagesController::class, 'displayAll']);
-Route::get('/get-venue-data/{venueName}', 'VenueController@getVenueData');
+Route::get('/custombooking', [CustomBookingController::class, 'index'])->name('custom.booking');
+
+
 
 
 
