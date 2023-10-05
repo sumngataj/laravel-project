@@ -48,6 +48,7 @@ class VenuesController extends Controller
             'capacity' => 'required',
             'amenities' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg,gif|max:5048',
+            'price' => 'required',
         ]);
 
         $newImageName = time() . '-' . $request->name . '.' . $request->file('image')->extension();
@@ -60,6 +61,7 @@ class VenuesController extends Controller
             'capacity' => $request->capacity,
             'amenities' => $request->amenities,
             'image_path' => $newImageName,
+            'price' => $request->price,
         ]);
 
         return back()->with('success', 'Venue created successfully.');
@@ -88,45 +90,37 @@ class VenuesController extends Controller
      */
     public function update(Request $request, $venue_id)
     {
-        // Find the venue by ID
         $venue = Venues::findOrFail($venue_id);
 
-        // Validate the form input fields
         $request->validate([
             'name' => 'required',
             'location' => 'required',
             'capacity' => 'required',
             'amenities' => 'required',
-            'image' => 'nullable|mimes:jpg,png,jpeg,gif|max:5048', // Image validation rules
+            'image' => 'nullable|mimes:jpg,png,jpeg,gif|max:5048',
+            'price' => 'required',
         ]);
 
-        // Check if a new image is uploaded
         if ($request->hasFile('image')) {
-            // Generate a unique file name for the new image
             $newImageName = time() . '-' . $request->name . '.' . $request->file('image')->extension();
 
-            // Move the new uploaded image to the public directory
             $request->file('image')->move(public_path('images/venue_images'), $newImageName);
 
-            // Delete the old image file if it exists
             if ($venue->image_path && file_exists(public_path('images/venue_images/' . $venue->image_path))) {
                 unlink(public_path('images/venue_images/' . $venue->image_path));
             }
 
-            // Update the image_path field with the new image name
             $venue->image_path = $newImageName;
         }
 
-        // Update other fields with the validated data
         $venue->name = $request->name;
         $venue->location = $request->location;
         $venue->capacity = $request->capacity;
         $venue->amenities = $request->amenities;
+        $venue->price = $request->price;
 
-        // Save the updated venue record
         $venue->save();
 
-        // Redirect to the index page with a success message
         return redirect()->route('venues.index')
                         ->with('success', 'Venue updated successfully');
     }

@@ -21,9 +21,29 @@ class ReservationController extends Controller
         $packages = Packages::all();
         $venues = Venues::all();
 
-        $reservations = Reservation::with(['user', 'venue', 'package'])->latest()->paginate(7);
+        $reservations = Reservation::with(['user', 'venue', 'package'])
+        ->where('status', 'pending')
+        ->latest()
+        ->paginate(7);
 
-        return view('admin.index', compact('reservations', 'packages', 'venues', 'users'));
+        $bookingsCount = Reservation::where('status', 'booked')->count();
+
+        return view('admin.index', compact('reservations', 'bookingsCount', 'packages', 'venues', 'users'));
+    }
+
+    public function booked()
+    {
+        $users = User::all();
+        $packages = Packages::all();
+        $venues = Venues::all();
+
+        // Filter reservations with the 'booked' status
+        $reservations = Reservation::with(['user', 'venue', 'package'])
+            ->where('status', 'booked')
+            ->latest()
+            ->paginate(7);
+
+        return view('admin.booked', compact('reservations', 'packages', 'venues', 'users'));
     }
 
     /**
@@ -42,13 +62,12 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $sessionId = session()->getId();
-
         $validatedData = $request->validate([
             'user_id' => 'required|numeric',
             'venue_id' => 'required|numeric',
             'package_id' => 'required|numeric',
             'reservation_date' => 'required|date',
+            'price' => 'required|numeric',
         ]);
 
         // Create a new reservation record
@@ -57,6 +76,8 @@ class ReservationController extends Controller
         $reservation->venue_id = $validatedData['venue_id'];
         $reservation->package_id = $validatedData['package_id'];
         $reservation->reservation_date = $validatedData['reservation_date'];
+        $reservation->price = $validatedData['price'];
+        $reservation->status = 'pending';
 
 
         try {
@@ -120,10 +141,17 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $reservation_id)
     {
-        //
+        $reservation = Reservation::findOrFail($reservation_id);
+
+        $reservation->status = 'booked';
+
+        $reservation->save();
+
+        return back()->with('success', 'Reservation status updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.

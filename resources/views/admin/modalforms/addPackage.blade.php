@@ -69,6 +69,19 @@
                 required
               />
             </label>
+            <label for="venue_id" class="block">
+                <span class="text-gray-700">Venue</span>
+                <select
+                    name="venue_id"
+                    id="venue_id"
+                    class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    required
+                >
+                    @foreach ($venues as $item)
+                        <option value="{{ $item->venue_id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </label>
             <label class="block">
               <span class="text-gray-700">Description</span>
               <textarea
@@ -88,7 +101,7 @@
                 />
             </label>
             <label class="block">
-              <span class="text-gray-700">Venue Image</span>
+              <span class="text-gray-700">Package Image</span>
               <input
                 name="image"
                 type="file"
