@@ -23,7 +23,7 @@ use App\Http\Controllers\ReservationController;
 // });
 
 Route::get('/', [PackagesController::class, 'displayAll']);
-Route::get('/custombooking', [CustomBookingController::class, 'index'])->name('custom.booking');
+
 
 
 
@@ -51,6 +51,13 @@ Route::middleware('isSuperUser')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::get('/booking/{package_id}', [PackagesController::class, 'displayById'])->name('packages.displayById');
     Route::post('/', [ReservationController::class, 'store'])->name('reservations.store');
+    // Route::get('/custombooking', [CustomBookingController::class, 'index'])->name('custom.booking');
+
+    Route::group(['prefix' => 'custombooking'], function () {
+        Route::get('/', [CustomBookingController::class, 'index'])->name('custom.booking');
+        Route::post('/custom', [ReservationController::class, 'custom'])->name('reservations.custom');
+        // Route::get('/custombooking/{venue_id}', [VenuesController::class, 'displayById'])->name('venues.displayById');
+    });
 });
 
     Route::controller(LoginRegisterController::class)->group(function() {

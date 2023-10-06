@@ -18,8 +18,17 @@ class Reservation extends Model
         'venue_id',
         'package_id',
         'reservation_date',
+        'add_ons',
         'status',
         'price',
+        'guests',
+        'first_name',
+        'last_name',
+        'phone',
+        'mobile_number',
+        'email',
+        'address',
+        
     ];
 
     public function user()
@@ -36,4 +45,5 @@ class Reservation extends Model
     {
         return $this->belongsTo(Packages::class, 'package_id');
     }
+
 }

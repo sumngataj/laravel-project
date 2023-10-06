@@ -181,6 +181,7 @@
                         <th class="px-4 py-3">Package</th>
                         <th class="px-4 py-3">Venue</th>
                         <th class="px-4 py-3">Reservation Date</th>
+                        <th class="px-4 py-3">Add-ons</th>
                         <th class="px-4 py-3">Status</th> 
                         <th class="px-4 py-3">Actions</th>
                       </tr>
@@ -190,7 +191,7 @@
                       @foreach($reservations as $reservation)
                       <tr class="text-gray-700"
                         x-show="search === '' || 
-                        '{{ strtolower($reservation->package->package_name) }}'.includes(search.toLowerCase())">
+                        '{{ strtolower($reservation->reservation_date) }}'.includes(search.toLowerCase())">
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->user->email }}</p>
@@ -198,9 +199,11 @@
                         </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
-                              <p class="font-semibold">{{ $reservation->package->package_name }}</p>
+                              @if ($reservation->package)
+                                  <p class="font-semibold">{{ $reservation->package->package_name }}</p>
+                              @endif
                           </div>
-                        </td>
+                        </td>                      
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->venue->name }}</p>
@@ -211,6 +214,11 @@
                                 <p class="font-semibold">{{ $reservation->reservation_date }}</p>
                             </div>
                         </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
+                              <p class="font-semibold">{{ $reservation->add_ons }}</p>
+                          </div>
+                      </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->status }}</p>
