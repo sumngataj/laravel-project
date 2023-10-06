@@ -36,12 +36,14 @@
              </div>
          </div>
      </div>
+     <form method="POST" action="{{ route('reservations.custom') }}" enctype="multipart/form-data">
+        @csrf
      <section class="h-auto">
          <div class="flex justify-around items-start">
              <div class="relative mt-6">
                  <div id="stepperContent" class="relative">
                      <div id="firstBtns" class="flex border border-gray-500">
-                         <button id="" onclick="toggleOverlay()" class="w-1/2 text-left p-2"><a
+                         <button id="" type="button" onclick="toggleOverlay()" class="w-1/2 text-left p-2"><a
                                  class="flex text-gold-highlight font-bold"><svg xmlns="http://www.w3.org/2000/svg"
                                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                      class="w-6 h-6 mr-2">
@@ -50,7 +52,7 @@
                                  </svg>
                                  Guests</a> <span id="selectedCapacity" class="text-xs font-light">0
                                  people</span></button>
-                         <button id="dateButton" class="w-1/2 text-left p-2 border-l border-gray-500 h-full"><a
+                         <button id="dateButton" type="button" class="w-1/2 text-left p-2 border-l border-gray-500 h-full"><a
                                  class="flex text-gold-highlight font-bold"><svg xmlns="http://www.w3.org/2000/svg"
                                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                      class="w-6 h-6 mr-2">
@@ -65,7 +67,7 @@
                      </div>
                      <div id="dateSlideIn" class="flex justify-end items-end border border-gray-500 p-4 hidden">
 
-                         <input type="date" id="datepicker"
+                         <input type="date" id="datepicker" name="reservation_date" value="{{ date('Y-m-d') }}"
                              class="border border-gray-300 p-2 w-0 h-0 opacity-0 absolute">
 
                      </div>
@@ -107,9 +109,9 @@
 
                          </div>
                          <div class="flex justify-end items-end p-2 mt-2">
-                             <button class="p-2 uppercase text-pink-violet tracking-wide text-xs hover:opacity-50"
+                             <button type="button" class="p-2 uppercase text-pink-violet tracking-wide text-xs hover:opacity-50"
                                  onclick="toggleOverlay()">Cancel</button>
-                             <button id="applyButton"
+                             <button type="button" id="applyButton"
                                  class="bg-pink-violet p-2 uppercase text-white tracking-wide text-xs hover:bg-pink-hover"
                                  onclick="applyGuestCount()">Apply</button>
                          </div>
@@ -173,31 +175,12 @@
                          <h2 class="mt-4 font-semibold text-sm">Event Date</h2>
                          <p id="date" class="text-sm font-light tracking wide"></p>
                          <p id="guest" class="text-sm font-light mb-4 tracking-wide">0 People</p>
-                         <div class="flex justify-between items-center">
-                             <p id="venuesummary" class="font-light mb-4 tracking-wide text-gold-highlight underline">
-                             </p>
-                             <p id="venuepricing" class="font-semibold mb-4 tracking-wide text-black"></p>
-                         </div>
-                         <div class="relative">
-                             <div id="addOnHeading" class="flex justify-between items-center hidden">
-                                 <h1 class="font-semibold tracking-wide text-black text-sm">Add
-                                     Ons:
-                                 </h1>
-                                 <a id="removeAllAddOns" onclick="removeAllAddOns()"
-                                     class="flex items-center text-pink-violet text-xs uppercase hover:underline">
-                                     Remove All
-                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke-width="1.5" stroke="currentColor"
-                                         class="w-4 h-4 text-pink-violet text-semibold text-xs ml-1">
-                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                             d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                     </svg>
-
-                                 </a>
-                             </div>
-                             <ul id="addOnList" class="addOnList">
-                             </ul>
-                         </div>
+                         <input type="" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                         <input type="" name="venue_id" id="venue_id" value="">
+                         <input type="" name="guests" id="guestInput">
+                         <input type="" name="price" id="price" value="">
+                         <input type="" name="add_ons" id="add_ons" value="">
+                         {{-- <input type="" name="address" id="address" value=""> --}}
                      </div>
                  </div>
                  <div class="flex justify-between items-center mt-2">
@@ -219,34 +202,35 @@
                      @else
                      <div class="relative w-full">
                          <label class="text-sm font-light">Full Name *</label>
-                         <input type="text" name="fullname" class="w-full font-light"
+                         <input type="text" name="first_name" class="w-full font-light"
                              value="{{ Auth::user()->name }}" />
                      </div>
                      <div class="relative w-full">
                          <label class="text-sm font-light">Last Name *</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <input type="text" name="last_name" class="w-full font-light" />
                      </div>
                  </div>
                  <div class="flex justify-between items-center space-x-4 mt-4">
                      <div class="relative w-full">
                          <label class="text-sm font-light">Phone</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <input type="text" name="phone" class="w-full font-light" />
                      </div>
                      <div class="relative w-full">
                          <label class="text-sm font-light">Mobile Number</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <input type="text" name="mobile_number" class="w-full font-light" />
                      </div>
                  </div>
                  <div class="relative w-[49%] mt-4">
                      <label class="text-sm font-light">Email Address *</label>
-                     <input type="text" name="fullname" class="w-full font-light" value="{{ Auth::user()->email }}" />
+                     <input type="text" name="email" class="w-full font-light" value="{{ Auth::user()->email }}" />
                  </div>
                  @endguest
                  <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">Address</h1>
                  <div class="relative w-[49%]">
                      <select id="countrySelect"
-                         class="block font-light w-full hover:border-gray-500 px-3 py-2 pr-8 focus:outline-none focus:shadow-outline">
+                         class="block font-light w-full hover:border-gray-500 px-3 py-2 pr-8 focus:outline-none focus:shadow-outline" onchange="updateAddress()">
                          <option value="" selected disabled>Select a country</option>
+                         <option value="Philippines">Philippines</option>
                      </select>
                      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
 
@@ -255,22 +239,25 @@
                  <div class="flex justify-between items-center space-x-4 mt-4">
                      <div class="relative w-full">
                          <label class="text-sm font-light">City *</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <input type="text" id="cityInput" name="city" class="w-full font-light" onchange="updateAddress()"/>
                      </div>
                      <div class="relative w-full">
-                         <label class="text-sm font-light">City *</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <label class="text-sm font-light">Province *</label>
+                         <input type="text" id="provinceInput" name="province" class="w-full font-light" onchange="updateAddress()"/>
                      </div>
                  </div>
                  <div class="flex justify-between items-center space-x-4 mt-4">
                      <div class="relative w-full">
                          <label class="text-sm font-light">Barangay / Purok / Street *</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <input type="text" id="barangayInput" name="barangay" class="w-full font-light" onchange="updateAddress()"/>
                      </div>
                      <div class="relative w-full">
                          <label class="text-sm font-light">Zip / Postal Code *</label>
-                         <input type="text" name="fullname" class="w-full font-light" />
+                         <input type="text" id="postalCodeInput" name="postal_code" class="w-full font-light" onchange="updateAddress()"/>
                      </div>
+                     {{-- <input type="text" name="address" id="address" value="" /> --}}
+                     <input type="text" id="fullAddress" name="address" class="w-full font-light" readonly />
+
                  </div>
                  <div class="flex justify-center items-center p-2 border-b border-gray-400 mt-4"></div>
                  <div class="relative">
@@ -278,7 +265,7 @@
                  </div>
              </div>
              <div class="flex justify-end items-end ml-20 w-1/2 mt-4">
-                 <button id="continueStep4"
+                 <button type="submit" id="continueStep4"
                      class="bg-pink-violet p-2 w-40 text-white uppercase tracking-wide font-lightbold">Continue</button>
              </div>
          </div>
@@ -292,19 +279,15 @@
                      </svg>
                  </div>
                  <div id="slideInCaterings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
-                     <ul id="cater" class="w-full font-lightbold">
+                     <ul class="w-full font-lightbold">
                          <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Cater 1</p><span>10000</span>
+                             class="hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                             Cater 1
                          </li>
                          <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Cater 2 </p><span>15000</span>
-                         </li>
-                         <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Cater 3 </p><span>25000</span>
-                         </li>
+                             class="hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                             Cater 2</li>
+                         <li class="hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">Cater 3</li>
                      </ul>
                  </div>
              </div>
@@ -317,19 +300,15 @@
                      </svg>
                  </div>
                  <div id="slideInCakes" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
-                     <ul id="cakes" class="w-full font-lightbold">
+                     <ul class="w-full font-lightbold">
                          <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Banana Cake </p><span>1000</span>
+                             class="hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                             Strawberry Cake
                          </li>
                          <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Blueberry Cake </p><span>1200</span>
-                         </li>
-                         <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Ube Yam Cake </p><span>1500</span>
-                         </li>
+                             class="hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                             Blueberry Cake</li>
+                         <li class="hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">Ube Yam Cake</li>
                      </ul>
                  </div>
              </div>
@@ -342,23 +321,19 @@
                      </svg>
                  </div>
                  <div id="slideInFlowers" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
-                     <ul id="flowers" class="w-full font-lightbold">
+                     <ul class="w-full font-lightbold">
                          <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full"> Roses </p><span>100</span>
+                             class="hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                             Roses
                          </li>
                          <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full">Sunflower </p><span>150</span>
-                         </li>
-                         <li
-                             class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
-                             <p class="w-full">Tullips</p> <span>200</span>
-                         </li>
+                             class="hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                             Sunflower</li>
+                         <li class="hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">Tullips</li>
                      </ul>
                  </div>
              </div>
-             <div class="flex justify-end items-end"><button id="continueStep3"
+             <div class="flex justify-end items-end"><button type="button" id="continueStep3"
                      class="bg-pink-violet p-2 w-40 text-white uppercase tracking-wide font-lightbold">Continue</button>
              </div>
          </div>
@@ -370,7 +345,7 @@
                      <div>
                          <h1 class="font-light text-xs">Sort By</h1>
                      </div>
-                     <button class="flex items-center font-bold text-sm">Recommended <svg
+                     <button type="button" class="flex items-center font-bold text-sm">Recommended <svg
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
                              stroke="currentColor" class="ml-2 w-4 h-4">
                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -417,9 +392,8 @@
                                  <p id="venuePrice" name="price" class="font-bold leading-wide text-xl text-right">
                                      {{$venue->price}}
                              </div>
-                             <button class="book-now-button bg-pink-violet p-2 uppercase text-white mt-2 text-sm"
-                                 data-venue-id="{{$venue->venue_id}}" data-venue-price="{{$venue->price}}"
-                                 data-venue-name="{{$venue->name}}">
+                             <button type="button" class="book-now-button bg-pink-violet p-2 uppercase text-white mt-2 text-sm"
+                                 data-venue-id="{{$venue->venue_id}}" data-venue-price="{{$venue->price}}">
                                  BOOK NOW</button>
                          </div>
                      </div>
@@ -428,6 +402,7 @@
              @endforeach
          </div>
      </section>
+     </form>
 
 
      @yield('chatbox')
@@ -437,31 +412,48 @@
      <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.js"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <script>
-     const countrySelect = document.getElementById("countrySelect");
-     const countryProvinceSelect = document.getElementById("countryProvince");
-     const apiUrl = "https://restcountries.com/v3.1/all";
-
-     fetch(apiUrl)
-         .then((response) => response.json())
-         .then((data) => {
-             data.sort((a, b) => {
-                 const nameA = a.name.common.toUpperCase();
-                 const nameB = b.name.common.toUpperCase();
-                 return nameA.localeCompare(nameB);
-             });
-             data.forEach((country) => {
-                 const option = document.createElement("option");
-                 option.value = country
-                     .code;
-                 option.text = country.name
-                     .common;
-                 countrySelect.appendChild(option);
-             });
-         })
-         .catch((error) => {
-             console.error("Error fetching countries:", error);
-         });
-     </script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const countrySelect = document.getElementById("countrySelect");
+            const countryProvinceSelect = document.getElementById("countryProvince");
+            const apiUrl = "https://restcountries.com/v3.1/all";
+    
+            // Add an event listener to the countrySelect dropdown
+            countrySelect.addEventListener("change", updateAddress);
+    
+            fetch(apiUrl)
+                .then((response) => response.json())
+                .then((data) => {
+                    data.sort((a, b) => {
+                        const nameA = a.name.common.toUpperCase();
+                        const nameB = b.name.common.toUpperCase();
+                        return nameA.localeCompare(nameB);
+                    });
+                    data.forEach((country) => {
+                        const option = document.createElement("option");
+                        option.value = country.code;
+                        option.text = country.name.common;
+                        countrySelect.appendChild(option);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching countries:", error);
+                });
+    
+            // Define the updateAddress function here
+            function updateAddress() {
+                // Get the selected <select> element
+                const selectedCountry = countrySelect.value;
+    
+                // Do something with the selected country, e.g., log it
+                console.log("Selected country:", selectedCountry);
+    
+                // You can perform further actions with the selected country here
+                // For example, you can use it to fetch additional data or update other parts of your webpage.
+            }
+        });
+    </script>
+    
+    
      <script>
      const cateringsDivBtn = document.getElementById('cateringsDivBtn');
      const slideInCaterings = document.getElementById('slideInCaterings');
@@ -485,8 +477,6 @@
          const bookNowButtons = document.querySelectorAll('.book-now-button');
          const venuePriceElement = document.getElementById('venuePrice');
          const totalSummaryPriceElement = document.getElementById('totalSummaryPrice');
-         const venuePricing = document.getElementById('venuepricing');
-         const venueSummary = document.getElementById('venuesummary');
          const step2Btn = document.getElementById('continueStep3');
          const addOns = document.getElementById('adOns');
          const firstBtns = document.getElementById('firstBtns');
@@ -495,20 +485,18 @@
          const stepHeading = document.getElementById('stepHeading');
 
          function updateTotalSummaryPrice(price) {
-             totalSummaryPriceElement.textContent = price;
-             venuePricing.textContent = price;
-         }
-
-         function updateVenue(venuename) {
-             venueSummary.textContent = venuename;
+            totalSummaryPriceElement.textContent = price;
+            const priceInput = document.getElementById('price');
+            priceInput.value = price;
          }
 
          bookNowButtons.forEach((button) => {
              button.addEventListener('click', () => {
                  const venuePrice = button.getAttribute('data-venue-price');
+                 const venueId = button.getAttribute('data-venue-id');
                  updateTotalSummaryPrice(venuePrice);
-                 const venueName = button.getAttribute('data-venue-name');
-                 updateVenue(venueName)
+                 const venueIdInput = document.getElementById('venue_id');
+                 venueIdInput.value = venueId;
                  const step1 = document.getElementById('step1');
                  const step1Label = document.getElementById('step1Label');
                  const step1Connector = document.getElementById('step1Connector');
@@ -559,131 +547,8 @@
 
          });
 
-
      });
      </script>
-     <script>
-     let clickCount = 0;
-     const clickedValues = new Map(); // Map to store clicked values and their counts
-
-     const flowerItems = document.querySelectorAll('#flowers li p');
-     const flowerItemsPrice = document.querySelectorAll('#flowers li span');
-     const cakeItems = document.querySelectorAll('#cakes li p');
-     const cakeItemsPrice = document.querySelectorAll(
-         '#cakes li span');
-     const caterItems = document.querySelectorAll('#cater li p');
-     const caterItemsPrice = document.querySelectorAll(
-         '#cater li span');
-
-
-     const totalSummaryPriceElement = document.getElementById('totalSummaryPrice');
-     const addOnList = document.getElementById('addOnList');
-     const removeAllButton = document.getElementById('removeAllButton');
-
-     // Function to calculate the total price
-     function calculateTotalPrice() {
-         let totalPrice = 0;
-         clickedValues.forEach((value) => {
-             totalPrice += value.price;
-         });
-         return totalPrice.toFixed(2);
-     }
-
-     function addToAddOnList(itemText, itemPrice) {
-         const headingDisplay = document.getElementById('addOnHeading');
-         const clickedValue = itemText.trim();
-         const clickedPrice = parseFloat(itemPrice);
-
-         if (!clickedValues.has(clickedValue)) {
-             clickedValues.set(clickedValue, {
-                 count: 1,
-                 price: clickedPrice
-             });
-             headingDisplay.classList.remove('hidden');
-         } else {
-             const existingValue = clickedValues.get(clickedValue);
-             const updatedCount = existingValue.count + 1;
-             const updatedPrice = clickedPrice * updatedCount;
-             clickedValues.set(clickedValue, {
-                 count: updatedCount,
-                 price: updatedPrice
-             });
-         }
-
-         const specificText = clickedValues.get(clickedValue).count.toString();
-         const priceText = clickedValues.get(clickedValue).price.toFixed(2);
-         const liElement = document.createElement('li');
-         liElement.textContent = "(" + specificText + ") " + clickedValue + " - ₱" + priceText;
-
-         const existingLi = addOnList.querySelector(`li[data-value="${clickedValue}"]`);
-         if (existingLi) {
-             existingLi.textContent = "(" + specificText + ") " + clickedValue + " - ₱" + priceText;
-         } else {
-             liElement.setAttribute('data-value', clickedValue);
-             addOnList.appendChild(liElement);
-         }
-
-         const totalPrice = calculateTotalPrice();
-         const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
-         const newTotalPrice = currentTotalPrice + parseFloat(clickedPrice);
-         totalSummaryPriceElement.textContent = newTotalPrice;
-     }
-
-     function removeAllAddOns() {
-         // Calculate the total price of the items to be removed
-         let removedPrice = 0;
-         clickedValues.forEach((value) => {
-             removedPrice += value.price;
-         });
-
-         // Clear the clickedValues map
-         clickedValues.clear();
-
-         const addOnList = document.getElementById('addOnList');
-         addOnList.innerHTML = '';
-
-         // Subtract the removedPrice from the currentTotalPrice
-         const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
-         const newTotalPrice = currentTotalPrice - removedPrice;
-         totalSummaryPriceElement.textContent = newTotalPrice;
-
-         const headingDisplay = document.getElementById('addOnHeading');
-         headingDisplay.classList.add('hidden');
-     }
-
-     // Event listener for flower items
-     flowerItems.forEach((item, index) => {
-         item.addEventListener('click', () => {
-             const clickedValue = item.textContent.trim();
-             const clickedPrice = flowerItemsPrice[index].textContent.trim();
-             addToAddOnList(clickedValue, clickedPrice);
-         });
-     });
-
-     cakeItems.forEach((cakeItem, index) => {
-         cakeItem.addEventListener('click', () => {
-             console.log('hello');
-             const clickedValues = cakeItem.textContent.trim();
-             const clickedPrices = cakeItemsPrice[index].textContent.trim();
-             addToAddOnList(clickedValues, clickedPrices);
-         });
-     });
-
-     caterItems.forEach((caterItem, index) => {
-         caterItem.addEventListener('click', () => {
-             console.log('hello');
-             const clickedValues = caterItem.textContent.trim();
-             const clickedPrices = caterItemsPrice[index].textContent.trim();
-             addToAddOnList(clickedValues, clickedPrices);
-         });
-     });
-
-     // Event listener for the Remove All button
-     removeAllButton.addEventListener('click', () => {
-         removeAllAddOns();
-     });
-     </script>
-
 
      <script>
      function updateVenueVisibility(selectedCapacity) {
@@ -727,6 +592,8 @@
                  // Update the selectedCapacity span
                  const selectedCapacitySpan = document.getElementById("selectedCapacity");
                  const guestSpan = document.getElementById("guest");
+                 const guestInput = document.getElementById("guestInput");
+                 guestInput.value = selectedCapacity;
                  guestSpan.textContent = selectedCapacity + " People";
                  selectedCapacitySpan.textContent = selectedCapacity + " people";
 
@@ -903,6 +770,33 @@
 
      updateStep();
      </script>
+    
+
+<script>
+    // Function to update the full address field
+    function updateAddress() {
+        // Get values from individual input fields
+        const countrySelect = document.getElementById("countrySelect");
+        const selectedCountry = countrySelect.value;
+        // var country = document.getElementById("countrySelect").value;
+        var city = document.getElementById("cityInput").value;
+        var province = document.getElementById("provinceInput").value;
+        var barangay = document.getElementById("barangayInput").value;
+        var postalCode = document.getElementById("postalCodeInput").value;
+
+        // Concatenate the values into a single string
+        var fullAddress = selectedCountry + ", " + city + ", " + province + ", " + barangay + ", " + postalCode;
+
+        // Update the fullAddress input field with the concatenated value
+        document.getElementById("fullAddress").value = fullAddress;
+    }
+
+    // Call the updateAddress function initially to populate the full address
+    updateAddress();
+
+</script>
+
+
  </body>
 
  </html>
