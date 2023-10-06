@@ -66,8 +66,8 @@
                                     <th class="px-4 py-3">Location</th>
                                     <th class="px-4 py-3">Capacity</th>
                                     <th class="px-4 py-3">Amenities</th>
-                                    <th class="px-5 py-3">Images</th>
                                     <th class="px-5 py-3">Venue Price</th>
+                                    <th class="px-5 py-3">Images</th>
                                     <th class="px-4 py-3">Actions</th>
                                 </tr>
                             </thead>
@@ -245,6 +245,21 @@
     }
     </script>
 
+    <script>
+        const packagePriceElement = document.getElementById('package-price');
+        const venuePriceElement = document.getElementById('venue-price');
+        const totalPriceElement = document.getElementById('total-price');
+        const priceInput = document.getElementById('price');
+
+        const packagePrice = parseFloat(packagePriceElement.textContent);
+        const venuePrice = parseFloat(venuePriceElement.textContent);
+
+        const totalPrice = packagePrice + venuePrice;
+
+        totalPriceElement.textContent = `₱${totalPrice.toFixed(2)}`;
+
+        priceInput.value = totalPrice.toFixed(2);
+    </script>
 
 </body>
 

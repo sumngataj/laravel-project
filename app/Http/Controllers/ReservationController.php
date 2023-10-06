@@ -18,17 +18,17 @@ class ReservationController extends Controller
     public function index()
     {
         $users = User::all();
-        $packages = Packages::all();
+        // $packages = Packages::all();
         $venues = Venues::all();
 
-        $reservations = Reservation::with(['user', 'venue', 'package'])
+        $reservations = Reservation::with(['user', 'venue'])
         ->where('status', 'pending')
         ->latest()
         ->paginate(7);
 
         $bookingsCount = Reservation::where('status', 'booked')->count();
 
-        return view('admin.index', compact('reservations', 'bookingsCount', 'packages', 'venues', 'users'));
+        return view('admin.index', compact('reservations', 'bookingsCount', 'venues', 'users'));
     }
 
     public function booked()
@@ -90,6 +90,53 @@ class ReservationController extends Controller
         
         return back()->with('success', 'Reservation created successfully.');
     }
+
+
+    public function custom(Request $request)
+    {
+        $validatedData = $request->validate([
+            'user_id' => 'required|numeric',
+            'venue_id' => 'required|numeric',
+            'reservation_date' => 'required|date',
+            'price' => 'required|numeric',
+            'guests' => 'required',
+            'add_ons' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'mobile_number' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+        ]);
+
+        // Create a new reservation record
+        $reservation = new Reservation();
+        $reservation->user_id = $validatedData[ 'user_id' ];
+        $reservation->venue_id = $validatedData['venue_id'];
+        $reservation->reservation_date = $validatedData['reservation_date'];
+        $reservation->price = $validatedData['price'];
+        $reservation->guests = $validatedData['guests'];
+        $reservation->add_ons = $validatedData['add_ons'];
+        $reservation->first_name = $validatedData['first_name'];
+        $reservation->last_name = $validatedData['last_name'];
+        $reservation->phone = $validatedData['phone'];
+        $reservation->mobile_number = $validatedData['mobile_number'];
+        $reservation->email = $validatedData['email'];
+        $reservation->address = $validatedData['address'];
+        $reservation->status = 'pending';
+
+
+        try {
+            $reservation->save();
+        } catch (\Exception $e) {
+            // Log or print the exception message for debugging
+            dd($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while saving the reservation.');
+        }
+        
+        return back()->with('success', 'Reservation created successfully.');
+    }
+
 
     // public function store(Request $request)
     // {
