@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Packages;
 use App\Models\Venues;
+use App\Models\Ratings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -16,18 +17,24 @@ class PackagesController extends Controller
     public function index(): View
     {
         $venues = Venues::all();
+        $averageRatings = Ratings::select('package_id', DB::raw('AVG(rating) as average_rating'))
+        ->groupBy('package_id')
+        ->get();
 
         $packages = Packages::with(['venue'])->latest()->paginate(7);
 
-    return view('admin.packages', compact('packages', 'venues'));
+    return view('admin.packages', compact('packages', 'venues', 'averageRatings'));
     }
 
     public function displayAll(): View
     {
         $packages = Packages::all();
         $venues = Venues::all();
+        $averageRatings = Ratings::select('package_id', DB::raw('AVG(rating) as average_rating'))
+        ->groupBy('package_id')
+        ->get();
 
-    return view('home', ['packages' => $packages, 'venues' => $venues]);
+    return view('home', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings]);
     }
 
 
@@ -82,9 +89,10 @@ class PackagesController extends Controller
     public function displayById($package_id): View
     {
         $venues = Venues::all();
+        $ratings = Ratings::all();
         $packages = Packages::all();
         $package = Packages::findOrFail($package_id);
-        return view('booking', ['package' => $package], compact('venues', 'packages'));
+        return view('booking', ['package' => $package], compact('venues', 'packages', 'ratings'));
     }
 
     /**

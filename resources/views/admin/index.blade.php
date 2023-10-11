@@ -211,7 +211,7 @@
                         </td>
                         <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
-                                <p class="font-semibold">{{ $reservation->reservation_date }}</p>
+                              <p class="font-semibold">{{ date('F j, Y', strtotime($reservation->reservation_date)) }}</p>
                             </div>
                         </td>
                         <td class="px-4 py-3">

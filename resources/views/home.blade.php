@@ -210,6 +210,34 @@
      }
      </script>
 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleScrollDivs = document.getElementById("toggle-scroll-divs");
+            const toggleScrollButton = document.getElementById("toggle-scroll-buttons");
+
+            function toggleDropdown() {
+                toggleScrollDivs.classList.toggle("hidden");
+            }
+
+            toggleScrollButton.addEventListener("click", function(e) {
+                e.stopPropagation(); // Prevent button click from immediately closing the dropdown
+                toggleDropdown();
+            });
+
+            document.addEventListener("click", function(e) {
+                if (!toggleScrollDivs.contains(e.target)) {
+                    // Close the dropdown if the click is outside of it
+                    toggleScrollDivs.classList.add("hidden");
+                }
+            });
+
+            // Close the dropdown when the overlay is clicked
+            overlay.addEventListener("click", toggleDropdown);
+        });
+    </script>
+
+
  </body>
 
  </html>
