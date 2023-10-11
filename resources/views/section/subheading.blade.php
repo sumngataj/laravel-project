@@ -30,7 +30,7 @@
         <p class="text-sm mt-6">Take advantage of unique offers and events brought to you by Kaluhas wedding and events
             specialist.</p>
         <a onclick="window.open(this.href,'_blank');return false;" href="{{ route('custom.booking') }}" target="_blank">
-            <button
+            <button id="myButton"
                 class="bg-pink-violet p-4 text-sm font-semibold mt-16 hover:bg-pink-hover animation-slide-up w-full">
                 Book Now
             </button>

@@ -7,6 +7,8 @@
      <title>Kaluhas PH | Wedding Booking</title>
      <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
      @vite('resources/css/app.css')
  </head>
 
@@ -30,21 +32,33 @@
      @yield('toggleSearch')
 
      @if ($message = Session::get('message'))
-        <script>
-            window.alert('{{ $message }}');
-        </script>
-    @endif
-    @if(session('success'))
-        <script>
-            window.alert('{{ session('success') }}');
-        </script>
-    @endif
-    @if($errors->has('email'))
-    <script>
-        console.log('Script is executing'); // Add this line to check
-        window.alert('{{ $errors->first('email') }}');
-    </script>
-@endif
+     <script>
+     Swal.fire({
+         icon: 'success',
+         title: 'Success',
+         text: "{{ $message }}",
+         confirmButtonText: 'OK'
+     });
+     </script>
+     @endif
+     @if(session('success'))
+     <script>
+     Swal.fire({
+         icon: 'success',
+         title: 'Success',
+         text: "{{ session('success') }}",
+         confirmButtonText: 'OK'
+     });
+     </script>
+
+     @endif
+     @if($errors->has('email'))
+     <script>
+     console.log('Script is executing'); // Add this line to check
+     window.alert('{{ $errors->first('
+         email ') }}');
+     </script>
+     @endif
 
 
 
@@ -92,6 +106,18 @@
 
      @vite('resources/js/app.js')
      <script>
+     function getRandomColor() {
+         const letters = '0123456789ABCDEF';
+         let color = '#';
+         for (let i = 0; i < 6; i++) {
+             color += letters[Math.floor(Math.random() * 16)];
+         }
+         return color;
+     }
+
+     const profilePic = document.querySelector('.profile-pic');
+     profilePic.style.backgroundColor = getRandomColor();
+
      document.addEventListener("DOMContentLoaded", function() {
          const slider = document.getElementById("slider");
          const indicatorsContainer = document.getElementById("indicators");
@@ -209,7 +235,22 @@
          prevButton.addEventListener("click", prev);
      }
      </script>
+     <script>
+     document.addEventListener("DOMContentLoaded", function() {
+         const myButton = document.getElementById("myButton");
 
+         myButton.addEventListener("click", function() {
+             @if(!Auth::check())
+             Swal.fire({
+                 title: 'Login Required',
+                 text: 'You need to be logged in to perform this action.',
+                 icon: 'warning',
+                 confirmButtonText: 'OK'
+             });
+             @endif
+         });
+     });
+     </script>
  </body>
 
  </html>

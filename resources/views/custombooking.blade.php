@@ -68,7 +68,7 @@
                         </div>
                         <div id="dateSlideIn" class="flex justify-end items-end border border-gray-500 p-4 hidden">
 
-                            <input type="date" id="datepicker"
+                            <input type="date" id="datepicker" name="reservation_date"
                                 class="border border-gray-300 p-2 w-0 h-0 opacity-0 absolute">
 
                         </div>
@@ -124,9 +124,11 @@
                         <div id="stepperCount" class="flex space-x-10">
                             <!-- Step 1 -->
                             <div class="relative w-32">
-                                <div id="step1"
-                                    class="flex items-center justify-center w-10 h-10 bg-pink-violet text-white rounded-full font-bold">
-                                    1 <span id="step1Check" class="ml-2 text-sm hidden">&#10003;</span>
+                                <div>
+                                    <button type="button" id="step1"
+                                        class="flex items-center justify-center w-10 h-10 bg-pink-violet text-white rounded-full font-bold"
+                                        onclick="step1()" disabled>1
+                                        <span id="step1Check" class="ml-2 text-sm hidden">&#10003;</span></button>
                                 </div>
                                 <div id="step1Label" class="mt-2 text-xs font-bold">Venues</div>
                                 <hr id="step1Connector"
@@ -135,9 +137,11 @@
                             </div>
                             <!-- Step 2 -->
                             <div class="relative w-32">
-                                <div id="step2"
-                                    class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black  rounded-full font-bold">
-                                    2</div>
+                                <div>
+                                    <button type="button" id="step2"
+                                        class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black  rounded-full font-bold"
+                                        onclick="step2()" disabled>2</button>
+                                </div>
                                 <div id="step2Label" class="mt-2 text-xs font-light">Add-Ons</div>
                                 <hr id="step2Connector"
                                     class="border-t-2 border-gray-300 absolute left-10 top-5 w-full">
@@ -145,9 +149,12 @@
                             </div>
                             <!-- Step 3 -->
                             <div class="relative w-32">
-                                <div id="step3"
-                                    class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black rounded-full font-bold">
-                                    3</div>
+                                <div>
+                                    <button type="button" id="step3"
+                                        class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black rounded-full font-bold"
+                                        onclick="step3()" disabled>
+                                        3</button>
+                                </div>
                                 <div id="step3Label" class="mt-2 text-xs font-light">Guest Details</div>
                                 <hr id="step3Connector"
                                     class="border-t-2 border-gray-300 absolute left-10 top-5 w-full">
@@ -182,27 +189,29 @@
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">First Name *</label>
                                     <input type="text" name="first_name" class="w-full font-light"
-                                        value="{{ Auth::user()->name }}" />
+                                        value="{{ Auth::user()->name }}" required />
                                 </div>
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">Last Name *</label>
-                                    <input type="text" name="last_name" class="w-full font-light" />
+                                    <input type="text" name="last_name" class="w-full font-light"
+                                        value="{{ Auth::user()->name }}" required />
                                 </div>
+
                             </div>
                             <div class="flex justify-between items-center space-x-4 mt-4">
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">Phone</label>
-                                    <input type="number" name="phone" class="w-full font-light" />
+                                    <input type="number" name="phone" class="w-full font-light" required />
                                 </div>
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">Mobile Number</label>
-                                    <input type="number" name="mobile_number" class="w-full font-light" />
+                                    <input type="number" name="mobile_number" class="w-full font-light" required />
                                 </div>
                             </div>
                             <div class="relative w-[49%] mt-4">
                                 <label class="text-sm font-light">Email Address *</label>
                                 <input type="text" name="email" class="w-full font-light"
-                                    value="{{ Auth::user()->email }}" />
+                                    value="{{ Auth::user()->email }}" required />
                             </div>
                             @endguest
                             <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">Address</h1>
@@ -221,27 +230,28 @@
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">Province *</label>
                                     <input type="text" id="provinceInput" name="province" class="w-full font-light"
-                                        onchange="updateAddress()" />
+                                        onchange="updateAddress()" required />
                                 </div>
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">City *</label>
                                     <input type="text" id="cityInput" name="city" class="w-full font-light"
-                                        onchange="updateAddress()" />
+                                        onchange="updateAddress()" required />
                                 </div>
                             </div>
                             <div class="flex justify-between items-center space-x-4 mt-4">
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">Barangay / Purok / Street *</label>
                                     <input type="text" id="barangayInput" name="barangay" class="w-full font-light"
-                                        onchange="updateAddress()" />
+                                        onchange="updateAddress()" required />
                                 </div>
                                 <div class="relative w-full">
                                     <label class="text-sm font-light">Zip / Postal Code *</label>
                                     <input type="text" id="postalCodeInput" name="postal_code" class="w-full font-light"
-                                        onchange="updateAddress()" />
+                                        onchange="updateAddress()" required />
                                 </div>
 
-                                <input type="text" id="fullAddress" name="address" class="w-full font-light" readonly />
+                                <input type="hidden" id="fullAddress" name="address" class="w-full font-light"
+                                    readonly />
 
                             </div>
                             <div class="flex justify-center items-center p-2 border-b border-gray-400 mt-4"></div>
@@ -260,7 +270,7 @@
                             <div id="cateringsDivBtn"
                                 class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Caterings <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    id="cateringsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
@@ -286,7 +296,7 @@
                             <div id="cakesDivBtn"
                                 class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Cakes <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    id="cakesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
@@ -312,7 +322,7 @@
                             <div id="flowersDivBtn"
                                 class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Flowers <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    id="flowersIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
@@ -339,22 +349,62 @@
                         </div>
                     </div>
 
+                    <div id="discardEdits" class="hidden">
+                        <div
+                            class="flex justify-around items-center border border-gray-400 w-full text-sm font-semibold p-2 mt-10">
+                            <div class="flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
+                                    stroke="currentColor" class="w-16 h-16 text-gray-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                </svg>
+                                <div class="relative">
+                                    <h1 class="text-lg font-light">You are editing your reservation.</h1>
+                                    <p class="text-sm font-light">
+                                        Please select a different venue and rate below, or update your stay details
+                                        above. Availability might change.
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                class="border border-pink-violet p-4 text-pink-violet text-sm uppercase tracking-widest leading-5 font-lightbold hover:bg-pink-hover hover:text-white hover:border-2">
+                                Discard Edits
+                            </button>
+                        </div>
+                    </div>
+
                     <div id="venueListings" class="">
                         <div id="filter"
-                            class="flex justify-end items-end border border-gray-400 w-full p-4 text-sm font-semibold mt-10 hidden">
+                            class="flex justify-end items-end border border-gray-400 w-full text-sm font-semibold p-2 mt-10 hidden">
                             <div class="relative">
-                                <div>
-                                    <h1 class="font-light text-xs">Sort By</h1>
+                                <div id="filter-btn" class="relative p-2 hover:text-white hover:bg-black">
+                                    <div>
+                                        <h1 class="font-light text-xs">Sort By</h1>
+                                    </div>
+                                    <button type="button" class="flex items-center font-bold text-sm"><span
+                                            id="filter-label">Recommended</span> <svg xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 24 24" id="sort-icon" stroke-width="3"
+                                            stroke="currentColor" class="ml-2 w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
                                 </div>
-                                <button type="button" class="flex items-center font-bold text-sm">Recommended <svg
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                    </svg>
-                                </button>
+                                <div id="sorting-dropdown" class="triangle-div shadow-2xl h-auto w-48 hidden">
+                                    <div class="relative">
+                                        <button type="button" id="recommended-btn"
+                                            class="w-full p-4 text-left font-light tracking-wide active">Recommended</button>
+                                        <button type="button" id="lowest-btn"
+                                            class="w-full p-4 hover:bg-gray-100 text-left font-light tracking-wide">Lowest
+                                            to Highest</button>
+                                        <button type="button" id="highest-btn"
+                                            class="w-full p-4 hover:bg-gray-100 text-left font-light tracking-wide">Highest
+                                            to Lowest</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         @foreach ($venues as $venue)
                         <div id="venueListingsLoading" style="display:none;"
                             class="animate-spin rounded-full h-64 w-64 border-t-2 border-b-2 border-gray-400 ml-[32%] mt-32">
@@ -394,13 +444,18 @@
                                             <span class="font-bold leading-wide text-xl text-right">₱</span>
                                             <p id="venuePrice" name="price"
                                                 class="font-bold leading-wide text-xl text-right">
-                                                {{$venue->price}}
+                                                {{$venue->price}}</p><span
+                                                class="font-bold leading-wide text-xl text-right">.00</span>
                                         </div>
-                                        <button type="button"
-                                            class="book-now-button bg-pink-violet p-2 uppercase text-white mt-2 text-sm"
-                                            data-venue-id="{{$venue->venue_id}}" data-venue-price="{{$venue->price}}"
-                                            data-venue-name="{{$venue->name}}">
-                                            BOOK NOW</button>
+                                        <div id="bookNowButtonsContainer">
+                                            <button type="button"
+                                                class="book-now-button bg-pink-violet p-3 uppercase text-white mt-2 text-sm font-bold"
+                                                data-venue-id="{{$venue->venue_id}}"
+                                                data-venue-capacity="{{$venue->capacity}}"
+                                                data-venue-location="{{$venue->location}}"
+                                                data-venue-price="{{$venue->price}}" data-venue-name="{{$venue->name}}">
+                                                BOOK NOW</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -415,20 +470,28 @@
                             <h2 class="mt-4 font-semibold text-sm">Event Date</h2>
                             <p id="date" class="text-sm font-light tracking wide"></p>
                             <p id="guest" class="text-sm font-light mb-4 tracking-wide">0 People</p>
-                            <input type="" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                            <input type="" name="venue_id" id="venue_id" value="">
-                            <input type="" name="guests" id="guestInput">
-                            <input type="" name="price" id="price" value="">
-                            <input type="text" name="add_ons" id="add_ons" value="" onchange="updateAddOnsInput()"
-                                readonly>
-                            {{-- <input type="" name="address" id="address" value=""> --}}
-                            <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-start mt-2">
+                                <div class="relative">
+                                    <p id="display-venue"
+                                        class="text-gold-highlight underline font-lightbold tracking-widest text-lg">
+                                    </p>
+                                    <p id="display-capacity" class="text-sm font-lightbold"></p>
+                                    <p id="display-venue-location" class="text-sm font-lightbold tracking-wide"></p>
+                                </div>
+                                <p id="display-price-venue" class="font-semibold"></p>
+                            </div>
+                            <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="venue_id" id="venue_id" value="">
+                            <input type="hidden" name="guests" id="guestInput" value="">
+                            <input type="hidden" name="price" id="price" value="">
+                            <input type="hidden" name="add_ons" id="add_ons" value="">
+                            <div class="flex justify-between items-center mt-2">
                                 <p id="venuesummary"
                                     class="font-light mb-4 tracking-wide text-gold-highlight underline">
                                 </p>
                                 <p id="venuepricing" class="font-semibold mb-4 tracking-wide text-black"></p>
                             </div>
-                            <div class="relative">
+                            <div class="relative mb-4">
                                 <div id="addOnHeading" class="flex justify-between items-center hidden">
                                     <h1 class="font-semibold tracking-wide text-black text-sm">Add
                                         Ons:
@@ -498,23 +561,117 @@
         });
     </script>
     <script>
+    const sortingDropdown = document.getElementById('sorting-dropdown');
+    const filter = document.getElementById('filter');
+    const filterBtn = document.getElementById('filter-btn');
+    const filterLabel = document.getElementById('filter-label');
+    const sortingIcon = document.getElementById('sort-icon');
+
+    let currentSelectedBtn = document.getElementById('recommended-btn');
+    let currentLabelText = 'Recommended';
+    sortingDropdown.addEventListener('click', (event) => {
+        if (event.target.tagName === 'BUTTON') {
+            // Remove 'active' class from the previously selected button
+            currentSelectedBtn.classList.add('hover:bg-gray-100');
+            currentSelectedBtn.classList.remove('active');
+
+            // Update the currently selected button
+            currentSelectedBtn = event.target;
+
+            // Add 'active' class to the newly selected button
+            currentSelectedBtn.classList.add('active');
+            currentSelectedBtn.classList.remove('hover:bg-gray-100');
+
+            // Update the filter label text based on the selected button
+            filterLabel.textContent = event.target.textContent;
+            filterBtn.classList.add('active');
+            // Close the sorting dropdown
+
+
+            // Update the sorting icon to the original one
+            sortingIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        `;
+        }
+    });
+
+    filter.addEventListener('click', () => {
+        const isOpen = sortingDropdown.classList.contains('hidden');
+        filterBtn.classList.toggle('active');
+        sortingDropdown.classList.toggle('hidden');
+        if (!isOpen) {
+            // If it was open, change the icon to the original one
+            sortingIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        `;
+        } else {
+            // If it was closed, change the icon to the alternate one
+            sortingIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        `;
+        }
+
+    });
+    </script>
+    <script>
+    let currentStep = 1;
     const cateringsDivBtn = document.getElementById('cateringsDivBtn');
+    const cateringsIcon = document.getElementById('cateringsIcon');
     const slideInCaterings = document.getElementById('slideInCaterings');
     const cakesDivBtn = document.getElementById('cakesDivBtn');
+    const cakesIcon = document.getElementById('cakesIcon');
     const slideInCakes = document.getElementById('slideInCakes');
     const flowersDivBtn = document.getElementById('flowersDivBtn');
+    const flowersIcon = document.getElementById('flowersIcon');
     const slideInFlowers = document.getElementById('slideInFlowers');
 
     cateringsDivBtn.addEventListener('click', () => {
+        const isOpen = slideInCaterings.classList.contains('open');
         slideInCaterings.classList.toggle('open');
+        if (isOpen) {
+            // If it was open, change the icon to the original one
+            cateringsIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        `;
+        } else {
+            // If it was closed, change the icon to the alternate one
+            cateringsIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        `;
+        }
     });
 
     cakesDivBtn.addEventListener('click', () => {
+        const isOpen = slideInCakes.classList.contains('open');
         slideInCakes.classList.toggle('open');
+        if (isOpen) {
+            // If it was open, change the icon to the original one
+            cakesIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        `;
+        } else {
+            // If it was closed, change the icon to the alternate one
+            cakesIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        `;
+        }
     });
     flowersDivBtn.addEventListener('click', () => {
+        const isOpen = slideInFlowers.classList.contains('open');
         slideInFlowers.classList.toggle('open');
+        if (isOpen) {
+            // If it was open, change the icon to the original one
+            flowersIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        `;
+        } else {
+            // If it was closed, change the icon to the alternate one
+            flowersIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        `;
+        }
     });
+
     document.addEventListener('DOMContentLoaded', () => {
 
         const bookNowButtons = document.querySelectorAll('.book-now-button');
@@ -528,16 +685,186 @@
         const stepHeading = document.getElementById('stepHeading');
 
         function updateTotalSummaryPrice(price) {
-            totalSummaryPriceElement.textContent = price;
+            const addOns = calculateTotalPrice();
+            const totalPrice = parseInt(price) + parseInt(addOns);
+            totalSummaryPriceElement.textContent = totalPrice;
             const priceInput = document.getElementById('price');
-            priceInput.value = price;
+            const priceLabel = document.getElementById('display-price-venue');
+            priceInput.value = totalPrice;
+            priceLabel.innerHTML = "₱" + totalPrice + ".00";
         }
+
+        function enableStep1Button() {
+            const step1Button = document.getElementById('step1');
+            step1Button.removeAttribute('disabled');
+        }
+
+        function enableStep2Button() {
+            const step2Button = document.getElementById('step2');
+            step2Button.removeAttribute('disabled');
+        }
+
+        function enableStep3Button() {
+            const step3Button = document.getElementById('step3');
+            step3Button.removeAttribute('disabled');
+        }
+
+        function disableStep1Button() {
+            const step1Button = document.getElementById('step1');
+            step1Button.removeAttribute('disabled');
+        }
+
+        function disableStep2Button() {
+            const step2Button = document.getElementById('step2');
+            step2Button.removeAttribute('disabled');
+        }
+
+        function disableStep3Button() {
+            const step3Button = document.getElementById('step3');
+            step3Button.removeAttribute('disabled');
+        }
+
+        function step1() {
+            const discardEdits = document.getElementById('discardEdits');
+            const step1 = document.getElementById('step1');
+            const step1Label = document.getElementById('step1Label');
+            const step1Connector = document.getElementById('step1Connector');
+            const step2 = document.getElementById('step2');
+            const step2Label = document.getElementById('step2Label');
+            const step2Connector = document.getElementById('step2Connector');
+            const step3 = document.getElementById('step3');
+            const step3Label = document.getElementById('step3Label');
+            discardEdits.classList.remove('hidden');
+            step1.innerHTML = '1';
+            step2.innerHTML = '2';
+            step3.innerHTML = '3';
+            step1.classList.remove('bg-gold-highlight');
+            step1.classList.add('bg-pink-violet');
+            step1Label.classList.remove('font-light', 'text-gold-highlight');
+            step1Connector.classList.add('border-gray-300');
+            step1Connector.classList.remove('border-gold-highlight');
+            step2.classList.remove('bg-pink-violet', 'text-white');
+            step2.classList.add('bg-white', 'border');
+            step2Label.classList.remove('text-gold-highlight');
+            step2Label.classList.add('text-black');
+            step2Label.classList.add('font-light');
+            step2Label.classList.remove('font-bold');
+            console.log('Step 1 button clicked');
+            guestDetails.classList.add('hidden');
+            venueListings.style.display = 'block';
+            firstBtns.style.display = 'flex';
+            stepHeading.classList.add('mt-6');
+            stepHeading.querySelector('p').textContent = 'Select a Venue';
+            addOns.classList.add('hidden');
+            step2Connector.classList.remove('border-gold-highlight');
+            step2Connector.classList.add('border-gray-300');
+            step3.classList.remove('bg-pink-violet', 'text-white');
+            step3.classList.add('bg-white', 'border');
+            step3Label.classList.remove('font-bold');
+            step3Label.classList.add('font-light');
+
+        }
+
+        function step2() {
+            const dateSlideIn = document.getElementById("dateSlideIn");
+            const discardEdits = document.getElementById('discardEdits');
+            const step1 = document.getElementById('step1');
+            const step1Label = document.getElementById('step1Label');
+            const step1Connector = document.getElementById('step1Connector');
+            const step2 = document.getElementById('step2');
+            const step2Label = document.getElementById('step2Label');
+            const step2Connector = document.getElementById('step2Connector');
+            const step3 = document.getElementById('step3');
+            const step3Label = document.getElementById('step3Label');
+            dateSlideIn.classList.add('hidden');
+            discardEdits.classList.add('hidden');
+            step1.innerHTML = '&#10003';
+            step2.innerHTML = '2';
+            step3.innerHTML = '3';
+            step1.classList.remove('bg-pink-violet');
+            step1.classList.add('bg-gold-highlight');
+            step1Label.classList.add('font-light', 'text-gold-highlight');
+            step1Connector.classList.remove('border-gray-300');
+            step1Connector.classList.add('border-gold-highlight');
+            step2.classList.remove('bg-white', 'border');
+            step2.classList.add('bg-pink-violet', 'text-white');
+            step2Label.classList.remove('text-gold-highlight');
+            step2Label.classList.add('text-black');
+            step2Label.classList.remove('font-light');
+            step2Label.classList.add('font-bold');
+            venueListings.style.display = 'none';
+            firstBtns.style.display = 'none';
+            stepHeading.classList.remove('mt-6');
+            guestDetails.classList.add('hidden');
+            stepHeading.querySelector('p').textContent = 'Select your add ons';
+            addOns.classList.remove('hidden');
+            step2Connector.classList.remove('border-gold-highlight');
+            step2Connector.classList.add('border-gray-300');
+            step3.classList.remove('bg-pink-violet', 'text-white');
+            step3.classList.add('bg-white', 'border');
+            step3Label.classList.remove('font-bold');
+            step3Label.classList.add('font-light');
+        }
+
+        function step3() {
+            const dateSlideIn = document.getElementById("dateSlideIn");
+            const discardEdits = document.getElementById('discardEdits');
+            const step1 = document.getElementById('step1');
+            const step1Label = document.getElementById('step1Label');
+            const step1Connector = document.getElementById('step1Connector');
+            const step2 = document.getElementById('step2');
+            const step2Label = document.getElementById('step2Label');
+            const step2Connector = document.getElementById('step2Connector');
+            const step3 = document.getElementById('step3');
+            const step3Label = document.getElementById('step3Label');
+            dateSlideIn.classList.add('hidden');
+            discardEdits.classList.add('hidden');
+            step1.innerHTML = '&#10003';
+            step2.innerHTML = '&#10003';
+            step3.innerHTML = '3';
+            step1.classList.remove('bg-pink-violet');
+            step1.classList.add('bg-gold-highlight');
+            step1Label.classList.add('font-light', 'text-gold-highlight');
+            step1Connector.classList.remove('border-gray-300');
+            step1Connector.classList.add('border-gold-highlight');
+            step2.classList.remove('text-black');
+            step2.classList.add('text-white');
+            step2.classList.remove('bg-white', 'bg-pink-violet');
+            step2.classList.add('bg-gold-highlight');
+            step2Label.classList.add('font-light', 'text-gold-highlight');
+            step2Connector.classList.remove('border-gray-300');
+            step2Connector.classList.add('border-gold-highlight');
+            step3.classList.remove('bg-white', 'border');
+            step3.classList.add('bg-pink-violet', 'text-white');
+            step3Label.classList.remove('font-light');
+            step3Label.classList.add('font-bold');
+            stepHeading.classList.remove('mt-6');
+            stepHeading.querySelector('p').textContent = 'Guest Details';
+            venueListings.style.display = 'none';
+            firstBtns.style.display = 'none';
+            addOns.classList.add('hidden');
+            guestDetails.classList.remove('hidden');
+
+        }
+
+        let lastClickedButton = null;
 
         bookNowButtons.forEach((button) => {
             button.addEventListener('click', () => {
+                const dateSlideIn = document.getElementById("dateSlideIn");
+                const discardEdits = document.getElementById('discardEdits');
                 const venuePrice = button.getAttribute('data-venue-price');
                 const venueId = button.getAttribute('data-venue-id');
+                const venueCapacity = button.getAttribute('data-venue-capacity');
+                const venueLocation = button.getAttribute('data-venue-location');
+                const venueName = button.getAttribute('data-venue-name');
                 updateTotalSummaryPrice(venuePrice);
+                const displayVenueName = document.getElementById('display-venue');
+                displayVenueName.innerHTML = venueName;
+                // const displayCapacity = document.getElementById('display-capacity');
+                // displayCapacity.innerHTML = venueCapacity + "People";
+                const displayLocation = document.getElementById('display-venue-location');
+                displayLocation.innerHTML = venueLocation;
                 const venueIdInput = document.getElementById('venue_id');
                 venueIdInput.value = venueId;
                 const step1 = document.getElementById('step1');
@@ -546,13 +873,14 @@
                 const step2 = document.getElementById('step2');
                 const step2Label = document.getElementById('step2Label');
                 const step1Check = document.getElementById('step1Check');
+                dateSlideIn.classList.add('hidden');
+                discardEdits.classList.add('hidden');
                 step1.innerHTML = '&#10003';
                 step1.classList.remove('bg-pink-violet');
                 step1.classList.add('bg-gold-highlight');
                 step1Label.classList.add('font-light', 'text-gold-highlight');
                 step1Connector.classList.remove('border-gray-300');
                 step1Connector.classList.add('border-gold-highlight');
-                step1Check.classList.remove('hidden');
                 step2.classList.remove('bg-white', 'border');
                 step2.classList.add('bg-pink-violet', 'text-white');
                 step2Label.classList.remove('font-light');
@@ -562,8 +890,56 @@
                 stepHeading.classList.remove('mt-6');
                 stepHeading.querySelector('p').textContent = 'Select your add ons';
                 addOns.classList.remove('hidden');
+                enableStep1Button();
+                enableStep2Button();
+                if (currentStep === 3) {
+                    const dateSlideIn = document.getElementById("dateSlideIn");
+                    const discardEdits = document.getElementById('discardEdits');
+                    const step1 = document.getElementById('step1');
+                    const step1Label = document.getElementById('step1Label');
+                    const step1Connector = document.getElementById('step1Connector');
+                    const step2 = document.getElementById('step2');
+                    const step2Label = document.getElementById('step2Label');
+                    const step2Connector = document.getElementById('step2Connector');
+                    const step3 = document.getElementById('step3');
+                    const step3Label = document.getElementById('step3Label');
+                    dateSlideIn.classList.add('hidden');
+                    discardEdits.classList.add('hidden');
+                    step1.innerHTML = '&#10003';
+                    step2.innerHTML = '&#10003';
+                    step3.innerHTML = '3';
+                    step1.classList.remove('bg-pink-violet');
+                    step1.classList.add('bg-gold-highlight');
+                    step1Label.classList.add('font-light', 'text-gold-highlight');
+                    step1Connector.classList.remove('border-gray-300');
+                    step1Connector.classList.add('border-gold-highlight');
+                    step2.classList.remove('text-black');
+                    step2.classList.add('text-white');
+                    step2.classList.remove('bg-white', 'bg-pink-violet');
+                    step2.classList.add('bg-gold-highlight');
+                    step2Label.classList.add('font-light', 'text-gold-highlight');
+                    step2Connector.classList.remove('border-gray-300');
+                    step2Connector.classList.add('border-gold-highlight');
+                    step3.classList.remove('bg-white', 'border');
+                    step3.classList.add('bg-pink-violet', 'text-white');
+                    step3Label.classList.remove('font-light');
+                    step3Label.classList.add('font-bold');
+                    stepHeading.classList.remove('mt-6');
+                    stepHeading.querySelector('p').textContent = 'Guest Details';
+                    venueListings.style.display = 'none';
+                    firstBtns.style.display = 'none';
+                    addOns.classList.add('hidden');
+                    guestDetails.classList.remove('hidden');
+                }
+
+                if (lastClickedButton) {
+                    lastClickedButton.textContent = 'Book Now'; // Revert the previous button
+                }
+                button.textContent = 'Keep Venue';
+                lastClickedButton = button;
             });
         });
+
         step2Btn.addEventListener('click', () => {
             const step2 = document.getElementById('step2');
             const step2Label = document.getElementById('step2Label');
@@ -585,10 +961,24 @@
             step2Label.classList.add('font-light', 'text-gold-highlight');
             step2Connector.classList.remove('border-gray-300');
             step2Connector.classList.add('border-gold-highlight');
-            step2Check.classList.remove('hidden');
-
+            enableStep1Button();
+            enableStep2Button();
+            enableStep3Button();
+            currentStep = 3;
 
         });
+
+
+
+
+        const step1Button = document.getElementById('step1');
+        const step2Button = document.getElementById('step2');
+        const step3Button = document.getElementById('step3');
+
+        step1Button.addEventListener('click', step1);
+        step2Button.addEventListener('click', step2);
+        step3Button.addEventListener('click', step3);
+
 
     });
     </script>
@@ -654,9 +1044,13 @@
         }
 
         const totalPrice = calculateTotalPrice();
+        const priceInput = document.getElementById('price');
         const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
         const newTotalPrice = currentTotalPrice + parseFloat(clickedPrice);
         totalSummaryPriceElement.textContent = newTotalPrice;
+        priceInput.value = newTotalPrice;
+        const addOnsInput = document.getElementById('add_ons');
+        addOnsInput.value = getAddOnsAsString();
     }
 
     function removeAllAddOns() {
@@ -671,6 +1065,9 @@
 
         const addOnList = document.getElementById('addOnList');
         addOnList.innerHTML = '';
+
+        const addOnsInput = document.getElementById('add_ons');
+        addOnsInput.value = '';
 
         // Subtract the removedPrice from the currentTotalPrice
         const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
@@ -696,6 +1093,7 @@
             const clickedValues = cakeItem.textContent.trim();
             const clickedPrices = cakeItemsPrice[index].textContent.trim();
             addToAddOnList(clickedValues, clickedPrices);
+
         });
     });
 
@@ -708,6 +1106,22 @@
         });
     });
 
+    function getAddOnsAsString() {
+        const addOnList = document.getElementById('addOnList');
+        const liElements = addOnList.querySelectorAll('li');
+        const addOnsArray = [];
+
+        liElements.forEach((li) => {
+            const liText = li.textContent;
+            const match = liText.match(/\(([^)]+)\) (.+?) -/); // Extract "(4) cake"
+            if (match) {
+                const extractedText = `${match[1]} ${match[2]}`; // Combine the captured parts
+                addOnsArray.push(extractedText);
+            }
+        });
+
+        return addOnsArray.join(', ');
+    }
     // Event listener for the Remove All button
     removeAllButton.addEventListener('click', () => {
         removeAllAddOns();
@@ -782,6 +1196,32 @@
         const venueListLoading = document.getElementById("venueListingsLoading");
         venueListLoading.style.display = "none";
     }
+
+    function sortVenuesHighToLow() {
+        const venueList = document.getElementById("venueListings");
+        const venues = Array.from(venueList.getElementsByClassName("venue"));
+        const sortedVenues = venues.sort((a, b) => {
+            const priceA = parseFloat(a.getAttribute("data-price"));
+            const priceB = parseFloat(b.getAttribute("data-price"));
+            return priceB - priceA;
+        });
+
+        // Append the sorted venues back to the venueList
+        sortedVenues.forEach((venue) => {
+            venueList.appendChild(venue);
+        });
+    }
+
+    // Attach an event listener to the "High to Low" button
+    const highToLowButton = document.getElementById("highest-btn");
+    const lowToHighButton = document.getElementById("lowest-btn");
+    highToLowButton.addEventListener("click", function() {
+        console.log('clicked');
+        sortVenuesHighToLow();
+    });
+    lowToHighButton.addEventListener("click", function() {
+        sortVenuesHighToLow();
+    });
 
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -958,34 +1398,6 @@
     // Call the updateAddress function initially to populate the full address
     updateAddress();
     </script>
-
-    <script>
-    function updateAddOnsInput() {
-        const addOnsInput = document.getElementById('add_ons');
-        const addOnListItems = document.querySelectorAll('#addOnList li');
-
-        let addOnsText = '';
-
-        addOnListItems.forEach((li, index) => {
-            if (index > 0) {
-                addOnsText += ', '; // Add a comma and space between items
-            }
-            addOnsText += li.textContent;
-        });
-
-        addOnsInput.value = addOnsText;
-    }
-
-    // Call this function whenever you add or remove items from the addOnList
-    // For example, call it in the addToAddOnList and removeAllAddOns functions
-
-    // Inside addToAddOnList function, after adding or updating items in the addOnList:
-    updateAddOnsInput();
-
-    // Inside removeAllAddOns function, after clearing the addOnList:
-    updateAddOnsInput();
-    </script>
-
 
 </body>
 

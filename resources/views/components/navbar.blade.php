@@ -78,15 +78,21 @@
                                 <button id="toggle-buttons"
                                     class="max-w-xs  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-white"
                                     aria-haspopup="true">
-                                    <span class="mr-2">{{ Auth::user()->name }}</span>
-                                    <img class="h-8 w-8 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
+                                    <!-- <span class="text-lg font-bold tracking-wide mr-1">Hi,</span> -->
+                                    <div class="profile-pic">
+                                        <div class="initial">{{ substr(Auth::user()->name, 0, 1) }}</div>
+                                    </div>
+                                    <!-- <span class="text-lg font-bold ml-1">!</span> -->
+                                    <!-- <span
+                                        class="mr-2 uppercase font-semibold">{{ substr(Auth::user()->name, 0, 20) }}</span> -->
                                 </button>
                             </div>
                             <div id="toggle-divs"
                                 class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden"
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    role="menuitem">Your Profile</a>
+                                <a href="{{route('profile.displayByProfileId', Auth::user()->id)}}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
+                                    Profile</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover-bg-gray-100"
                                     role="menuitem">Settings</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="w-full">

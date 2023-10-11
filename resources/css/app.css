@@ -122,6 +122,64 @@ input::placeholder {
         transform: translateY(100%);
     }
 }
+.hide {
+    display: none;
+}
+.active {
+    color: white;
+    background-color: black;
+    font-weight: bold;
+}
+.triangle-div {
+    position: absolute;
+    top: 110%;
+    left: -25%;
+
+    background-color: #ffff;
+}
+
+.triangle-div::before {
+    content: "";
+    position: absolute;
+    top: -10px; /* Adjust the positioning of the triangle */
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 0 10px 10px 10px; /* Adjust the size of the triangle */
+    border-color: transparent transparent #ebe5e5 transparent; /* Adjust the color */
+}
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: white; /* Text color */
+    background-color: #3498db; /* Default background color */
+}
+.profile-pics {
+    width: 155px;
+    height: 155px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: white; /* Text color */
+    background-color: #3498db; /* Default background color */
+}
+
+.initial {
+    text-transform: uppercase;
+}
+.section-dark-mode {
+    background-color: rgb(17 24 39);
+    color: white;
+}
 #slideInCaterings {
     max-height: 0;
     overflow: hidden;

@@ -111,7 +111,7 @@ class ReservationController extends Controller
 
         // Create a new reservation record
         $reservation = new Reservation();
-        $reservation->user_id = $validatedData[ 'user_id' ];
+        $reservation->user_id = $validatedData['user_id'];
         $reservation->venue_id = $validatedData['venue_id'];
         $reservation->reservation_date = $validatedData['reservation_date'];
         $reservation->price = $validatedData['price'];

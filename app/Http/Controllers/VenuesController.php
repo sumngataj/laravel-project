@@ -76,12 +76,12 @@ class VenuesController extends Controller
         //
     }
 
-    // public function displayById($venue_id): View
-    // {
-    //     $venues = Venues::all();
-    //     $venue = Venues::findOrFail($venue_id);
-    //     return view('custombooking', ['venue' => $venue], compact('venues'));
-    // }
+    public function displayById($venue_id): View
+    {
+        $venues = Venues::all();
+        $venue = Venues::findOrFail($venue_id);
+        return view('venue', ['venue' => $venue], compact('venues'));
+    }
 
     /**
      * Show the form for editing the specified resource.
