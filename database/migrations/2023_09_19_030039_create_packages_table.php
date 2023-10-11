@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('package_id');
             $table->foreignId('venue_id')->constrained('venues', 'venue_id')->onDelete('cascade')->onUpdate('cascade');
             $table->string('package_name');
-            $table->string('description');
+            $table->longtext('description');
             $table->integer('price');
             $table->string('image_path');
             $table->timestamps();
