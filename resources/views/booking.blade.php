@@ -9,6 +9,7 @@
      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.css" rel="stylesheet">
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
      @vite('resources/css/app.css')
      <style>
      /* Add this CSS to control the image size within the comment */
@@ -23,6 +24,13 @@
          border-radius: 50%;
          /* Make the avatar image round */
      }
+
+    /* Define the style for the active tab */
+    .active-tab-color {
+        background-color: #9ca3af;
+        color: black; /* Change this to the desired gray color */
+    }
+
      </style>
  </head>
 
@@ -49,14 +57,31 @@
          </div>
      </div>
      
-     @if ($message = Session::get('success'))
+
+    @if(session('success'))
         <script>
-            window.alert('{{ $message }}');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            });
         </script>
     @endif
- 
 
-     <section class="flex p-12 h-[120rem]">
+
+
+     <section class="flex p-12 h-auto">
          <div>
              <!-- <div class="flex cursor-pointer w-[20%]">
                  <img class="thumbnail lg:w-36 h-24 opacity-50"
@@ -79,10 +104,10 @@
              <h1 class="text-3xl mt-2">{{ $package->package_name }}</h1>
              <div class="flex border-b border-gray w-11/12 mt-5">
                  <button
-                     class="tab-link hover:text-gold-highlight p-2 hover:border-b hover:border-pink-violet active:text-blue-700  p-2 bg-gray-300 border-b border-pink-violet rounded-sm"
+                     class="tab-link hover:text-gold-highlight p-2 hover:border-b hover:border-pink-violet  p-2 rounded-sm"
                      onclick="showTab(1)">Overview</button>
                  <button class="tab-link hover:text-blue-500 p-2 hover:border-b hover:border-pink-violet  p-2"
-                     onclick="showTab(2)">Comments</button>
+                     onclick="showTab(2)">Rating & Review</button>
              </div>
 
              <div id="tabContent1" class="tab-content mt-2 w-10/12">
@@ -90,19 +115,87 @@
                  <p class="font-light text-justify text-sm">{!! nl2br(e($package->description)) !!}</p>
 
              </div>
-             <div id="tabContent2" class="tab-content hidden "><textarea id="commentText" name="comment"
-                     class="w-11/12 mt-10 h-56"></textarea>
-                 <div class="w-11/12 flex justify-end items-end mt-4"><button id="appendButton"
-                         onclick="appendComment()" class="bg-pink-violet p-2 rounded-full">
-                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-6 h-6">
-                             <path stroke-linecap="round" stroke-linejoin="round"
-                                 d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                         </svg>
-                     </button></div>
-                 <div class="border border-gray-300 w-11/12 mt-4"></div>
+             <div id="tabContent2" class="tab-content hidden ">
+                <form method="POST" action="{{ route('ratings.store') }}" enctype="multipart/form-data">
 
-                 <div id="commentContainer" class="w-11/12 h-[50rem] overflow-y-auto p-4 mt-8"></div>
+                    @csrf
+                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="package_id" value="{{ $package->package_id }}">
+                    <input type="hidden" name="rating" id="rating" value="5">
+                    <p class="m-1 text-sm font-medium text-gray-500  mt-3">Rate Here:</p>
+                        <div class="flex items-center" id="star-rating">
+                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            <p class="ml-2 text-sm font-medium text-gray-500 starcount">5 out of 5</p>
+                        </div>
+
+                        <textarea id="commentText" name="comment" class="w-11/12 mt-2 h-56" required></textarea>
+                        {{-- id="appendButton" onclick="appendComment()" --}}
+                        <div class="w-11/12 flex justify-end items-end mt-4"><button  type="submit"  class="bg-pink-violet p-2 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                </svg>
+                            </button></div>
+                        <div class="border border-gray-300 w-11/12 mt-4"></div>
+                </form>
+                <div id="commentContainer" class="w-11/12 h-[50rem] overflow-y-auto p-4 mt-8">
+                    
+                    <article>
+                        @foreach ($ratings as $rating)
+                            @if ($rating->package_id == $package->package_id)
+
+                            <div class="flex items-center mb-4 space-x-4">
+                                <img class="w-10 h-10 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
+                                <div class="space-y-1 font-medium">
+                                    <p>{{ $rating->user->name }}<time datetime="{{ $rating->user->created_at->format('Y-m-d H:i') }}" class="block text-sm text-gray-500">Joined on {{ $rating->user->created_at->format('F j, Y') }}</time></p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <svg class="w-4 h-4 text-{{ $i <= $rating->rating ? 'yellow' : 'gray' }}-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                    </svg>
+                                @endfor
+                                <svg class="w-4 h-4 text-gray-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d=""/>
+                                </svg>
+                                {{-- <h3 class="ml-2 text-sm font-semibold text-gray-900">Rating</h3> --}}
+                            </div>
+                            <footer class="mb-5 text-sm text-gray-500">
+                                <p>Reviewed on <time datetime="{{ $rating->created_at->format('Y-m-d H:i') }}">{{ $rating->created_at->format('F j, Y') }}</time></p>
+                            </footer>                            
+                            <p class="mb-10 text-gray-500 ">{!! nl2br(e($rating->comment)) !!}</p>
+                            <div class="border mb-5 border-gray-300 w-11/12 mt-4"></div>
+                            {{-- <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a> --}}
+                            {{-- <aside>
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">19 people found this helpful</p>
+                                <div class="flex items-center mt-3 space-x-3 divide-x divide-gray-200 dark:divide-gray-600">
+                                    <a href="#" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-2 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Helpful</a>
+                                    <a href="#" class="pl-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Report abuse</a>
+                                </div>
+                            </aside> --}}
+                        
+                            @endif
+                        @endforeach
+
+                    </article>
+
+                </div>
              </div>
          </div>
          </div>
@@ -387,15 +480,24 @@
      }
      </script>
 
-     <script>
-     function showTab(tabNumber) {
-         document.querySelectorAll('.tab-content').forEach(content => {
-             content.classList.add('hidden');
-         });
+    <script>
+        function showTab(tabNumber) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
 
-         document.getElementById(`tabContent${tabNumber}`).classList.remove('hidden');
-     }
-     </script>
+            document.querySelectorAll('.tab-link').forEach(tab => {
+                tab.classList.remove('active-tab-color');
+            });
+
+            document.getElementById(`tabContent${tabNumber}`).classList.remove('hidden');
+            document.querySelector(`button[onclick="showTab(${tabNumber})"]`).classList.add('active-tab-color');
+        }
+
+        showTab(1);
+    </script>
+
+
      <script>
      const steps = document.querySelectorAll('.step');
      const prevButton = document.getElementById('prevButton');
@@ -445,6 +547,45 @@
 
         priceInput.value = totalPrice.toFixed(2);
     </script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    <script>
+        $(document).ready(function () {
+        let currentRating = 0;
+        let currentPackageId = null;
+
+        // Handle star rating clicks
+        $('.star').on('click', function () {
+            const newRating = parseInt($(this).data('rating'));
+            const packageId = parseInt($(this).data('package-id'));
+
+            // Update the current rating and package ID
+            currentRating = newRating;
+            currentPackageId = packageId;
+
+            // Update the visual representation of the rating
+            $('.star').each(function () {
+                const rating = parseInt($(this).data('rating'));
+                if (rating <= newRating) {
+                    $(this).addClass('text-yellow-300');
+                } else {
+                    $(this).removeClass('text-yellow-300');
+                }
+            });
+
+            // Display the new rating text
+            $('.starcount').text(currentRating + ' out of 5');
+
+            $('#rating').val(currentRating);
+
+            // Here, you can add code to submit the current rating and package ID to your server via AJAX when the user clicks a submit button or takes any action to submit their rating.
+            // For example, you can send the `currentRating` and `currentPackageId` to your Laravel route for storing ratings.
+        });
+    });
+    </script>
+
+
+
 
 
 

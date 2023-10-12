@@ -116,9 +116,9 @@
         class="flex flex-wrap justify-between items-center bg-white border-t lg:border-y border-gray-300 p-4 lg:h-16 uppercase">
         <div class="hidden lg:flex w-full lg:w-11/12 justify-center space-x-10 text-xs">
             <a href="{{ url('/') }}" class="hover:opacity-70">Home</a>
-            <a href="#section1" class="hover:opacity-70">About</a>
-            <a href="#section2" class="hover:opacity-70">Packages</a>
-            <a href="#section3" class="hover:opacity-70">Venues</a>
+            <a href="/#section1" class="hover:opacity-70">About</a>
+            <a href="/#section2" class="hover:opacity-70">Packages</a>
+            <a href="/#section3" class="hover:opacity-70">Venues</a>
         </div>
 
     </nav>

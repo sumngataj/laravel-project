@@ -7,6 +7,8 @@ use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\CustomBookingController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +54,16 @@ Route::middleware('isSuperUser')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::get('/booking/{package_id}', [PackagesController::class, 'displayById'])->name('packages.displayById');
+
+    // Route::group(['prefix' => 'booking/{package_id}'], function () {
+    //     Route::get('/', [PackagesController::class, 'displayById'])->name('packages.displayById');
+    //     Route::post('/rate', [RatingController::class, 'store']) ->name('ratings.store');
+        
+    // }); 
+
+    Route::post('ratings.store', [RatingController::class, 'store']) ->name('ratings.store');
     Route::post('/', [ReservationController::class, 'store'])->name('reservations.store');
+
     // Route::get('/custombooking', [CustomBookingController::class, 'index'])->name('custom.booking');
 
     Route::group(['prefix' => 'custombooking'], function () {
