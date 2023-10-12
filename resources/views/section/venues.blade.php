@@ -21,7 +21,8 @@
                             <h2 class="font-light tracking-wide text-2xl text-gold-highlight">{{$venue->name}}</h2>
                             <div class="w-10/12">
                                 <p class="text-sm font-light">{{$venue->location}}</p>
-                                <a href="#" class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
+                                <a href="{{ route('venues.displayById', $venue->venue_id) }}"
+                                    class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
                                     details</a>
                             </div>
                         </div>

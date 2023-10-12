@@ -6,7 +6,9 @@ use App\Http\Controllers\VenuesController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\CustomBookingController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,8 @@ use App\Http\Controllers\RatingController;
 // });
 
 Route::get('/', [PackagesController::class, 'displayAll']);
-
+Route::get('/venue/{venue_id}', [VenuesController::class, 'displayById'])->name('venues.displayById');
+Route::get('/profile/{user_id}',[ProfileController::class, 'displayByProfileId'])->name('profile.displayByProfileId');
 
 
 
