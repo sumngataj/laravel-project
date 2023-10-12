@@ -691,7 +691,7 @@
             const priceInput = document.getElementById('price');
             const priceLabel = document.getElementById('display-price-venue');
             priceInput.value = totalPrice;
-            priceLabel.innerHTML = "₱" + totalPrice + ".00";
+            priceLabel.innerHTML = "₱" + price + ".00";
         }
 
         function enableStep1Button() {

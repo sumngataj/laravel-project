@@ -136,6 +136,22 @@ class ReservationController extends Controller
         
         return back()->with('success', 'Reservation created successfully.');
     }
+    
+    public function cancelReservation($id)
+    {
+    // Find the reservation by ID
+    $reservation = Reservation::find($id);
+
+    // Check if the reservation exists
+    if (!$reservation) {
+        return redirect()->back()->with('error', 'Reservation not found');
+    }
+
+    // Update the reservation status
+    $reservation->update(['status' => 'Cancelled']);
+
+    return redirect()->back()->with('success', 'Reservation cancelled successfully');
+}
 
 
     // public function store(Request $request)
