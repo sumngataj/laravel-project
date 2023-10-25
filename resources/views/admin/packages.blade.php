@@ -97,9 +97,9 @@
                         </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
-                              <p class="font-semibold">{{ $package->price }}</p>
+                              <p class="font-semibold">₱{{ number_format($package->price, 2) }}</p>
                           </div>
-                        </td>
+                      </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                             <button

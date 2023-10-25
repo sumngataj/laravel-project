@@ -26,10 +26,8 @@
                                 <div class="border-l h-20 border-gold-highlight ml-5">
                                     <div class="ml-3">
                                         <p class="text-sm">{{ substr($package->description, 0, 100) }}...</p>
-
-                                        <a href="{{ route('packages.displayById', $package->package_id) }}"
-                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50">View
-                                            details</a>
+                                        <a id="myButton2" onclick="window.open(this.href,'_blank');return false;" href="{{ route('packages.displayById', $package->package_id) }}"
+                                            class="text-sm text-pink-violet tracking-tight hover:opacity-50" target="_blank">View details</a>
                                         
                                         <div class="flex items-center mt-2">
                                             @php

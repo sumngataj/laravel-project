@@ -40,11 +40,18 @@
                 <div class="relative ml-8">
                     <div class="ml-3 relative">
                         <div>
-                            <button id="toggle-scroll-buttons"
+                            {{-- <button id="toggle-scroll-buttons"
                                 class="max-w-xs  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-white"
                                 aria-haspopup="true">
                                 <span class="mr-2">{{ Auth::user()->name }}</span>
                                 <img class="h-8 w-8 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
+                            </button> --}}
+                            <button id="toggle-scroll-buttons"
+                                class="max-w-xs  rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-white"
+                                aria-haspopup="true">
+                                <div class="profile-pic">
+                                    <div class="initial">{{ substr(Auth::user()->name, 0, 1) }}</div>
+                                </div>
                             </button>
                         </div>
                         <div id="toggle-scroll-divs"

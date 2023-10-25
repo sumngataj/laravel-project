@@ -251,6 +251,21 @@
              @endif
          });
      });
+
+     document.addEventListener("DOMContentLoaded", function() {
+         const myButton2 = document.getElementById("myButton2");
+
+         myButton2.addEventListener("click", function() {
+             @if(!Auth::check())
+             Swal.fire({
+                 title: 'Login Required',
+                 text: 'You need to be logged in to perform this action.',
+                 icon: 'warning',
+                 confirmButtonText: 'OK'
+             });
+             @endif
+         });
+     });
      </script>
 
 
