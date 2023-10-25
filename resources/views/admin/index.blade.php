@@ -48,7 +48,7 @@
                   <h2
                     class="my-6 text-2xl font-semibold text-gray-700"
                   >
-                    Dashboard
+                    Reservations
                   </h2>
                   <!-- Cards -->
                   <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -74,38 +74,28 @@
                         <p
                           class="text-lg font-semibold text-gray-700"
                         >
-                          6389
+                          {{ $usersCount }}
                         </p>
                       </div>
                     </div>
                     <!-- Card -->
-                    <div
-                      class="flex items-center p-4 bg-white rounded-lg shadow-xs"
-                    >
-                      <div
-                        class="p-3 mr-4 text-green-500 bg-green-100 rounded-full"
-                      >
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path
-                            fill-rule="evenodd"
-                            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
+                    <a href="/bookings">
+                      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs">
+                        <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full">
+                          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                          </svg>
+                        </div>
+                        <div>
+                          <p class="mb-2 text-sm font-medium text-gray-600">
+                            Booked Events
+                          </p>
+                          <p class="text-lg font-semibold text-gray-700">
+                            {{ $bookingsCount }}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p
-                          class="mb-2 text-sm font-medium text-gray-600"
-                        >
-                          Booked Events
-                        </p>
-                        <p
-                          class="text-lg font-semibold text-gray-700"
-                        >
-                        {{ $bookingsCount }}
-                        </p>
-                      </div>
-                    </div>
+                    </a>                    
                     <!-- Card -->
                     <div
                       class="flex items-center p-4 bg-white rounded-lg shadow-xs"
@@ -189,9 +179,11 @@
                     <!-- Table Body -->
                     <tbody class="bg-white divide-y">
                       @foreach($reservations as $reservation)
-                      <tr class="text-gray-700"
-                        x-show="search === '' || 
-                        '{{ strtolower($reservation->reservation_date) }}'.includes(search.toLowerCase())">
+                      <tr class="text-gray-700" x-show="search === '' || 
+                          '{{ strtolower($reservation->user->email) }}'.includes(search.toLowerCase()) || 
+                          '{{ strtolower($reservation->venue->name) }}'.includes(search.toLowerCase()) || 
+                          '{{ date('F j, Y', strtotime($reservation->reservation_date)) }}'.toLowerCase().includes(search.toLowerCase()) || 
+                          '{{ strtolower($reservation->status) }}'.includes(search.toLowerCase())">
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->user->email }}</p>
@@ -201,9 +193,11 @@
                           <div class="flex items-center text-sm">
                               @if ($reservation->package)
                                   <p class="font-semibold">{{ $reservation->package->package_name }}</p>
+                              @else
+                                  <p class="font-semibold">N/A</p>
                               @endif
                           </div>
-                        </td>                      
+                        </td>                       
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->venue->name }}</p>
@@ -216,9 +210,13 @@
                         </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
-                              <p class="font-semibold">{{ $reservation->add_ons }}</p>
+                              @if ($reservation->add_ons)
+                                  <p class="font-semibold">{{ $reservation->add_ons }}</p>
+                              @else
+                                  <p class="font-semibold">N/A</p>
+                              @endif
                           </div>
-                      </td>
+                        </td>                      
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->status }}</p>
@@ -244,6 +242,28 @@
                                 >
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
                                 
+                                </svg>
+                              </button>
+                            </form>
+
+                            <form action="{{ route('reservation.decline',$reservation->reservation_id) }}" method="POST"
+                              onsubmit="return confirm('{{ trans('Do you really want to decline reservation? ') }}');">
+                              @csrf
+                              @method('PUT')
+                              <button
+                                class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
+                                aria-label="Edit"
+                                type="submit"
+                              >
+                                <svg 
+                                  xmlns="http://www.w3.org/2000/svg" 
+                                  aria-hidden="true"
+                                  fill="none" viewBox="0 0 24 24" 
+                                  stroke-width="1.5" 
+                                  stroke="currentColor" 
+                                  class="w-5 h-5"
+                                >
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                                 </svg>
                               </button>
                             </form>

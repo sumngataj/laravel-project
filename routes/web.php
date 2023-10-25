@@ -45,6 +45,7 @@ Route::middleware('isSuperUser')->group(function(){
     Route::controller(LoginRegisterController::class)->group(function() {
         Route::get('/admin', [ReservationController::class, 'index'])->name('dashboard');
         Route::put('/reservation/{reservation_id}/update', [ReservationController::class, 'update'])-> name('reservation.update');
+        Route::put('/reservation/{reservation_id}/decline', [ReservationController::class, 'decline'])-> name('reservation.decline');
         Route::get('/bookings', [ReservationController::class, 'booked'])->name('admin.booked');
         // Route::resource('reservations', ReservationController::class);
     });

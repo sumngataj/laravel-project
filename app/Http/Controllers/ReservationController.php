@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
+use Illuminate\Http\Response;
+
+use App\Mail\reserve;
+use App\Mail\book;
+use App\Mail\customreserve;
+use App\Mail\decline;
+use Illuminate\Support\Facades\Mail;
+
 class ReservationController extends Controller
 {
     /**
@@ -27,8 +35,9 @@ class ReservationController extends Controller
         ->paginate(7);
 
         $bookingsCount = Reservation::where('status', 'booked')->count();
+        $usersCount = User::where('is_superuser', '0')->count();
 
-        return view('admin.index', compact('reservations', 'bookingsCount', 'venues', 'users'));
+        return view('admin.index', compact('reservations', 'bookingsCount', 'usersCount', 'venues', 'users'));
     }
 
     public function booked()
@@ -60,6 +69,37 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'user_id' => 'required|numeric',
+    //         'venue_id' => 'required|numeric',
+    //         'package_id' => 'required|numeric',
+    //         'reservation_date' => 'required|date',
+    //         'price' => 'required|numeric',
+    //     ]);
+
+    //     // Create a new reservation record
+    //     $reservation = new Reservation();
+    //     $reservation->user_id = $validatedData[ 'user_id' ];
+    //     $reservation->venue_id = $validatedData['venue_id'];
+    //     $reservation->package_id = $validatedData['package_id'];
+    //     $reservation->reservation_date = $validatedData['reservation_date'];
+    //     $reservation->price = $validatedData['price'];
+    //     $reservation->status = 'pending';
+
+
+    //     try {
+    //         $reservation->save();
+    //     } catch (\Exception $e) {
+    //         // Log or print the exception message for debugging
+    //         dd($e->getMessage());
+    //         return redirect()->back()->with('error', 'An error occurred while saving the reservation.');
+    //     }
+        
+    //     return back()->with('success', 'Reservation created successfully.');
+    // }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -72,7 +112,7 @@ class ReservationController extends Controller
 
         // Create a new reservation record
         $reservation = new Reservation();
-        $reservation->user_id = $validatedData[ 'user_id' ];
+        $reservation->user_id = $validatedData['user_id'];
         $reservation->venue_id = $validatedData['venue_id'];
         $reservation->package_id = $validatedData['package_id'];
         $reservation->reservation_date = $validatedData['reservation_date'];
@@ -80,14 +120,35 @@ class ReservationController extends Controller
         $reservation->status = 'pending';
 
 
+        $user = User::find($validatedData['user_id']);
+        $package = Packages::find($validatedData['package_id']);
+        
+        $userName = $user->name;
+        $userMail = $user->email;
+        $packageName = $package->package_name;
+
+        $mailData = [
+            'body' => 'This is to inform you that your reservation request is being processed.',
+            'user_name' => $userName,
+            'package_name' => $packageName,
+            'reservation_date' => $validatedData['reservation_date'],
+            'price' => $validatedData['price'],
+        ];
+
+        
+
+
         try {
             $reservation->save();
+            Mail::to($userMail)->send(new reserve($mailData));
         } catch (\Exception $e) {
             // Log or print the exception message for debugging
             dd($e->getMessage());
             return redirect()->back()->with('error', 'An error occurred while saving the reservation.');
         }
+
         
+
         return back()->with('success', 'Reservation created successfully.');
     }
 
@@ -109,7 +170,6 @@ class ReservationController extends Controller
             'address' => 'required',
         ]);
 
-        // Create a new reservation record
         $reservation = new Reservation();
         $reservation->user_id = $validatedData['user_id'];
         $reservation->venue_id = $validatedData['venue_id'];
@@ -125,9 +185,29 @@ class ReservationController extends Controller
         $reservation->address = $validatedData['address'];
         $reservation->status = 'pending';
 
+        $user = User::find($validatedData['user_id']);
+
+        $venues = Venues::find($validatedData['venue_id']);
+        
+        $userName = $user->name;
+        $userMail = $validatedData['email'];
+        $venueName = $venues->name;
+        $venueAdd = $venues->location;
+
+        $mailDataCustom = [
+            'body' => 'This is to inform you that your reservation request is being processed.',
+            'user_name' => $validatedData['first_name'],
+            'venue_name' => $venueName,
+            'venue_address' => $venueAdd,
+            'add_ons' => $validatedData['add_ons'],
+            'reservation_date' => $validatedData['reservation_date'],
+            'price' => $validatedData['price'],
+        ];
+
 
         try {
             $reservation->save();
+            Mail::to($userMail)->send(new customreserve($mailDataCustom));
         } catch (\Exception $e) {
             // Log or print the exception message for debugging
             dd($e->getMessage());
@@ -209,10 +289,46 @@ class ReservationController extends Controller
         $reservation = Reservation::findOrFail($reservation_id);
 
         $reservation->status = 'booked';
+        $price = $reservation->price;
+        $userName = $reservation->user->name;
+        $userMail = $reservation->user->email;
+        $reservationDate = $reservation->reservation_date;
+
+        $mailDataBooked = [
+            'book' => 'This is to inform you that your request is already booked.',
+            'user_name' => $userName,
+            'reservation_date' => $reservationDate,
+            'price' => $price,
+        ];
 
         $reservation->save();
+        Mail::to($userMail)->send(new book($mailDataBooked));
 
         return back()->with('success', 'Reservation status updated successfully.');
+    }
+
+
+    public function decline(Request $request, $reservation_id)
+    {
+        $reservation = Reservation::findOrFail($reservation_id);
+
+        $reservation->status = 'decline';
+        $price = $reservation->price;
+        $userName = $reservation->user->name;
+        $userMail = $reservation->user->email;
+        $reservationDate = $reservation->reservation_date;
+
+        $mailDecline = [
+            'decline' => 'This is to inform you that your reservation request has been declined. For more questions, please message us directly on the page, or you can directly reply to this email.',
+            'user_name' => $userName,
+            'reservation_date' => $reservationDate,
+            'price' => $price,
+        ];
+        Mail::to($userMail)->send(new decline($mailDecline));
+
+        $reservation->save();
+        
+        return back()->with('success', 'Reservation declined.');
     }
 
 
