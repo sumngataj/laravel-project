@@ -61,18 +61,26 @@
             </div>
 
             <div class="lg:flex justify-start items-center lg:w-full lg:ml-10 md:hidden hidden">
-                <input type="search"
-                    class="h-10 lg:w-8/12 md:w-6/12 border border-gray-300 text-gray-500 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
-                    placeholder="What are you looking for?" />
+                <div class="relative lg:w-8/12 md:w-6/12">
+                    <form method="GET">
+                        {{ csrf_field() }}
+                        <input type="search" id="searchInput" name="query"
+                            class="h-10 w-full border border-gray-300 text-gray-500 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-300"
+                            placeholder="What are you looking for?" />
+                    </form>
+                    <ul id="searchResults"
+                        class="w-full shadow-lg bg-white border border-gray-100 rounded-sm absolute h-auto p-4 hidden">
+                    </ul>
 
+                </div>
 
                 <div class="lg:ml-16">
                     @guest
-                    <button id="toggle-button" class="uppercase text-sm font-semibold tracking-wide">
+                    <button class="uppercase text-sm font-semibold tracking-wide">
                         Login / Register
                     </button>
                     @else
-                    <div class="relative ml-8">
+                    <div class="relative ml-8 ">
                         <div class="ml-3 relative">
                             <div>
                                 <button id="toggle-buttons"
@@ -88,7 +96,7 @@
                                 </button>
                             </div>
                             <div id="toggle-divs"
-                                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden"
+                                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-[1000]"
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                                 <a href="{{route('profile.displayByProfileId', Auth::user()->id)}}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
@@ -110,7 +118,6 @@
                 </div>
             </div>
         </div>
-
     </nav>
     <nav
         class="flex flex-wrap justify-between items-center bg-white border-t lg:border-y border-gray-300 p-4 lg:h-16 uppercase">

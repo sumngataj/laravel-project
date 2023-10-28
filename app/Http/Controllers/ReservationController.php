@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewNotification;
 use App\Models\Packages;
+use App\Models\Notification;
 use App\Models\Venues;
 use App\Models\Reservation;
 use App\Models\User;
@@ -20,7 +22,8 @@ class ReservationController extends Controller
         $users = User::all();
         // $packages = Packages::all();
         $venues = Venues::all();
-
+        
+        $notifications = Notification::orderBy('created_at', 'desc')->get();
         $reservations = Reservation::with(['user', 'venue'])
         ->where('status', 'pending')
         ->latest()
@@ -28,7 +31,7 @@ class ReservationController extends Controller
 
         $bookingsCount = Reservation::where('status', 'booked')->count();
 
-        return view('admin.index', compact('reservations', 'bookingsCount', 'venues', 'users'));
+        return view('admin.index', compact('reservations', 'bookingsCount', 'venues', 'users','notifications'));
     }
 
     public function booked()
@@ -36,6 +39,7 @@ class ReservationController extends Controller
         $users = User::all();
         $packages = Packages::all();
         $venues = Venues::all();
+        $notifications = Notification::orderBy('created_at', 'desc')->get();
 
         // Filter reservations with the 'booked' status
         $reservations = Reservation::with(['user', 'venue', 'package'])
@@ -43,7 +47,7 @@ class ReservationController extends Controller
             ->latest()
             ->paginate(7);
 
-        return view('admin.booked', compact('reservations', 'packages', 'venues', 'users'));
+        return view('admin.booked', compact('reservations', 'packages', 'venues', 'users','notifications'));
     }
 
     /**
@@ -125,9 +129,24 @@ class ReservationController extends Controller
         $reservation->address = $validatedData['address'];
         $reservation->status = 'pending';
 
+        $name = $request->first_name;
+        $uploaded = now();
+      
+      
+
+        $notification = new Notification();
+        $notification->user_id = $validatedData['user_id'];
+        $notification->venue_id = $validatedData['venue_id'];
+        $notification->status = 0;
+        $notification->uploaded = now();
+         
 
         try {
             $reservation->save();
+            event(new NewNotification($name, $uploaded));
+            $notification->save();
+       
+
         } catch (\Exception $e) {
             // Log or print the exception message for debugging
             dd($e->getMessage());

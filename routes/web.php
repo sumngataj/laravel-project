@@ -7,7 +7,10 @@ use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\CustomBookingController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SearchController;
+
 
 
 /*
@@ -29,6 +32,7 @@ Route::get('/', [PackagesController::class, 'displayAll']);
 Route::get('/venue/{venue_id}', [VenuesController::class, 'displayById'])->name('venues.displayById');
 Route::get('/profile/{user_id}',[ProfileController::class, 'displayByProfileId'])->name('profile.displayByProfileId');
 Route::post('/cancel-reservation/{id}', [ReservationController::class, 'cancelReservation'])->name('reservation.cancelReservation');
+Route::get('/search', [SearchController::class, 'search'])->name('searchResult');
 
 
 
@@ -46,6 +50,9 @@ Route::middleware('isSuperUser')->group(function(){
         Route::get('/admin', [ReservationController::class, 'index'])->name('dashboard');
         Route::put('/reservation/{reservation_id}/update', [ReservationController::class, 'update'])-> name('reservation.update');
         Route::get('/bookings', [ReservationController::class, 'booked'])->name('admin.booked');
+        Route::put('/mark-notifications-as-read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
+    
+
         // Route::resource('reservations', ReservationController::class);
     });
     
@@ -76,7 +83,9 @@ Route::middleware('auth')->group(function(){
 
     Route::controller(LoginRegisterController::class)->group(function() {
         Route::get('/login', [PackagesController::class, 'displayAll'])->name('login');
+   
     });
+
 
     Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
     Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venues;
+use App\Models\Notification;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,15 +18,17 @@ class VenuesController extends Controller
     public function index(): View
     {
         $venues = Venues::latest()->paginate(7);
+        $notifications = Notification::all();
 
-    return view('admin.venues', ['venues' => $venues]);
+    return view('admin.venues', ['venues' => $venues, 'notifications' => $notifications]);
     }
       
     public function displayAllVenues(): View
     {
         $venues = Venues::all();
+        $notifications = Notification::all();
 
-    return view('home', ['venues' => $venues]);
+    return view('home', ['venues' => $venues, 'notifications' => $notifications]);
     }
 
 
