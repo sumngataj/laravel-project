@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.css" rel="stylesheet">
     <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @vite('resources/css/app.css')
     <style>
 
@@ -29,6 +30,7 @@
     @yield('loginSideModal')
     @yield('toggleSearch')
 
+
     <div class="bg-black p-16">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-center p-8 items-center space-x-10 space-y-2 overflow-hidden">
@@ -36,6 +38,28 @@
             </div>
         </div>
     </div>
+
+    @if(session('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            });
+        </script>
+    @endif
+
     <form method="POST" action="{{ route('reservations.custom') }}" enctype="multipart/form-data">
         @csrf
         <section class="h-auto">
@@ -1377,6 +1401,22 @@
     </script>
 
     <script>
+        const toggleButtons = document.getElementById('toggle-buttons');
+        const contentToToggles = document.getElementById('toggle-divs');
+
+        toggleButtons.addEventListener('click', function(event) {
+            event.stopPropagation();
+            contentToToggles.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!toggleButtons.contains(event.target) && !contentToToggles.contains(event.target)) {
+                contentToToggles.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <script>
     // Function to update the full address field
     function updateAddress() {
         // Get values from individual input fields
@@ -1397,6 +1437,32 @@
 
     // Call the updateAddress function initially to populate the full address
     updateAddress();
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggleScrollDivs = document.getElementById("toggle-scroll-divs");
+            const toggleScrollButton = document.getElementById("toggle-scroll-buttons");
+
+            function toggleDropdown() {
+                toggleScrollDivs.classList.toggle("hidden");
+            }
+
+            toggleScrollButton.addEventListener("click", function(e) {
+                e.stopPropagation(); // Prevent button click from immediately closing the dropdown
+                toggleDropdown();
+            });
+
+            document.addEventListener("click", function(e) {
+                if (!toggleScrollDivs.contains(e.target)) {
+                    // Close the dropdown if the click is outside of it
+                    toggleScrollDivs.classList.add("hidden");
+                }
+            });
+
+            // Close the dropdown when the overlay is clicked
+            overlay.addEventListener("click", toggleDropdown);
+        });
     </script>
 
 </body>

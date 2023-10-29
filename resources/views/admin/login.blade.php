@@ -14,14 +14,27 @@
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="../assets/js/init-alpine.js"></script>
   </head>
   <body>
-    @if ($message = Session::get('message'))
+    {{-- @if ($message = Session::get('message'))
         <script>
             window.alert('{{ $message }}');
         </script>
+    @endif --}}
+
+    @if (session('message'))
+      <script>
+      Swal.fire({
+          icon: 'warning',
+          title: 'Login Required',
+          text: "{{ session('message') }}",
+          confirmButtonText: 'OK'
+      });
+      </script>
     @endif
+
 
     <div class="flex items-center min-h-screen p-6 bg-gray-50">
       <div

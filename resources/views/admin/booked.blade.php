@@ -64,16 +64,19 @@
                         <th class="px-4 py-3">Package</th>
                         <th class="px-4 py-3">Venue</th>
                         <th class="px-4 py-3">Reservation Date</th>
+                        <th class="px-4 py-3">Add-ons</th>
                         <th class="px-4 py-3">Status</th>
-                        <th class="px-4 py-3">Actions</th>
+                        {{-- <th class="px-4 py-3">Actions</th> --}}
                       </tr>
                     </thead>
                     <!-- Table Body -->
                     <tbody class="bg-white divide-y">
                       @foreach($reservations as $reservation)
-                      <tr class="text-gray-700"
-                        x-show="search === '' || 
-                        '{{ strtolower($reservation->package->package_name) }}'.includes(search.toLowerCase())">
+                      <tr class="text-gray-700" x-show="search === '' || 
+                        '{{ strtolower($reservation->user->email) }}'.includes(search.toLowerCase()) || 
+                        '{{ strtolower($reservation->venue->name) }}'.includes(search.toLowerCase()) || 
+                        '{{ date('F j, Y', strtotime($reservation->reservation_date)) }}'.toLowerCase().includes(search.toLowerCase()) || 
+                        '{{ strtolower($reservation->status) }}'.includes(search.toLowerCase())">
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
                               <p class="font-semibold">{{ $reservation->user->email }}</p>
@@ -81,7 +84,11 @@
                         </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
-                              <p class="font-semibold">{{ $reservation->package->package_name }}</p>
+                              @if ($reservation->package)
+                                  <p class="font-semibold">{{ $reservation->package->package_name }}</p>
+                              @else
+                                  <p class="font-semibold">N/A</p>
+                              @endif
                           </div>
                         </td>
                         <td class="px-4 py-3">
@@ -91,21 +98,30 @@
                         </td>
                         <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
-                                <p class="font-semibold">{{ $reservation->reservation_date }}</p>
+                                <p class="font-semibold">{{ date('F j, Y', strtotime($reservation->reservation_date)) }}</p>
                             </div>
                         </td>
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
+                              @if ($reservation->add_ons)
+                                  <p class="font-semibold">{{ $reservation->add_ons }}</p>
+                              @else
+                                  <p class="font-semibold">N/A</p>
+                              @endif
+                          </div>
+                        </td>                      
                         <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
                                 <p class="font-semibold">{{ $reservation->status }}</p>
                             </div>
                           </td>
-                        <td class="px-4 py-3">
+                        {{-- <td class="px-4 py-3">
                           <div class="flex items-center space-x-4 text-sm">
                             <a
-                              {{-- @click="openEditModal" --}}
+                              @click="openEditModal"
                               class="inline-flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-800 rounded-lg focus:outline-none focus:shadow-outline-gray hover:bg-gray-200"
                               aria-label="Edit"
-                              {{-- href="{{ route('packages.edit',$package->package_id) }}" --}}
+                              href="{{ route('packages.edit',$package->package_id) }}"
                             >
                               <svg
                                 class="w-5 h-5"
@@ -119,7 +135,7 @@
                               </svg>
                             </a>
                           </div>
-                        </td>
+                        </td> --}}
                       </tr>
                       @endforeach
                     </tbody>

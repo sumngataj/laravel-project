@@ -6,7 +6,7 @@
     </header>
 
     <main class="mt-8">
-        <h2 class="text-gray-700 dark:text-gray-200">Hi {{$reciptient}},</h2>
+        <h2 class="text-gray-700 dark:text-gray-200">Hi {{ $mailData['user_id'] }},</h2>
 
         <p class="mt-2 leading-loose text-gray-600 dark:text-gray-300">
             Your email has been registered on <span class="font-semibold ">Kaluhas</span>.
@@ -14,7 +14,7 @@
 
         <p
             class="flex items-center justify-center w-10 h-10 text-2xl font-medium text-blue-500 dark:border-blue-400 dark:text-blue-400 ">
-            {{$body}}</p>
+            {{ $mailData['body'] }}</p>
 
         <button
             class="px-6 py-2 mt-4 text-sm font-medium tracking-wider text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
