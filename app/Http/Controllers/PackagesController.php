@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Packages;
+use App\Models\Notification;
 use App\Models\Venues;
 use App\Models\Ratings;
 use Illuminate\Http\Request;
@@ -17,24 +18,26 @@ class PackagesController extends Controller
     public function index(): View
     {
         $venues = Venues::all();
+            $notifications = Notification::all();
         $averageRatings = Ratings::select('package_id', DB::raw('AVG(rating) as average_rating'))
         ->groupBy('package_id')
         ->get();
 
         $packages = Packages::with(['venue'])->latest()->paginate(7);
 
-    return view('admin.packages', compact('packages', 'venues', 'averageRatings'));
+    return view('admin.packages', compact('packages', 'venues', 'averageRatings', 'notifications'));
     }
 
     public function displayAll(): View
     {
         $packages = Packages::all();
         $venues = Venues::all();
+        $notifications = Notification::all();
         $averageRatings = Ratings::select('package_id', DB::raw('AVG(rating) as average_rating'))
         ->groupBy('package_id')
         ->get();
 
-    return view('home', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings]);
+    return view('home', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings, 'notifications' => $notifications]);
     }
 
 

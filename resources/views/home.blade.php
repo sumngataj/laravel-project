@@ -4,9 +4,14 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="csrf-token" content="{{ csrf_token() }}">
      <title>Kaluhas PH | Wedding Booking</title>
      <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
+     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
      @vite('resources/css/app.css')
@@ -15,6 +20,7 @@
  <body>
 
      @include('components.navbar')
+     @include('components.newNav')
      @include('components.footer')
      @include('section.package')
      @include('components.loginSideModal')
@@ -24,10 +30,11 @@
      @include('components.sideMenu')
      @include('components.chatBox')
      @include('section.subheading')
+     @include('components.homeSlider')
      @include('section.venues')
      @yield('sideMenu')
      @yield('floatingNavbar')
-     @yield('content')
+     @yield('newNav')
      @yield('loginSideModal')
      @yield('toggleSearch')
 
@@ -62,30 +69,7 @@
 
 
 
-     <div
-         class="bg-[url('https://www.henann.com/boracay/henanngarden/uploads/slider/overview3.jpg')] bg-no-repeat h-[35rem] bg-cover bg-center bg-fixed w-full">
-         <!-- <div class="max-w-7xl mx-auto">
-             <div class="">
-                 <div class="flex justify-center items-center space-x-10 space-y-2 overflow-hidden">
-                     <div class="w-1/2 px-4 sm:px-6 lg:px-8">
-                         <h2 class="text-5xl font-semibold text-gray-800 animation-slide-up">Lorem Ipsum</h2>
-                         <p class="mt-2 text-gray-600 animation-slide-up">Lorem ipsum dolor sit amet,
-                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                         </p>
-
-                         <button
-                             class="bg-pink-violet p-4 text-sm font-semibold mt-5 hover:bg-pink-hover animation-slide-up">
-                             Book Now
-                         </button>
-                     </div>
-                     <div class="flex justify-center items-center w-1/2">
-                         <img src="{{ asset('images/dressedResize.png') }}" class="animation-slide-in" alt="My Image">
-                     </div>
-                 </div>
-             </div>
-         </div> -->
-     </div>
+     @yield('homeSlider')
 
      @yield('process')
 
@@ -105,6 +89,105 @@
      @yield('footer')
 
      @vite('resources/js/app.js')
+     <script>
+     var slideIndex = 1;
+     showDivs(slideIndex);
+
+     // Auto advance the slides every 3 seconds (3000 milliseconds)
+     var slideInterval = setInterval(function() {
+         plusDivs(1);
+     }, 60000);
+
+     function plusDivs(n) {
+         showDivs(slideIndex += n);
+     }
+
+     function showDivs(n) {
+         var i;
+         var x = document.getElementsByClassName("mySlides");
+         if (n > x.length) {
+             slideIndex = 1
+         }
+         if (n < 1) {
+             slideIndex = x.length
+         }
+         for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+         }
+         x[slideIndex - 1].style.display = "block";
+     }
+
+     // Clear the auto slide interval when the user clicks on a navigation button
+     document.querySelector(".w3-button").addEventListener("click", function() {
+         clearInterval(slideInterval);
+     });
+     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+     <script>
+     const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute('content');
+     </script>
+
+     <script>
+     const searchInput = document.getElementById("searchInput");
+
+
+     searchInput.addEventListener("input", function() {
+         const query = searchInput.value;
+         const searchResults = document.getElementById("searchResults");
+         console.log("Query:", query);
+
+         fetch(`/search?q=${query}`, {
+                 method: 'GET',
+                 headers: {
+                     'X-CSRF-TOKEN': csrfToken,
+                     'Content-Type': 'application/json',
+                 },
+
+             })
+             .then(response => {
+                 console.log("response params", response);
+                 if (!response.ok) {
+                     throw new Error('Network response was not ok');
+                 }
+                 return response.json();
+             })
+             .then(data => {
+                 console.log(data);
+
+                 searchResults.classList.remove('hidden');
+                 searchResults.innerHTML = "";
+
+                 data.forEach(item => {
+                     const resultContainer = document.createElement("div");
+                     resultContainer.classList.add('result-container', 'border-b',
+                         'border-gray-300', 'mb-2', );
+
+                     const imgElement = document.createElement("img");
+                     imgElement.src = item.image_url;
+                     resultContainer.appendChild(imgElement);
+
+                     const resultItem = document.createElement("div");
+                     resultItem.innerHTML =
+                         `<span style="font-weight: bold;">${item.package_name}</span><br><span style="font-weight: light; font-size: 14px;">${item.truncated_description}</span>`;
+                     resultContainer.appendChild(resultItem);
+
+                     searchResults.appendChild(resultContainer);
+
+
+                 });
+                 if (query.trim() === "") {
+
+                     searchResults.innerHTML = "";
+                     searchResults.classList.add('hidden');
+                     return;
+                 }
+
+             })
+             .catch(error => {
+                 console.error('Fetch error:', error);
+             });
+     });
+     </script>
      <script>
      function getRandomColor() {
          const letters = '0123456789ABCDEF';
@@ -270,31 +353,31 @@
 
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const toggleScrollDivs = document.getElementById("toggle-scroll-divs");
-            const toggleScrollButton = document.getElementById("toggle-scroll-buttons");
+     <script>
+     document.addEventListener("DOMContentLoaded", function() {
+         const toggleScrollDivs = document.getElementById("toggle-scroll-divs");
+         const toggleScrollButton = document.getElementById("toggle-scroll-buttons");
 
-            function toggleDropdown() {
-                toggleScrollDivs.classList.toggle("hidden");
-            }
+         function toggleDropdown() {
+             toggleScrollDivs.classList.toggle("hidden");
+         }
 
-            toggleScrollButton.addEventListener("click", function(e) {
-                e.stopPropagation(); // Prevent button click from immediately closing the dropdown
-                toggleDropdown();
-            });
+         toggleScrollButton.addEventListener("click", function(e) {
+             e.stopPropagation(); // Prevent button click from immediately closing the dropdown
+             toggleDropdown();
+         });
 
-            document.addEventListener("click", function(e) {
-                if (!toggleScrollDivs.contains(e.target)) {
-                    // Close the dropdown if the click is outside of it
-                    toggleScrollDivs.classList.add("hidden");
-                }
-            });
+         document.addEventListener("click", function(e) {
+             if (!toggleScrollDivs.contains(e.target)) {
+                 // Close the dropdown if the click is outside of it
+                 toggleScrollDivs.classList.add("hidden");
+             }
+         });
 
-            // Close the dropdown when the overlay is clicked
-            overlay.addEventListener("click", toggleDropdown);
-        });
-    </script>
+         // Close the dropdown when the overlay is clicked
+         overlay.addEventListener("click", toggleDropdown);
+     });
+     </script>
 
 
 

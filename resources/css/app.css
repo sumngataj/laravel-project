@@ -10,6 +10,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -65,6 +66,19 @@ body {
 
 .transforms.translate-y-full {
     transform: translateY(100%);
+}
+.result-container {
+    display: flex; /* Apply a flex layout to the container */
+    align-items: start; /* Center vertically within the container */
+    padding: 4px; /* Add spacing between results */
+    text-align: justify;
+}
+
+/* Style for the image within a result container */
+.result-container img {
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add spacing between image and text */
 }
 
 .chat {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Notification;
+use App\Models\Venues;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -104,7 +107,7 @@ class LoginRegisterController extends Controller
     public function dashboard()
     {
         if(Auth::check())
-        {
+        { 
             return view('admin.index');
         }
         
