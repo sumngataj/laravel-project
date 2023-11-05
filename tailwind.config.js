@@ -13,6 +13,9 @@ export default {
                 "pink-hover": "#efc4d2",
                 "blue-green": "#088F8F",
                 "gold-highlight": "#875E2C",
+                "pale-black": "#201c1c",
+                "gray-border": "#a8a8a8",
+                "gray-active": "#e9e9e9",
             },
         },
         backgroundSize: {

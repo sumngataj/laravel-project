@@ -8,6 +8,10 @@
      <title>Kaluhas PH | Wedding Booking</title>
      <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+     <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
 
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -89,6 +93,222 @@
      @yield('footer')
 
      @vite('resources/js/app.js')
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+    const navbar = $('#navbar');
+    
+    // Function to toggle the 'border-b' class based on scroll position
+    function toggleBorder() {
+        if (window.scrollY > 500) {
+            navbar.addClass('border-b');
+        } else {
+            navbar.removeClass('border-b');
+        }
+    }
+    
+    // Initial check for scroll position on page load
+    toggleBorder();
+
+    // Listen for scroll events and call the toggleBorder function
+    $(window).scroll(function () {
+        toggleBorder();
+    });
+
+    // Rest of your existing code...
+});
+
+</script>
+<script>
+    $(document).ready(function(){
+        const slider = $('.sliderHeader');
+        const indicators = $('.header-indicator');
+        slider.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+        });
+        indicators.each(function(index) {
+        $(this).on('click', function() {
+            slider.slick('slickGoTo', index); 
+        });
+        slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+      
+      indicators.removeClass('active-white');
+      
+     
+      indicators.eq(nextSlide).addClass('active-white');
+  });
+    });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        const slider = $('.sliderVenue');
+
+        slider.slick({
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+        });
+        indicators.each(function(index) {
+        $(this).on('click', function() {
+            slider.slick('slickGoTo', index); 
+        });
+        slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+      
+      indicators.removeClass('active-white');
+      
+     
+      indicators.eq(nextSlide).addClass('active-white');
+  });
+    });
+    });
+</script>
+<script>
+$(document).ready(function () {
+    const slider = $('.sliders');
+    const indicators = $('.indicators');
+    const prevButton = $('#prevButtons');
+    const nextButton = $('#nextButtons');
+
+    slider.slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        adaptiveHeight: true,
+    });
+
+    indicators.each(function(index) {
+        $(this).on('click', function() {
+            slider.slick('slickGoTo', index); 
+        });
+    });
+
+    indicators.first().addClass('active');
+    prevButton.click(function () {
+        slider.slick('slickPrev');
+    });
+
+
+    nextButton.click(function () {
+        slider.slick('slickNext');
+    });
+
+    slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+      
+        indicators.removeClass('active');
+        
+       
+        indicators.eq(nextSlide).addClass('active');
+    });
+});
+</script>
+     <script>
+ $(document).ready(function () {
+  var slider = $('#slider');
+  var indicatorContainer = $('.indicator-containers');
+
+  slider.slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    prevArrow: $('#prevButton'),
+    nextArrow: $('#nextButton'),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 567,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  });
+  indicatorContainer.find('.indicator').eq(0).addClass('active');
+
+  slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+    // Find the indicators and remove the 'active' class from all
+    indicatorContainer.find('.indicator').removeClass('active');
+    
+    // Add the 'active' class to the indicator of the next slide
+    indicatorContainer.find('.indicator').eq(nextSlide).addClass('active');
+  });
+});
+
+</script>
+
+     <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("default-carousel");
+        const carouselItems = carousel.querySelectorAll("[data-carousel-item]");
+        const slideButtons = carousel.querySelectorAll("[data-carousel-slide-to]");
+        const prevButton = carousel.querySelector("[data-carousel-prev]");
+        const nextButton = carousel.querySelector("[data-carousel-next]");
+        let currentIndex = 0;
+
+        // Function to show the current slide and update the indicators
+        function showSlide(index) {
+            carouselItems.forEach((item, i) => {
+                if (i === index) {
+                    item.classList.remove("translate-x-full");
+                    item.classList.add("translate-x-0");
+                    item.style.opacity = 1;
+                    slideButtons[i].setAttribute("aria-current", "true");
+                } else {
+                    item.classList.remove("translate-x-0");
+                    item.classList.add("translate-x-full");
+                    item.style.opacity = 0;
+                    slideButtons[i].setAttribute("aria-current", "false");
+                }
+            });
+        }
+
+        // Function to show the next slide
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            showSlide(currentIndex);
+        }
+
+        // Function to show the previous slide
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+            showSlide(currentIndex);
+        }
+
+        // Event listeners for slide buttons
+        slideButtons.forEach((button, index) => {
+            button.addEventListener("click", function () {
+                currentIndex = index;
+                showSlide(currentIndex);
+            });
+        });
+
+        // Event listeners for next and previous buttons
+        nextButton.addEventListener("click", nextSlide);
+        prevButton.addEventListener("click", prevSlide);
+
+        // Initial display
+        showSlide(currentIndex);
+
+        // Automatic slide change (e.g., every 5 seconds)
+        setInterval(nextSlide, 5000); // Adjust the interval as needed
+    });
+</script>
+
      <script>
      var slideIndex = 1;
      showDivs(slideIndex);
@@ -104,17 +324,28 @@
 
      function showDivs(n) {
          var i;
-         var x = document.getElementsByClassName("mySlides");
-         if (n > x.length) {
-             slideIndex = 1
-         }
-         if (n < 1) {
-             slideIndex = x.length
-         }
-         for (i = 0; i < x.length; i++) {
-             x[i].style.display = "none";
-         }
-         x[slideIndex - 1].style.display = "block";
+         var slides = document.getElementsByClassName("mySlides");
+        var indicators = document.getElementsByClassName("indicator");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slides[i].style.left = "100%";
+            
+        }
+        slides[slideIndex - 1].style.left = "0";
+
+        for (i = 0; i < indicators.length; i++) {
+            indicators[i].classList.remove("active-indicator");
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        indicators[slideIndex - 1].classList.add("active-indicator");
      }
 
      // Clear the auto slide interval when the user clicks on a navigation button
@@ -270,10 +501,10 @@
 
 
 
-     let sliderContainer = document.getElementById("sliderContainer");
+     let sliderContainer = document.getElementById("sliderContainers");
      if (sliderContainer) {
-         let slider = document.getElementById("slider");
-         let cards = slider.getElementsByTagName("li");
+         let slider = document.getElementById("sliders");
+         let cards = slider.getElementsByClassName("li");
 
          let elementsToShow = 3;
          if (document.body.clientWidth < 1000) {
