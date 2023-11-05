@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @vite('resources/css/app.css')
@@ -17,7 +18,9 @@
 </head>
 
 <body>
-    @include('components.navbar')
+ 
+    @include('components.newNav')
+    @include('components.bookingNav')
     @include('components.footer')
     @include('components.loginSideModal')
     @include('components.floatingNavbar')
@@ -25,18 +28,15 @@
     @include('components.sideMenu')
     @include('components.chatBox')
     @yield('sideMenu')
-    @yield('floatingNavbar')
-    @yield('content')
+
     @yield('loginSideModal')
     @yield('toggleSearch')
+    @yield('bookingNav')
+ 
 
 
-    <div class="bg-black p-16">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-center p-8 items-center space-x-10 space-y-2 overflow-hidden">
-                <p class="text-white font-semibold text-5xl">Custom Section</p>
-            </div>
-        </div>
+    <div class="bg-[url('https://henann.com/henannpark/wp-content/uploads/2021/12/function-room-scaled.jpg')] bg-no-repeat bg-cover bg-center mx-auto w-full h-[30rem]">
+        
     </div>
 
     @if(session('success'))
@@ -66,6 +66,21 @@
             <div class="flex justify-around items-start">
                 <div class="relative mt-6 w-2/3">
                     <div id="stepperContent" class="relative">
+                    <div class="absolute -top-56 w-1/2 h-56 p-4 space-y-3" style="background: rgba(255,255,255,0.75);">
+            <p class="text-xl text-gold-highlight">Kaluhas Bohol</p>
+            <p class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+</svg>
+<span>118 B. Aquino Street Baranggay Cogon 6300, Tagbilaran City, Philippines</span></p>
+            <p class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+</svg>
+<span class="text-pink-violet">+63 2 8888 0777</span></p>
+            <p class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+</svg>
+<span class="text-pink-violet">https://www.kaluhas.com</span></p>
+        </div>
                         <div id="firstBtns" class="flex border border-gray-500 w-full">
                             <button type="button" id="" onclick="toggleOverlay()" class="w-1/2 text-left p-2"><a
                                     class="flex text-gold-highlight font-bold"><svg xmlns="http://www.w3.org/2000/svg"
@@ -487,7 +502,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="relative sticky top-20 bg-gray-300 h-auto p-4 w-96 mt-6">
+                <div class="relative sticky top-5 bg-gray-300 h-auto p-4 w-96 mt-6">
                     <div class="flex justify-start items-start">
                         <div class="border-b border-gray-400 w-full">
                             <h1 class="text-xl text-gold-highlight font-light">Your Booking Summary</h1>

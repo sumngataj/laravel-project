@@ -1,7 +1,7 @@
 import "./bootstrap";
 import "./clickedBody";
 import "./navbar";
-import "./scroll";
+// import "./scroll";
 import "./windowReload";
 import "./sideModal";
 import "./searchToggle";

@@ -1,21 +1,18 @@
 @section('venues')
-<div id="section3" class="relative mt-16 h-[40rem]">
-    <div class="w-[25%] absolute left-[2%] mt-12">
-        <h1 class="text-gold-highlight font-light text-4xl tracking-wide ">The Best of Bohol</h1>
-        <p class="text-sm font-light tracking-wide mt-12">
-            "We've carefully curated the most enchanting locations in Bohol for your dream wedding."</p>
-        <p class="mt-8 font-bold text-xl uppercase text-gold-highlight">Check it out ->>></p>
+<div class="relative">
+<div class="flex container mx-auto justify-around items-start w-full py-36 h-[50rem]">
+    
+    <div class="relative space-y-10">
+        <p class="text-3xl text-gold-highlight">Unwind in our exquisite venues</p>
+        <p>Our recreation amenities make the time you spend with us unforgettable.</p>
+        <button class="bg-pink-violet p-2 text-white w-44 uppercase text-sm">Discover More</button>
     </div>
-    <div
-        class="bg-[url('https://gttp.imgix.net/288638/x/0/be-grand-bohol.jpg?ar=1.91:1&w=1200&fit=crop')] bg-no-repeat h-[20rem] bg-cover bg-center mt-96 absolute w-1/2 -z-10">
-    </div>
-    <section id="package" class="overflow-hidden h-[40rem] translate-x-[30%]">
-        <div id="sliderVenueContainer" class="w-full overflow-hidden">
-            <div id="sliderVenue" class="flex w-full duration-700">
-                @foreach($venues as $venue)
-                <div id="p-5" class="p-5">
-                    <div class="h-full border border-gold-highlight bg-white">
-                        <img class="h-96 w-full object-cover"
+ 
+    <div class="sliderVenue w-9/12 translate-x-[20%]">
+    @foreach($venues as $venue)
+        <div class="p-5 w-full">
+                    <div class="w-full h-full border border-gold-highlight bg-white">
+                        <img class="h-80 w-full object-cover"
                             src="{{ asset('images/venue_images/' . $venue->image_path) }}" alt="MyImage" />
                         <div class="p-8">
                             <h2 class="font-light tracking-wide text-2xl text-gold-highlight">{{$venue->name}}</h2>
@@ -28,11 +25,11 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </div>
-        </div>
+        @endforeach
+    </div>
 </div>
+<div class="absolute bg-[url('https://roamulofied.files.wordpress.com/2017/07/dsc_0058.jpg?w=1060')] bg-no-repeat bg-cover bg-bottom w-7/12 h-[25rem] left-0 -bottom-12 -z-[1]"></div>
+    </div>
 
-</section>
-</div>
+
 @endsection

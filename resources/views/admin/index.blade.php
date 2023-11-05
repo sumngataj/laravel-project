@@ -61,6 +61,12 @@
         listItem.innerHTML = message;
 
 
+
+
+
+        
+
+
         const notifCountSpan = document.getElementById('notif-count');
         const incrementValue = 1;
         const notificationsList = document.getElementById(
