@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\VenuesController;
+use App\Http\Controllers\AddonsController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\CustomBookingController;
 use App\Http\Controllers\ReservationController;
@@ -45,6 +46,7 @@ Route::get('/adminlogin', function () {
 Route::middleware('isSuperUser')->group(function(){
     Route::resource('packages', PackagesController::class);
     Route::resource('venues', VenuesController::class);
+    Route::resource('addons', AddonsController::class);
 
     Route::controller(LoginRegisterController::class)->group(function() {
         Route::get('/admin', [ReservationController::class, 'index'])->name('dashboard');

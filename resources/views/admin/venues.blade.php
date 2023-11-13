@@ -99,7 +99,7 @@
                                     </td>
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
-                                            <p class="font-semibold">{{ $venue->price }}</p>
+                                            <p class="font-semibold">₱{{ number_format($venue->price, 2) }}</p>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3">

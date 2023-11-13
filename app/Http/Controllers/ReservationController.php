@@ -197,6 +197,7 @@ class ReservationController extends Controller
         $notification->user_id = $validatedData['user_id'];
         $notification->venue_id = $validatedData['venue_id'];
         $notification->status = 0;
+        $notification->package_id = 1;
         $notification->uploaded = now();
          
         $user = User::find($validatedData['user_id']);
