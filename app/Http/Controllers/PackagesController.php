@@ -105,7 +105,8 @@ class PackagesController extends Controller
     {
         $package = Packages::findOrFail($package_id);
         $venues = Venues::all();
-        return view('admin.modalforms.editPackage', ['package' => $package, 'venues' => $venues]);
+        $notifications = Notification::all();
+        return view('admin.modalforms.editPackage', ['package' => $package, 'venues' => $venues, 'notifications' => $notifications]);
     }
 
     /**

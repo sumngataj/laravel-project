@@ -92,7 +92,8 @@ class VenuesController extends Controller
     public function edit($venue_id)
     {
         $venue = Venues::findOrFail($venue_id);
-        return view('admin.modalforms.edit', ['venue' => $venue]);
+        $notifications = Notification::all();
+        return view('admin.modalforms.edit', ['venue' => $venue, 'notifications' => $notifications]);
     }
 
     /**

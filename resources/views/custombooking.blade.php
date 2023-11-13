@@ -315,7 +315,7 @@
                                 </svg>
                             </div>
                             <div id="slideInCaterings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
-                                <ul id="cater" class="w-full font-lightbold">
+                                {{-- <ul id="cater" class="w-full font-lightbold">
                                     <li
                                         class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full"> Cater 1</p><span>10000</span>
@@ -328,7 +328,16 @@
                                         class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full"> Cater 3 </p><span>25000</span>
                                     </li>
-                                </ul>
+                                </ul> --}}
+                                <ul id="cater" class="w-full font-lightbold">
+                                    @foreach($catering as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        {{-- <h5 class="hidden group-hover:block">{{ $item->description }}</h5> --}}
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>                                
                             </div>
                         </div>
                         <div class="relative">
@@ -342,18 +351,13 @@
                             </div>
                             <div id="slideInCakes" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="cakes" class="w-full font-lightbold">
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Banana Cake </p><span>1000</span>
+                                    @foreach($cake as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        {{-- <h5 class="hidden group-hover:block">{{ $item->description }}</h5> --}}
+                                        <span>{{ $item->price }}</span>
                                     </li>
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Blueberry Cake </p><span>1200</span>
-                                    </li>
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Ube Yam Cake </p><span>1500</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -368,18 +372,13 @@
                             </div>
                             <div id="slideInFlowers" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="flowers" class="w-full font-lightbold">
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Roses </p><span>100</span>
+                                    @foreach($flower as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        {{-- <h5 class="hidden group-hover:block">{{ $item->description }}</h5> --}}
+                                        <span>{{ $item->price }}</span>
                                     </li>
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full">Sunflower </p><span>150</span>
-                                    </li>
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full">Tullips</p> <span>200</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
