@@ -1,11 +1,11 @@
 @section('venues')
 <div class="relative">
-<div class="flex container mx-auto justify-around items-start w-full py-36 h-[50rem]">
+<div id="section3" class="flex container mx-auto justify-around items-start w-full py-36 h-[50rem]">
     
     <div class="relative space-y-10">
         <p class="text-3xl text-gold-highlight">Unwind in our exquisite venues</p>
         <p>Our recreation amenities make the time you spend with us unforgettable.</p>
-        <button class="bg-pink-violet p-2 text-white w-44 uppercase text-sm">Discover More</button>
+        {{-- <button class="bg-pink-violet p-2 text-white w-44 uppercase text-sm">Discover More</button> --}}
     </div>
  
     <div class="sliderVenue w-9/12 translate-x-[20%]">

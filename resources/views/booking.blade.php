@@ -36,15 +36,14 @@
 
  <body>
 
-     @include('components.navbar')
+     @include('components.bookingNav')
      @include('components.footer')
      @include('components.loginSideModal')
-     @include('components.floatingNavbar')
      @include('components.searchToggle')
      @include('components.sideMenu')
      @include('components.chatBox')
      @yield('sideMenu')
-     @yield('floatingNavbar')
+     @yield('bookingNav')
      @yield('content')
      @yield('loginSideModal')
      @yield('toggleSearch')
@@ -238,10 +237,21 @@
              </div>
 
 
-         <div id="bookingSummary" class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[24rem] hidden custom-width">
+         <div id="bookingSummary" class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[30rem] hidden custom-width">
                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="package_id" id="package_id" value="{{ $package->package_id }}">
                 <input type="hidden" name="venue_id" id="venue_id" value="{{ $package->venue_id }}">
+                <label class="text-gold-highlight font-light text-xl tracking-wide">Contact Info</label>
+                <div class="flex">
+                    <div class="relative w-[50%]">
+                        <label class="text-sm font-light">Mobile Number *</label>
+                        <input type="number" name="mobile_number" class="w-full font-light text-sm" placeholder="Enter a valid mobile no." required />
+                    </div>
+                    <div class="relative w-[50%] ml-2">
+                        <label class="text-sm font-light">Email Address *</label>
+                        <input type="email" name="email" class="w-full font-light text-sm" placeholder="Enter a valid email address" value="{{ Auth::user()->email }}" required />
+                    </div>
+                </div>
 
              <div class="2">
                  <div class="p-4">
