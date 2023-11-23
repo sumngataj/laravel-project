@@ -315,25 +315,12 @@
                                 </svg>
                             </div>
                             <div id="slideInCaterings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
-                                {{-- <ul id="cater" class="w-full font-lightbold">
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Cater 1</p><span>10000</span>
-                                    </li>
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Cater 2 </p><span>15000</span>
-                                    </li>
-                                    <li
-                                        class="flex justify-between items-center hover:text-white hover:bg-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full"> Cater 3 </p><span>25000</span>
-                                    </li>
-                                </ul> --}}
+                                
                                 <ul id="cater" class="w-full font-lightbold">
                                     @foreach($catering as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
-                                        {{-- <h5 class="hidden group-hover:block">{{ $item->description }}</h5> --}}
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
                                     </li>
                                     @endforeach
@@ -354,7 +341,7 @@
                                     @foreach($cake as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
-                                        {{-- <h5 class="hidden group-hover:block">{{ $item->description }}</h5> --}}
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
                                     </li>
                                     @endforeach
@@ -375,7 +362,7 @@
                                     @foreach($flower as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
-                                        {{-- <h5 class="hidden group-hover:block">{{ $item->description }}</h5> --}}
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
                                     </li>
                                     @endforeach
@@ -492,7 +479,7 @@
                                                 data-venue-capacity="{{$venue->capacity}}"
                                                 data-venue-location="{{$venue->location}}"
                                                 data-venue-price="{{$venue->price}}" data-venue-name="{{$venue->name}}">
-                                                BOOK NOW</button>
+                                                SELECT</button>
                                         </div>
                                     </div>
                                 </div>

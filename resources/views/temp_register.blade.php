@@ -36,7 +36,7 @@
           <img
             aria-hidden="true"
             class="object-cover w-full h-full"
-            src="{{ asset('images/login.jpg') }}"
+            src="{{ asset('images/reg.jpg') }}"
             alt="Office"
           />
         </div>
