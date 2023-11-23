@@ -27,11 +27,11 @@
                 <h2 class="lg:text-4xl text-2xl font-light text-gold-highlight tracking-wide lg:text-left text-center leading-10">Deals of the month</h2>
                 <p class="lg:text-sm md:text-sm text-xs lg:text-left text-center py-8">Take advantage of unique offers and events brought to you by Okada Manila. Enjoy a host of offers from Reward Circle, restaurants, hotel stays, and all the special events organized for your indulgence.</p>
                 <a onclick="window.open(this.href,'_blank');return false;" href="{{ route('custom.booking') }}" target="_blank">
-            <button id="myButton"
-                class="bg-pink-violet p-2 text-sm font-light mt-16 hover:opacity-80 w-1/2 text-white animation-slide-up uppercase tracking-widest lg:relative">
-                Book Now
-            </button>
-        </a>
+                    <button id="myButton"
+                        class="bg-pink-violet p-2 text-sm font-light mt-16 hover:opacity-80 w-1/2 text-white animation-slide-up uppercase tracking-widest lg:relative">
+                        Book Now
+                    </button>
+                </a>
         </div>
    <div class="relative container mx-auto lg:w-9/12">
         <div id="sliderContainer" class="relative overflow-hidden bg-white lg:translate-x-[20%]">

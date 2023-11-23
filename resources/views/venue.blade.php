@@ -14,20 +14,19 @@
 
  <body>
 
-     @include('components.navbar')
+     @include('components.newNav')    
      @include('components.footer')
      @include('components.loginSideModal')
-     @include('components.floatingNavbar')
      @include('components.searchToggle')
      @include('components.sideMenu')
      @include('components.chatBox')
+     @yield('newNav')
      @yield('sideMenu')
-     @yield('floatingNavbar')
      @yield('content')
      @yield('loginSideModal')
      @yield('toggleSearch')
 
-     <div class="bg-black p-16">
+     <div class="bg-black mt-32 p-16">
          <div class="max-w-7xl mx-auto">
              <div class="flex justify-center p-8 items-center space-x-10 space-y-2 overflow-hidden">
                  <p class="text-white font-semibold text-5xl">Venue Section</p>
@@ -44,16 +43,16 @@
 
      <section class="flex items-start p-12 h-auto">
          <div class="relative w-2/3">
-             <img class="w-full h-[30rem] object-cover" src="{{ asset('images/venue_images/' . $venue->image_path) }}"
+             <img class="w-full h-[60rem] object-cover" src="{{ asset('images/venue_images/' . $venue->image_path) }}"
                  alt="MyImage" />
              <div class="flex items-center">
                  <h2 class="flex items-center font-bold text-3xl text-gold-highlight uppercase mt-2">{{$venue->name}}
                  </h2>
-                 <button id="venue-btn-book"
+                 {{-- <button id="venue-btn-book"
                      class="flex justify-end items-center text-xs bg-pink-violet p-2 mt-3 uppercase font-semibold text-white ml-2 rounded-full"
                      disabled>
                      Book
-                     Now</button>
+                     Now</button> --}}
              </div>
              <h2 class="flex items-center font-lightbold text-sm uppercase tracking-widest mt-1">{{$venue->location}}
              </h2>
@@ -78,6 +77,75 @@
 
      });
      </script>
+
+
+     <script>
+     const toggleButtons = document.getElementById('toggle-buttons');
+     const contentToToggles = document.getElementById('toggle-divs');
+
+     toggleButtons.addEventListener('click', function(event) {
+         event.stopPropagation();
+         contentToToggles.classList.toggle('hidden');
+     });
+
+     document.addEventListener('click', function(event) {
+         if (!toggleButtons.contains(event.target) && !contentToToggles.contains(event.target)) {
+             contentToToggles.classList.add('hidden');
+         }
+     });
+
+
+
+     let sliderContainer = document.getElementById("sliderContainers");
+     if (sliderContainer) {
+         let slider = document.getElementById("sliders");
+         let cards = slider.getElementsByClassName("li");
+
+         let elementsToShow = 3;
+         if (document.body.clientWidth < 1000) {
+             elementsToShow = 1;
+         } else if (document.body.clientWidth < 1500) {
+             elementsToShow = 2;
+         }
+
+         let sliderContainerWidth = sliderContainer.clientWidth;
+
+         let cardWidth = sliderContainerWidth / elementsToShow;
+
+         slider.style.width = cards.length * cardWidth + "px";
+         slider.style.transition = "transform 1s";
+
+         const nextButton = document.getElementById("nextButton");
+         const prevButton = document.getElementById("prevButton");
+
+         for (let index = 0; index < cards.length; index++) {
+             const element = cards[index];
+             element.style.width = cardWidth + "px";
+         }
+
+         let currentIndex = 0;
+
+         function prev() {
+             if (currentIndex > 0) {
+                 currentIndex--;
+                 const translateX = -currentIndex * cardWidth;
+                 slider.style.transform = `translateX(${translateX}px)`;
+             }
+         }
+
+         function next() {
+             if (currentIndex < cards.length - elementsToShow) {
+                 currentIndex++;
+                 const translateX = -currentIndex * cardWidth;
+                 slider.style.transform = `translateX(${translateX}px)`;
+             }
+         }
+         nextButton.addEventListener("click", next);
+         prevButton.addEventListener("click", prev);
+     }
+     </script>
+
+
      <script>
      const commentContainer = document.getElementById('commentContainer');
      const commentText = document.getElementById('commentText');

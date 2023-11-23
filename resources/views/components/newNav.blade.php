@@ -6,14 +6,14 @@
                 <img src="{{ asset('images/kaluhasLogoIcon.png') }}" class="w-16" alt="My Image">
             </div>
             <div class="flex justify-end items-center space-x-8">
-                <button>
+                {{-- <button>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </button>
-                <p class="text-gray-200 font-light text-xl">|</p>
+                <p class="text-gray-200 font-light text-xl">|</p> --}}
                 @guest
                 <button id="toggle-button">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" st roke-width="1.5"
@@ -43,8 +43,8 @@
                             <a href="{{route('profile.displayByProfileId', Auth::user()->id)}}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Your
                                 Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover-bg-gray-100"
-                                role="menuitem">Settings</a>
+                            {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover-bg-gray-100"
+                                role="menuitem">Settings</a> --}}
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="w-full">
                                 @csrf
                                 <a href="#"
@@ -56,25 +56,28 @@
                     </div>
                 </div>
                 @endguest
-                <button class="w-32 bg-pink-violet p-2 uppercase text-white font-lightbold tracking-widest">Book
-                    Now</button>
+                <a onclick="window.open(this.href,'_blank');return false;" href="{{ route('custom.booking') }}" target="_blank">
+                    <button id="myButton3" class="w-32 bg-pink-violet p-2 uppercase text-white font-lightbold tracking-widest">Book
+                        Now
+                    </button>
+                </a>
             </div>
         </div>
     </div>
     <div id="navbar" class="relative border-t border-gray-300">
         <div class="flex justify-around items-center">
-        <div class="flex justify-start items-center">
+        {{-- <div class="flex justify-start items-center">
             <button class="w-40 bg-pink-violet p-2 uppercase text-white font-lightbold tracking-widest">GETTING HERE</button>
-        </div>
+        </div> --}}
         <ul class="flex justify-center items-center uppercase space-x-10 tracking-widest text-sm ">
             <li class="p-6">
-                <a class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Home</a>
+                <a href="{{ url('/') }}" class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Home</a>
             </li>
             <li class="p-6">
-                <a class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Packages</a>
+                <a href="/#section2" class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Packages</a>
             </li>
             <li class="p-6">
-                <a class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Venues</a>
+                <a href="/#section3" class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Venues</a>
             </li>
             <li class="p-6 dropdown">
                 <a class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">About</a>
@@ -87,13 +90,13 @@
                 </div>
             </li>
         </ul>
-        <div class="flex justify-end items-center">
+        {{-- <div class="flex justify-end items-center">
             <label class="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" value="" class="sr-only peer" checked>
                 <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-pink-violet"></div>
                 <span class="ml-3 text-sm font-medium text-black">Dark Mode</span>
             </label>
-        </div>
+        </div> --}}
         </div>
     </div>
 </nav>

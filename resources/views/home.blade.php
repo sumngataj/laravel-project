@@ -550,37 +550,43 @@ $(document).ready(function () {
      }
      </script>
 
-     <script>
-     document.addEventListener("DOMContentLoaded", function() {
-         const myButton = document.getElementById("myButton");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const myButton = document.getElementById("myButton");
+            const myButton2 = document.getElementById("myButton2");
+            const myButton3 = document.getElementById("myButton3");
 
-         myButton.addEventListener("click", function() {
-             @if(!Auth::check())
-             Swal.fire({
-                 title: 'Login Required',
-                 text: 'You need to be logged in to perform this action.',
-                 icon: 'warning',
-                 confirmButtonText: 'OK'
-             });
-             @endif
-         });
-     });
+            function showLoginRequiredMessage() {
+                Swal.fire({
+                    title: 'Login Required',
+                    text: 'You need to be logged in to perform this action.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
+            }
 
-     document.addEventListener("DOMContentLoaded", function() {
-         const myButton2 = document.getElementById("myButton2");
+            myButton.addEventListener("click", function() {
+                @if(!Auth::check())
+                    showLoginRequiredMessage();
+                @endif
+            });
 
-         myButton2.addEventListener("click", function() {
-             @if(!Auth::check())
-             Swal.fire({
-                 title: 'Login Required',
-                 text: 'You need to be logged in to perform this action.',
-                 icon: 'warning',
-                 confirmButtonText: 'OK'
-             });
-             @endif
-         });
-     });
-     </script>
+            myButton2.addEventListener("click", function() {
+                @if(!Auth::check())
+                    showLoginRequiredMessage();
+                @endif
+            });
+
+            myButton3.addEventListener("click", function() {
+                @if(!Auth::check())
+                    showLoginRequiredMessage();
+                @endif
+            });
+        });
+        
+    </script>
+
+     
 
 
 

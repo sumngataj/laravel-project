@@ -113,6 +113,8 @@ class ReservationController extends Controller
             'package_id' => 'required|numeric',
             'reservation_date' => 'required|date',
             'price' => 'required|numeric',
+            'mobile_number' => 'required',
+            'email' => 'required',
         ]);
 
         // Create a new reservation record
@@ -121,6 +123,8 @@ class ReservationController extends Controller
         $reservation->venue_id = $validatedData['venue_id'];
         $reservation->package_id = $validatedData['package_id'];
         $reservation->reservation_date = $validatedData['reservation_date'];
+        $reservation->mobile_number = $validatedData['mobile_number'];
+        $reservation->email = $validatedData['email'];
         $reservation->price = $validatedData['price'];
         $reservation->status = 'pending';
 
@@ -129,7 +133,8 @@ class ReservationController extends Controller
         $package = Packages::find($validatedData['package_id']);
         
         $userName = $user->name;
-        $userMail = $user->email;
+        $userMail1 = $user->email;
+        $userMail = $validatedData['email'];
         $packageName = $package->package_name;
 
         $mailData = [

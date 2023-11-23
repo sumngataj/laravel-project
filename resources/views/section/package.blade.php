@@ -1,11 +1,11 @@
 @section('packages')
-<div class="bg-[url('https://www.henann.com/uploads/slider/find-a-resort_bohol.jpg')] bg-no-repeat h-[50rem] bg-cover bg-center w-full py-20">
+<div id="section2" class="bg-[url('https://www.henann.com/uploads/slider/find-a-resort_bohol.jpg')] bg-no-repeat h-[50rem] bg-cover bg-center w-full py-20">
     <div class="bg-white w-full -translate-x-[15%] h-[40rem] z-10 shadow-lg relative border border-gray-300">
     <div class="absolute top-20 right-20 p-8">
         <div class="relative space-y-10">
             <p class="text-3xl text-gold-highlight">Discover the magic in  <br> our wedding packages</p>
             <p ckass="font-light text-sm">Experience a wedding like never before.</p>
-            <button class="bg-pink-violet p-2 text-white w-44 uppercase text-sm">Discover More</button>
+            {{-- <button class="bg-pink-violet p-2 text-white w-44 uppercase text-sm">Discover More</button> --}}
             <div class="absolute">
             <div class="flex justify-center items-center py-8 space-x-8">
         <button id="prevButtons" class="text-gray-500">
