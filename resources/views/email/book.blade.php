@@ -11,9 +11,14 @@
     <strong>Address:</strong> <br>
     <strong>Contact Number:</strong> <br>
     <strong>Type of Payment:</strong> Full/Downpayment <br>
+    <div style="margin-top: 20px; ">
+        <strong>For GCash Payment:</strong> <br>
+        <div style="text-align: center;">
+            <img src="{{ asset('images/qr.png') }}" alt="Payment Image" style="width: 100px;">
+        </div>
+    </div>
     <div style="text-align: center; margin-top: 20px;">
         <img src="{{ asset('images/GCash-Logo.png') }}" alt="Payment Image" style="width: 100px;">
-        <img src="{{ asset('images/PayPal-Logo.png') }}" alt="Payment Image" style="width: 100px;">
     </div>
 @endcomponent
 
