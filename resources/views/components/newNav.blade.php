@@ -3,8 +3,10 @@
     <div class="relative p-4">
         <div class="flex justify-center">
             <div class="flex justify-center items-center w-full ml-72">
-                <img src="{{ asset('images/kaluhasLogoIcon.png') }}" class="w-16" alt="My Image">
-            </div>
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('images/kaluhasLogoIcon.png') }}" class="w-16" alt="My Image">
+                </a>
+            </div>            
             <div class="flex justify-end items-center space-x-8">
                 {{-- <button>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -69,7 +71,37 @@
         {{-- <div class="flex justify-start items-center">
             <button class="w-40 bg-pink-violet p-2 uppercase text-white font-lightbold tracking-widest">GETTING HERE</button>
         </div> --}}
-        <ul class="flex justify-center items-center uppercase space-x-10 tracking-widest text-sm ">
+
+        <div x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+            
+            <div class="flex justify-start items-center">
+                <button class="w-40 bg-pink-violet p-2 uppercase text-white font-lightbold tracking-widest" @click="showModal = true">GETTING HERE</button>
+            </div>
+
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50" x-show="showModal">
+                <div
+                    class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal = false"
+                    x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                >
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mapouter"><div class="gmap_canvas"><iframe src="https://maps.google.com/maps?q=Kaluhas%20Wedding%20And%20Event%20Specialist%20&amp;t=k&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" style="width: 480px; height: 420px;"></iframe><style>.mapouter{position:relative;height:420px;width:480px;background:#fff;} .maprouter a{color:#fff !important;position:absolute !important;top:0 !important;z-index:0 !important;}</style><a href="https://blooketjoin.org/blooket-login/">blooket login</a><style>.gmap_canvas{overflow:hidden;height:420px;width:480px}.gmap_canvas iframe{position:relative;z-index:2}</style></div></div>
+                </div>
+            </div>
+        </div>
+
+
+        <ul class="flex justify-center items-center uppercase space-x-10 tracking-widest text-sm mr-64">
             <li class="p-6">
                 <a href="{{ url('/') }}" class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">Home</a>
             </li>
@@ -81,7 +113,7 @@
             </li>
             <li class="p-6 dropdown">
                 <a class="border-b-4 border-transparent hover:border-pink-violet hover:text-pink-violet p-5">About</a>
-                <div class="dropdown-content shadow-lg p-4 tracking-widest text-xs leading-6">
+                <div class="dropdown-content shadow-lg p-4 tracking-widest text-xs leading-5">
                     <h2 class="text-xl font-semibold tracking-widest"><span class="text-3xl">A</span>bout <span class="text-3xl">K</span>ALUHAS <span class="text-3xl">W</span>EDDING <span class="text-3xl">E</span>VENT</h2>
                     <p>Welcome to KALUHAS WEDDING EVENT, your premier choice for creating unforgettable and magical weddings. We are dedicated to making your dream wedding a reality and turning your special day into an extraordinary celebration of love.</p>
                     <p>With years of experience in event planning and a passion for creating stunning weddings, we take pride in our attention to detail, creativity, and commitment to excellence. Your vision is our inspiration, and we work tirelessly to bring it to life.</p>

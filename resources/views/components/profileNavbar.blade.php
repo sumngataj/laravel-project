@@ -1,13 +1,13 @@
 @section('profilebar')
 <nav class="flex justify-around items-center w-full py-5 shadow-lg">
     <div class="flex justify-center w-1/2">
-        <a id="profilebar-logo" href="" class="text-left text-2xl font-bold uppercase"><span id="profile-label"></span>
+        <a id="profilebar-logo" href="{{ url('/') }}" class="text-left text-2xl font-bold uppercase"><span id="profile-label"></span>
             <img src="{{ asset('images/kaluhasLogoIcon.png') }}" class="w-16" alt="My Image">
         </a>
     </div>
     <div class="flex justify-center w-1/2 space-x-6">
 
-        <a href="{{ url('/') }}" class="font-semibold uppercase">Home</a>
+        <a href="{{ url('/') }}" class="font-semibold uppercase transition duration-300 hover:text-pink-violet hover:underline">Home</a>
         {{-- <button id="dark-mode" class=""><svg xmlns="http://www.w3.org/2000/svg" fill="true" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" id="dark-mode-icon" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"

@@ -9,7 +9,21 @@
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      @vite('resources/css/app.css')
      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
  </head>
+
+
+ @if(session('success'))
+ <script>
+ Swal.fire({
+     icon: 'success',
+     title: 'Success',
+     text: "{{ session('success') }}",
+     confirmButtonText: 'OK'
+ });
+ </script>
+
+ @endif
 
  <body>
 

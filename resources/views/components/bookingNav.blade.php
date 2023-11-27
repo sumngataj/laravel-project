@@ -1,9 +1,9 @@
 @section('bookingNav')
 <nav class="bg-white mx-auto h-28">
     <div class="flex container mx-auto justify-around items-center pt-4">
-        <div class="flex justify-start w-1/2">
+        <a href="{{ url('/') }}" class="flex justify-start w-1/2">
             <img src="{{ asset('images/kaluhasLogoIcon.png') }}" class="w-20" alt="My Image">
-        </div>
+        </a>        
         <div class="flex space-x-5 ">
             <button class="uppercase tracking-widest hover:text-pink-violet">Company Info</button>
             <button class="flex items-center space-x-2 hover:text-pink-violet">

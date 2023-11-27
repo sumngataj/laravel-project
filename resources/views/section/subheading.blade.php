@@ -24,8 +24,8 @@
 </div>
 <div class="lg:flex md:relative relative py-20 container mx-auto">
         <div class="relative p-4 w-full animation-slide-up">
-                <h2 class="lg:text-4xl text-2xl font-light text-gold-highlight tracking-wide lg:text-left text-center leading-10">Deals of the month</h2>
-                <p class="lg:text-sm md:text-sm text-xs lg:text-left text-center py-8">Take advantage of unique offers and events brought to you by Okada Manila. Enjoy a host of offers from Reward Circle, restaurants, hotel stays, and all the special events organized for your indulgence.</p>
+                <h2 class="lg:text-4xl text-2xl font-light text-gold-highlight tracking-wide lg:text-left text-center leading-10">Events List</h2>
+                <p class="lg:text-sm md:text-sm text-xs lg:text-left text-center py-8">Take advantage of unique offers and events brought to you by Kaluhas BHL. Enjoy a host of offers from Reward Circle, restaurants, hotel stays, and all the special events organized for your indulgence.</p>
                 <a onclick="window.open(this.href,'_blank');return false;" href="{{ route('custom.booking') }}" target="_blank">
                     <button id="myButton"
                         class="bg-pink-violet p-2 text-sm font-light mt-16 hover:opacity-80 w-1/2 text-white animation-slide-up uppercase tracking-widest lg:relative">
@@ -38,31 +38,44 @@
             <ul id="slider" class="flex transition-transform transform ease-in-out duration-1000
               ">
   
-                <li class="w-1/5 p-4">
+                <li class="w-1/5 p-4 relative" x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false">
                     <div class="shadow-md">
-                        <img src="https://plus.unsplash.com/premium_photo-1670430623154-24626c42fb33?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 1">
+                        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 1">
+                        <div x-show="isHovered" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+                            <p>Wedding</p>
+                        </div>
                     </div>
                 </li>
-                <li class="w-1/5 p-4">
+                <li class="w-1/5 p-4 relative" x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false">
                     <div class="shadow-md">
                         <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 2">
+                        <div x-show="isHovered" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+                            <p>Birthday</p>
+                        </div>
                     </div>
                 </li>
-            <li class="w-1/5 p-4">
+                <li class="w-1/5 p-4 relative" x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false">
                     <div class="shadow-md">
-                        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&q=80&w=2069&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3">
+                        <img src="https://images.unsplash.com/photo-1513623935135-c896b59073c1?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 3">
+                        <div x-show="isHovered" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+                            <p>Debut</p>
+                        </div>
                     </div>
                 </li>
-                <li class="w-1/5 p-4">
+                <li class="w-1/5 p-4 relative" x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false">
                     <div class="shadow-md">
-                        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 4">
-
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 4">
+                        <div x-show="isHovered" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+                            <p>Baptism</p>
+                        </div>
                     </div>
                 </li>
-                <li class="w-1/5 p-4">
+                <li class="w-1/5 p-4 relative" x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false">
                     <div class="shadow-md">
-                        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 5">
-              
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Image 5">
+                        <div x-show="isHovered" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+                            <p>Meeting</p>
+                        </div>
                     </div>
                 </li>
          
