@@ -10,7 +10,30 @@
         <div class="relative space-y-10">
             <div class="relative space-y-4">
                 <p class="text-white uppercase font-semibold text-xs tracking-widest">Visitor Information</p>
-                <p class="text-white text-xs tracking-widest">Getting Here</p>
+                <div x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+                    <p class="text-white text-xs tracking-widest cursor-pointer" @click="showModal = true">Getting Here</p>
+
+                    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50" x-show="showModal">
+                        <div
+                            class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                            @click.away="showModal = false"
+                            x-transition:enter="motion-safe:ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-90"
+                            x-transition:enter-end="opacity-100 scale-100"
+                        >
+                            <div class="flex items-center justify-between">
+                                <h5 class="mr-3 text-black max-w-none"></h5>
+        
+                                <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="mapouter"><div class="gmap_canvas"><iframe src="https://maps.google.com/maps?q=Kaluhas%20Wedding%20And%20Event%20Specialist%20&amp;t=k&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" style="width: 480px; height: 420px;"></iframe><style>.mapouter{position:relative;height:420px;width:480px;background:#fff;} .maprouter a{color:#fff !important;position:absolute !important;top:0 !important;z-index:0 !important;}</style><a href="https://blooketjoin.org/blooket-login/">blooket login</a><style>.gmap_canvas{overflow:hidden;height:420px;width:480px}.gmap_canvas iframe{position:relative;z-index:2}</style></div></div>
+                        </div>
+                    </div>
+                </div>
                 <p class="text-white text-xs tracking-widest">FAQs</p>
             </div>
             <div class="relative space-y-4">

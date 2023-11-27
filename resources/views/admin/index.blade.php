@@ -247,6 +247,8 @@
                                         <div class="flex items-center text-sm">
                                             @if ($reservation->package)
                                             <p class="font-semibold">{{ $reservation->package->package_name }}</p>
+                                            @else
+                                            <p class="font-semibold">N/A</p>
                                             @endif
                                         </div>
                                     </td>

@@ -20,7 +20,7 @@ class AdminMiddleware
             if (Auth::user()->is_superuser == '1'){
                 return $next($request);
             }else{
-                return redirect('/')->with('message', 'You have logged in as a user!');
+                return redirect('/')->with('message', 'Logged in Successfully!');
             }
         
         } else {

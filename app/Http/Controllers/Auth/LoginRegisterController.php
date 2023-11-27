@@ -56,8 +56,7 @@ class LoginRegisterController extends Controller
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
-        return redirect()->route('dashboard')
-        ->withSuccess('You have successfully registered & logged in!');
+        return redirect('/')->with('message', 'You have successfully registered and logged in!');
     }
 
     /**
@@ -131,5 +130,13 @@ class LoginRegisterController extends Controller
         return redirect()->route('login')
             ->withSuccess('You have logged out successfully!');
     }    
+
+    public function adminlogout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/adminlogin')->withSuccess('You have logged out successfully!');
+    }  
 
 }

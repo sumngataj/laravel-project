@@ -10,7 +10,8 @@
      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
      <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
@@ -65,7 +66,7 @@
      @endif
      @if($errors->has('email'))
      <script>
-     console.log('Script is executing'); // Add this line to check
+     console.log('Script is executing'); 
      window.alert('{{ $errors->first('
          email ') }}');
      </script>

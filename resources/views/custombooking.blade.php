@@ -162,7 +162,7 @@
                     <div class="flex items-center justify-start mt-4">
                         <div id="stepperCount" class="flex space-x-10">
                             <!-- Step 1 -->
-                            <div class="relative w-32">
+                            <div class="relative w-64">
                                 <div>
                                     <button type="button" id="step1"
                                         class="flex items-center justify-center w-10 h-10 bg-pink-violet text-white rounded-full font-bold"
@@ -175,7 +175,7 @@
 
                             </div>
                             <!-- Step 2 -->
-                            <div class="relative w-32">
+                            <div class="relative w-64">
                                 <div>
                                     <button type="button" id="step2"
                                         class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black  rounded-full font-bold"
@@ -187,7 +187,7 @@
 
                             </div>
                             <!-- Step 3 -->
-                            <div class="relative w-32">
+                            <div class="relative w-64">
                                 <div>
                                     <button type="button" id="step3"
                                         class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black rounded-full font-bold"
@@ -195,11 +195,11 @@
                                         3</button>
                                 </div>
                                 <div id="step3Label" class="mt-2 text-xs font-light">Guest Details</div>
-                                <hr id="step3Connector"
-                                    class="border-t-2 border-gray-300 absolute left-10 top-5 w-full">
+                                {{-- <hr id="step3Connector"
+                                    class="border-t-2 border-gray-300 absolute left-10 top-5 w-full"> --}}
 
                             </div>
-                            <!-- Step 4 -->
+                            {{-- <!-- Step 4 -->
                             <div class="relative w-32">
                                 <div id="step4"
                                     class="flex items-center justify-center w-10 h-10 bg-white border border-gray-300 text-black rounded-full font-bold">
@@ -215,7 +215,7 @@
                                     5</div>
                                 <div class="mt-2 text-xs font-light">Confirmation</div>
 
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div id="guestDetails" class="relative hidden mt-10">
