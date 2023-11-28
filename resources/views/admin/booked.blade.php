@@ -79,7 +79,7 @@
                         '{{ strtolower($reservation->status) }}'.includes(search.toLowerCase())">
                         <td class="px-4 py-3">
                           <div class="flex items-center text-sm">
-                              <p class="font-semibold">{{ $reservation->user->email }}</p>
+                              <p class="font-semibold">{{ $reservation->email }}</p>
                           </div>
                         </td>
                         <td class="px-4 py-3">
