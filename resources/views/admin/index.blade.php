@@ -235,7 +235,7 @@
                         '{{ strtolower($reservation->reservation_date) }}'.includes(search.toLowerCase())">
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
-                                            <p class="font-semibold">{{ $reservation->user->email }}</p>
+                                            <p class="font-semibold">{{ $reservation->email }}</p>
                                         </div>
                                     </td>
                                     <td class="px-4 py-3">
@@ -307,7 +307,10 @@
                                             </form> --}}
 
 
-                                            <form action="{{ route('reservation.update', $reservation->reservation_id) }}" method="POST">
+                                            <form action="{{ route('reservation.update', $reservation->reservation_id) }}" 
+                                                method="POST"
+                                                onsubmit="return confirm('{{ trans('Do you really want to accept reservation? ') }}');"
+                                            >
                                                 @csrf
                                                 @method('PUT')
                                                 <div x-data="{ tooltip: false }" class="relative inline-flex">

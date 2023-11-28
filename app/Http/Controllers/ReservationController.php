@@ -313,8 +313,8 @@ class ReservationController extends Controller
 
         $reservation->status = 'booked';
         $price = $reservation->price;
-        $userName = $reservation->user->name;
-        $userMail = $reservation->user->email;
+        $userName = $reservation->name;
+        $userMail = $reservation->email;
         $reservationDate = $reservation->reservation_date;
 
         $mailDataBooked = [
@@ -337,8 +337,8 @@ class ReservationController extends Controller
 
         $reservation->status = 'decline';
         $price = $reservation->price;
-        $userName = $reservation->user->name;
-        $userMail = $reservation->user->email;
+        $userName = $reservation->name;
+        $userMail = $reservation->email;
         $reservationDate = $reservation->reservation_date;
 
         $mailDecline = [

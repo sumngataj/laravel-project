@@ -1,6 +1,6 @@
 @component('mail::message')
 <div style="text-align: center;">
-    <img src="{{ asset('images/kaluhasLogo.png') }}" alt="{{ config('app.name') }}" style="width: 200px;">
+    <img src="{{ $message->embed(public_path().'/images/kaluhasLogo.png') }}" alt="{{ config('app.name') }}" style="width: 200px;">
     <h2>Hi {{ $mailDecline['user_name'] }},</h2>
 </div>
 <p style="text-indent:20px">{{ $mailDecline['decline'] }} </p>
