@@ -1,6 +1,6 @@
 @component('mail::message')
 <div style="text-align: center;">
-    <img src="{{ asset('images/kaluhasLogo.png') }}" alt="{{ config('app.name') }}" style="width: 200px;">
+    <img src="{{ $message->embed(public_path().'/images/kaluhasLogo.png') }}" alt="{{ config('app.name') }}" style="width: 200px;">
     <h2>Hi {{ $mailDataBooked['user_name'] }},</h2>
 </div>
 <p style="text-indent:20px">{{ $mailDataBooked['book'] }} The date of your booking is this coming {{ date('F j, Y', strtotime($mailDataBooked['reservation_date'])) }}, with a total amount of ₱{{ number_format($mailDataBooked['price'], 2) }}. To pay online please fill up the form below and upload a photo of the receipt.</p>
@@ -14,11 +14,11 @@
     <div style="margin-top: 20px; ">
         <strong>For GCash Payment:</strong> <br>
         <div style="text-align: center;">
-            <img src="{{ asset('images/qr.png') }}" alt="Payment Image" style="width: 100px;">
+            <img src="{{ $message->embed(public_path().'/images/qr.png') }}" alt="Payment Image" style="width: 100px;">
         </div>
     </div>
     <div style="text-align: center; margin-top: 20px;">
-        <img src="{{ asset('images/GCash-Logo.png') }}" alt="Payment Image" style="width: 100px;">
+        <img src="{{ $message->embed(public_path().'/images/GCash-Logo.png') }}" alt="Payment Image" style="width: 100px;">
     </div>
 @endcomponent
 
