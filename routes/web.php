@@ -29,6 +29,11 @@ use App\Http\Controllers\SearchController;
 //     return view('home');
 // });
 
+
+Route::get('/payment', function () {
+    return view('payment-form');
+});
+
 Route::get('/', [PackagesController::class, 'displayAll']);
 Route::get('/venue/{venue_id}', [VenuesController::class, 'displayById'])->name('venues.displayById');
 Route::get('/profile/{user_id}',[ProfileController::class, 'displayByProfileId'])->name('profile.displayByProfileId');
