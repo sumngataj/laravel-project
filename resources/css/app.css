@@ -162,9 +162,6 @@ body {
     margin-right: 10px; /* Add spacing between image and text */
 }
 
-.chat {
-    transform: translateY(100%);
-}
 
 #toggleDiv {
     position: fixed;
