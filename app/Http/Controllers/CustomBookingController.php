@@ -17,6 +17,7 @@ class CustomBookingController extends Controller
     $catering = Addons::where('category', 'catering')->latest()->get();
     $cake = Addons::where('category', 'cake')->latest()->get();
     $flower = Addons::where('category', 'flower')->latest()->get();
-    return view('custombooking', ['venues'=>$venues, 'catering' => $catering, 'cake' => $cake, 'flower' => $flower]);
+    $photographers = Addons::where('category', 'photographers')->latest()->get();
+    return view('custombooking', ['venues'=>$venues, 'catering' => $catering, 'cake' => $cake, 'flower' => $flower, 'photographers' => $photographers]);
   }
 }

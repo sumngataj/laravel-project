@@ -370,6 +370,47 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="relative">
+                            <div id="photographersDivBtn" class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Photographers
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="photographersIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInPhotographers" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="photographers" class="w-full font-lightbold">
+                                    @foreach($photographers as $item)
+                                        <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                            <p class="w-full">{{ $item->name }}</p>
+                                            <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                            <span>{{ $item->price }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="makeupsDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Hair and Makeup Artists <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="makeupsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInMakeups" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="makeups" class="w-full font-lightbold">
+                                    @foreach($flower as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="flex justify-end items-end"><button type="button" id="continueStep3"
                                 class="bg-pink-violet p-2 w-40 text-white uppercase tracking-wide font-lightbold">Continue</button>
                         </div>
@@ -650,6 +691,12 @@
     const flowersDivBtn = document.getElementById('flowersDivBtn');
     const flowersIcon = document.getElementById('flowersIcon');
     const slideInFlowers = document.getElementById('slideInFlowers');
+    const photographersDivBtn = document.getElementById('photographersDivBtn');
+    const photographersIcon = document.getElementById('photographersIcon');
+    const slideInPhotographers = document.getElementById('slideInPhotographers');
+    const makeupsDivBtn = document.getElementById('makeupsDivBtn');
+    const makeupsIcon = document.getElementById('makeupsIcon');
+    const slideInMakeups = document.getElementById('slideInMakeups');
 
     cateringsDivBtn.addEventListener('click', () => {
         const isOpen = slideInCaterings.classList.contains('open');
@@ -697,6 +744,39 @@
         `;
         }
     });
+    makeupsDivBtn.addEventListener('click', () => {
+        const isOpen = slideInMakeups.classList.contains('open');
+        slideInMakeups.classList.toggle('open');
+        if (isOpen) {
+            // If it was open, change the icon to the original one
+            makeupsIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        `;
+        } else {
+            // If it was closed, change the icon to the alternate one
+            makeupsIcon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        `;
+        }
+    });
+
+    photographersDivBtn.addEventListener('click', () => {
+        const isOpen = slideInPhotographers.classList.contains('open');
+        slideInPhotographers.classList.toggle('open', !isOpen); // Change this line
+        if (isOpen) {
+            // If it was open, change the icon to the original one
+            photographersIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            `;
+        } else {
+            // If it was closed, change the icon to the alternate one
+            photographersIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            `;
+        }
+    });
+
+
 
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -1020,7 +1100,8 @@
     const caterItems = document.querySelectorAll('#cater li p');
     const caterItemsPrice = document.querySelectorAll(
         '#cater li span');
-
+    const photographersItems = document.querySelectorAll('#photographers li p');
+    const photographersItemsPrice = document.querySelectorAll('#photographers li span');
 
     const totalSummaryPriceElement = document.getElementById('totalSummaryPrice');
     const addOnList = document.getElementById('addOnList');
@@ -1128,6 +1209,15 @@
             console.log('hello');
             const clickedValues = caterItem.textContent.trim();
             const clickedPrices = caterItemsPrice[index].textContent.trim();
+            addToAddOnList(clickedValues, clickedPrices);
+        });
+    });
+
+    photographersItems.forEach((photographerItem, index) => {
+        photographerItem.addEventListener('click', () => {
+            console.log('hello');
+            const clickedValues = photographersItem.textContent.trim();
+            const clickedPrices = photographersItemsPrice[index].textContent.trim();
             addToAddOnList(clickedValues, clickedPrices);
         });
     });

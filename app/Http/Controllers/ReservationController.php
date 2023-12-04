@@ -8,6 +8,7 @@ use App\Models\Notification;
 use App\Models\Venues;
 use App\Models\Reservation;
 use App\Models\User;
+use App\Models\Payments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -18,6 +19,7 @@ use App\Mail\reserve;
 use App\Mail\book;
 use App\Mail\customreserve;
 use App\Mail\decline;
+use App\Mail\payment;
 use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
@@ -58,6 +60,25 @@ class ReservationController extends Controller
             ->paginate(7);
 
         return view('admin.booked', compact('reservations', 'packages', 'venues', 'users','notifications'));
+    }
+
+
+    public function allpayments()
+    {
+        $users = User::all();
+        $packages = Packages::all();
+        $venues = Venues::all();
+        $payments = Payments::latest()
+        ->paginate(7);
+        $notifications = Notification::orderBy('created_at', 'desc')->get();
+
+        // Filter reservations with the 'booked' status
+        $reservations = Reservation::with(['user', 'venue', 'package'])
+            ->where('status', 'booked')
+            ->latest()
+            ->paginate(7);
+
+        return view('admin.payments', compact('reservations', 'payments', 'packages', 'venues', 'users','notifications'));
     }
 
     /**
@@ -352,6 +373,77 @@ class ReservationController extends Controller
         $reservation->save();
         
         return back()->with('success', 'Reservation declined.');
+    }
+    
+    public function sendpayment(Request $request)
+    {
+        $validatedData = $request->validate([
+            'fullname' => 'required',
+            'address' => 'required',
+            'mobile_number' => 'required',
+            'email' => 'required',
+            'bankReceipt' => 'required_if:bank_details,1|mimes:jpg,png,jpeg,gif|max:5048',
+            'gcashReceipt' => 'required_if:gcash,1|mimes:jpg,png,jpeg,gif|max:5048',
+            'account_number' => 'sometimes',
+            'bank_details' => 'sometimes',
+            'gcash' => 'sometimes',
+        ]);
+        
+
+        // Check and handle 'bankReceipt' file
+        if ($request->hasFile('bankReceipt')) {
+            $BnewFileName = time() . '-' . $request->account_number . '.' . $request->bankReceipt->extension();
+            $request->bankReceipt->move(public_path('images/payment_files'), $BnewFileName);
+        }
+
+        // Check and handle 'gcashReceipt' file
+        if ($request->hasFile('gcashReceipt')) {
+            $GnewFileName = time() . '-' . $request->gcash . '.' . $request->gcashReceipt->extension();
+            $request->gcashReceipt->move(public_path('images/payment_files'), $GnewFileName);
+        }
+
+
+         // Create a new reservation record
+         $payments = new Payments();
+         $payments->fullname = $validatedData['fullname'];
+         $payments->address = $validatedData['address'];
+         $payments->mobile_number = $validatedData['mobile_number'];
+         $payments->email = $validatedData['email'];
+         $payments->account_number = $validatedData['account_number'];
+         $payments->bank_details = $validatedData['bank_details'];
+         $payments->bankReceipt = isset($BnewFileName) ? $BnewFileName : null;
+         $payments->gcash = $validatedData['gcash'];
+         $payments->gcashReceipt = isset($GnewFileName) ? $GnewFileName : null;
+
+
+        $fullname = $request->fullname;
+        $address = $request->address;
+        $mobile_number = $request->mobile_number;
+        $account_number = $request->account_number;
+        $bank_details = $request->bank_details;
+        $gcash = $request->gcash;
+        $userMail = $request->email;
+
+        $mailPayment = [
+            'fullname' => $fullname,
+            'address' => $address,
+            'mobile_number' => $mobile_number,
+            'account_number' => $account_number,
+            'bank_details' => $bank_details,
+            'gcash' => $gcash,
+            'BnewFileName' => isset($BnewFileName) ? $BnewFileName : null,
+            'GnewFileName' => isset($GnewFileName) ? $GnewFileName : null,
+        ];
+
+        try {
+            $payments->save();
+            Mail::to($userMail)->send(new payment($mailPayment));
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while sending the reservation.');
+        }
+
+        return back()->with('success', 'Payment Detail Successfully sent!');
     }
 
 
