@@ -19,9 +19,16 @@ class AddonsController extends Controller
         $catering = Addons::where('category', 'catering')->latest()->paginate(3);
         $cake = Addons::where('category', 'cake')->latest()->paginate(3);
         $flower = Addons::where('category', 'flower')->latest()->paginate(3);
+        $photographers = Addons::where('category', 'photographers')->latest()->paginate(3);
+        $makeup = Addons::where('category', 'makeup')->latest()->paginate(3);
+        $lighting = Addons::where('category', 'lighting')->latest()->paginate(3);
+        $sound = Addons::where('category', 'sound')->latest()->paginate(3);
+        $vehicles = Addons::where('category', 'vehicles')->latest()->paginate(3);
+        $sweets = Addons::where('category', 'sweets')->latest()->paginate(3);
+        $botiques = Addons::where('category', 'botiques')->latest()->paginate(3);
         $notifications = Notification::all();
 
-        return view('admin.addons', ['addons' => $addons, 'catering' => $catering, 'cake' => $cake, 'flower' => $flower, 'notifications' => $notifications]);
+        return view('admin.addons', compact('addons', 'catering', 'cake', 'flower', 'photographers', 'makeup', 'lighting', 'sound', 'vehicles', 'sweets', 'notifications', 'botiques'));
     }
 
     /**

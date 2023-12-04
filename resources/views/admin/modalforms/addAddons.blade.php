@@ -81,6 +81,13 @@
                     <option value="Catering">Catering</option>
                     <option value="Cake">Cake</option>
                     <option value="Flower">Flower</option>
+                    <option value="Photographers">Photographers</option>
+                    <option value="Makeup">Make-up Artisst</option>
+                    <option value="Lighting">Lighting</option>
+                    <option value="Sound">Sound System</option>
+                    <option value="Vehicles">Vehicles</option>
+                    <option value="Sweets">Sweets and Desserts</option>
+                    <option value="Botiques">Botiques</option>
                 </select>
             </label>            
             <label class="block">

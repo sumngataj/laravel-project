@@ -29,10 +29,11 @@ use App\Http\Controllers\SearchController;
 //     return view('home');
 // });
 
-
 Route::get('/payment', function () {
     return view('payment-form');
 });
+Route::post('/payment', [ReservationController::class, 'sendpayment'])->name('reservation.sendpayment');
+// Route::put('/reservation/{reservation_id}/sendpayment', [ReservationController::class, 'sendpayment'])-> name('reservation.sendpayment');
 
 Route::get('/', [PackagesController::class, 'displayAll']);
 Route::get('/venue/{venue_id}', [VenuesController::class, 'displayById'])->name('venues.displayById');
@@ -59,7 +60,7 @@ Route::middleware('isSuperUser')->group(function(){
         Route::put('/reservation/{reservation_id}/decline', [ReservationController::class, 'decline'])-> name('reservation.decline');
         Route::get('/bookings', [ReservationController::class, 'booked'])->name('admin.booked');
         Route::put('/mark-notifications-as-read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
-    
+        Route::get('/payments', [ReservationController::class, 'allpayments'])->name('admin.payments');
 
         // Route::resource('reservations', ReservationController::class);
     });

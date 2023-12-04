@@ -84,20 +84,31 @@
     <section class="flex justify-center p-12 h-auto">
 
 
-    <form action="">
+    <form method="POST" action="{{ route('reservation.sendpayment') }}" enctype="multipart/form-data">
+        @csrf
         <div id="guestDetails" class="relative mt-10">
             <div class="relative w-full border border-gray-400 p-4">
                 <h1 class="text-gold-highlight mt-4 font-light text-2xl tracking-wide">Personal Details</h1>
                 <div class="flex justify-between items-center space-x-4">
                     <div class="relative w-full">
                         <label class="text-sm font-light">Fullname *</label>
-                        <input type="text" name="fullname" class="w-full font-light"
-                            value="" required />
+                        <input type="text" name="fullname" class="w-full font-light" required />
+                    </div>
+                    
+                    
+                </div>
+                <div class="relative w-full">
+                    <label class="text-sm font-light">Address *</label>
+                    <input type="text" name="address" class="w-full font-light" required />
+                </div>
+                <div class="flex justify-between items-center space-x-4">
+                    <div class="relative w-full">
+                        <label class="text-sm font-light">Mobile Number *</label>
+                        <input type="number" name="mobile_number" class="w-full font-light" required />
                     </div>
                     <div class="relative w-full">
-                        <label class="text-sm font-light">Phone Number *</label>
-                        <input type="number" name="phone_number" class="w-full font-light"
-                            value="" required />
+                        <label class="text-sm font-light">Email *</label>
+                        <input type="email" name="email" class="w-full font-light" required />
                     </div>
                 </div>
                 <h1 class="text-gold-highlight mt-4 font-light text-2xl tracking-wide">Mode of Payment</h1>
@@ -112,13 +123,11 @@
                 <div class="flex justify-between items-center space-x-4">
                     <div class="relative w-full">
                         <label class="text-sm font-light">Bank Account Number *</label>
-                        <input type="text" name="account_number" class="w-full font-light"
-                            value="" required />
+                        <input type="number" name="account_number" class="w-full font-light" />
                     </div>
                     <div class="relative w-full">
                         <label class="text-sm font-light">Bank Details *</label>
-                        <input type="text" name="bank_details" class="w-full font-light"
-                            value="" required />
+                        <input type="text" name="bank_details" class="w-full font-light" />
                     </div>
                 </div>
                 
@@ -132,15 +141,10 @@
                                 </svg>
                                 <span x-text="fileName ? fileName : 'Upload Bank Receipt File/Image'"></span>
                             </span>
-                            <input x-on:change="fileName = $refs.bankReceipt.files[0] ? $refs.bankReceipt.files[0].name : ''" type="file" id="bankReceipt" name="bankReceipt" x-ref="bankReceipt" class="hidden" required />
+                            <input x-on:change="fileName = $refs.bankReceipt.files[0] ? $refs.bankReceipt.files[0].name : ''" type="file" id="bankReceipt" name="bankReceipt" x-ref="bankReceipt" class="hidden" />
                         </label>
                     </div>
                 </div>
-                {{-- <div class="relative w-[49%] mt-4">
-                    <label class="text-sm font-light">Email Address *</label>
-                    <input type="text" name="email" class="w-full font-light"
-                        value="{{ Auth::user()->email }}" required />
-                </div> --}}
                 <h1 class="text-gold-highlight font-light text-2xl tracking-wide mt-4">GCash</h1>
 
                 <div class="flex justify-center items-center">
@@ -152,8 +156,7 @@
                 <div class="flex justify-between items-center space-x-4">
                     <div class="relative w-full">
                         <label class="text-sm font-light">GCash Phone Number *</label>
-                        <input type="text" name="gcash" class="w-full font-light"
-                            value="" required />
+                        <input type="number" name="gcash" class="w-full font-light" />
                     </div>
                     <div x-data="{ fileName: '' }" class="relative w-full">
                         <label class="text-sm font-light">GCash Receipt *</label>
@@ -164,15 +167,14 @@
                                 </svg>
                                 <span x-text="fileName ? fileName : 'Upload GCash Receipt File/Image'"></span>
                             </span>
-                            <input x-on:change="fileName = $refs.gcashReceipt.files[0] ? $refs.gcashReceipt.files[0].name : ''" type="file" id="gcashReceipt" name="gcashReceipt" x-ref="gcashReceipt" class="hidden" required />
+                            <input x-on:change="fileName = $refs.gcashReceipt.files[0] ? $refs.gcashReceipt.files[0].name : ''" type="file" id="gcashReceipt" name="gcashReceipt" x-ref="gcashReceipt" class="hidden" />
                         </label>
                     </div>
                 </div>
                 
             </div>
             <div class="flex w-full mt-4">
-                <button type="submit" id="continueStep4"
-                    class="bg-pink-violet p-2 w-full text-white uppercase tracking-wide font-lightbold">Continue</button>
+                <button type="submit" name="submit" class="bg-pink-violet p-2 w-full text-white uppercase tracking-wide font-lightbold">Continue</button>
             </div>
         </div>
     </form>
