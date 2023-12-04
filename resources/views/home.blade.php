@@ -17,6 +17,7 @@
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
      @vite('resources/css/app.css')
@@ -95,7 +96,49 @@
 
      @vite('resources/js/app.js')
 
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+     <script>
+    Pusher.logToConsole = true;
+
+var pusher = new Pusher('f02f29b979136936b8a1', {
+    cluster: 'ap1'
+});
+  var channel = pusher.subscribe('public');
+
+  //Receive messages
+  channel.bind('chat', function (data) {
+    $.post("/receive", {
+      _token:  '{{csrf_token()}}',
+      message: data.message,
+    })
+     .done(function (res) {
+       $(".messages > .message").last().after(res);
+       $(document).scrollTop($(document).height());
+     });
+  });
+
+  //Broadcast messages
+  $("form").submit(function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      url:     "/broadcast",
+      method:  'POST',
+      headers: {
+        'X-Socket-Id': pusher.connection.socket_id
+      },
+      data:    {
+        _token:  '{{csrf_token()}}',
+        message: $("form #message").val(),
+      }
+    }).done(function (res) {
+      $(".messages > .message").last().after(res);
+      $("form #message").val('');
+      $(document).scrollTop($(document).height());
+    });
+  });
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -253,6 +296,15 @@ $(document).ready(function () {
 </script>
 
      <script>
+        const toggleChatButton = document.getElementById("toggleChatButton");
+const toggleChatBox = document.getElementById("toggleChat");
+
+toggleChatButton.addEventListener("click", () => {
+    toggleChatBox.classList.toggle("slide-in");
+    toggleChatBox.classList.toggle("slide-out");
+    toggleChatBox.classList.toggle("hidden");
+});
+
     document.addEventListener("DOMContentLoaded", function () {
         const carousel = document.getElementById("default-carousel");
         const carouselItems = carousel.querySelectorAll("[data-carousel-item]");
