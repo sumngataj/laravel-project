@@ -20,6 +20,7 @@ use App\Mail\book;
 use App\Mail\customreserve;
 use App\Mail\decline;
 use App\Mail\payment;
+use App\Mail\accept;
 use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
@@ -332,6 +333,29 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::findOrFail($reservation_id);
 
+        $reservation->status = 'accept';
+        $price = $reservation->price;
+        $userName = $reservation->name;
+        $userMail = $reservation->email;
+        $reservationDate = $reservation->reservation_date;
+
+        $mailDataAccept = [
+            'book' => 'This is to inform you that your request has been accepted.',
+            'user_name' => $userName,
+            'reservation_date' => $reservationDate,
+            'price' => $price,
+        ];
+
+        $reservation->save();
+        Mail::to($userMail)->send(new accept($mailDataAccept));
+
+        return back()->with('success', 'Reservation status updated successfully.');
+    }
+
+    public function book(Request $request, $reservation_id)
+    {
+        $reservation = Reservation::findOrFail($reservation_id);
+
         $reservation->status = 'booked';
         $price = $reservation->price;
         $userName = $reservation->name;
@@ -339,7 +363,7 @@ class ReservationController extends Controller
         $reservationDate = $reservation->reservation_date;
 
         $mailDataBooked = [
-            'book' => 'This is to inform you that your request is already booked.',
+            'book' => 'This is to inform you that your request has been booked.',
             'user_name' => $userName,
             'reservation_date' => $reservationDate,
             'price' => $price,
