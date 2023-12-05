@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PusherController;
 
 
 
@@ -42,6 +43,8 @@ Route::post('/cancel-reservation/{id}', [ReservationController::class, 'cancelRe
 Route::get('/search', [SearchController::class, 'search'])->name('searchResult');
 
 
+    Route::post('/broadcast', [PusherController::class, 'broadcast'])->name('broadcast');
+Route::post('/receive', [PusherController::class, 'receive'])->name('receive');
 
 
 Route::get('/adminlogin', function () {
@@ -50,6 +53,8 @@ Route::get('/adminlogin', function () {
 
 
 Route::middleware('isSuperUser')->group(function(){
+
+
     Route::resource('packages', PackagesController::class);
     Route::resource('venues', VenuesController::class);
     Route::resource('addons', AddonsController::class);

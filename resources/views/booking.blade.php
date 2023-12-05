@@ -11,6 +11,9 @@
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
      @vite('resources/css/app.css')
      <style>
      /* Add this CSS to control the image size within the comment */
@@ -26,12 +29,12 @@
          /* Make the avatar image round */
      }
 
-    /* Define the style for the active tab */
-    .active-tab-color {
-        background-color: #9ca3af;
-        color: black; /* Change this to the desired gray color */
-    }
-
+     /* Define the style for the active tab */
+     .active-tab-color {
+         background-color: #9ca3af;
+         color: black;
+         /* Change this to the desired gray color */
+     }
      </style>
  </head>
 
@@ -56,28 +59,29 @@
              </div>
          </div>
      </div>
-     
 
-    @if(session('success'))
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                }
-            });
 
-            Toast.fire({
-                icon: 'success',
-                title: '{{ session('success') }}'
-            });
-        </script>
-    @endif
+     @if(session('success'))
+     <script>
+     const Toast = Swal.mixin({
+         toast: true,
+         position: 'top-end',
+         showConfirmButton: false,
+         timer: 3000,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+             toast.addEventListener('mouseenter', Swal.stopTimer);
+             toast.addEventListener('mouseleave', Swal.resumeTimer);
+         }
+     });
+
+     Toast.fire({
+         icon: 'success',
+         title: '{{ session('
+         success ') }}'
+     });
+     </script>
+     @endif
 
 
 
@@ -116,86 +120,106 @@
 
              </div>
              <div id="tabContent2" class="tab-content hidden ">
-                <form method="POST" action="{{ route('ratings.store') }}" enctype="multipart/form-data">
+                 <form method="POST" action="{{ route('ratings.store') }}" enctype="multipart/form-data">
 
-                    @csrf
-                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                    <input type="hidden" name="package_id" value="{{ $package->package_id }}">
-                    <input type="hidden" name="rating" id="rating" value="5">
-                    <p class="m-1 text-sm font-medium text-gray-500  mt-3">Rate Here:</p>
-                        <div class="flex items-center" id="star-rating">
-                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                            </svg>
-                            <p class="ml-2 text-sm font-medium text-gray-500 starcount">5 out of 5</p>
-                        </div>
+                     @csrf
+                     <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                     <input type="hidden" name="package_id" value="{{ $package->package_id }}">
+                     <input type="hidden" name="rating" id="rating" value="5">
+                     <p class="m-1 text-sm font-medium text-gray-500  mt-3">Rate Here:</p>
+                     <div class="flex items-center" id="star-rating">
+                         <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="1" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                             <path
+                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                         </svg>
+                         <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="2" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                             <path
+                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                         </svg>
+                         <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="3" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                             <path
+                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                         </svg>
+                         <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="4" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                             <path
+                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                         </svg>
+                         <svg class="w-4 h-4 text-yellow-300 mr-1 star" data-rating="5" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                             <path
+                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                         </svg>
+                         <p class="ml-2 text-sm font-medium text-gray-500 starcount">5 out of 5</p>
+                     </div>
 
-                        <textarea id="commentText" name="comment" class="w-11/12 mt-2 h-56" required></textarea>
-                        {{-- id="appendButton" onclick="appendComment()" --}}
-                        <div class="w-11/12 flex justify-end items-end mt-4"><button  type="submit"  class="bg-pink-violet p-2 rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                                </svg>
-                            </button></div>
-                        <div class="border border-gray-300 w-11/12 mt-4"></div>
-                </form>
-                <div id="commentContainer" class="w-11/12 h-[50rem] overflow-y-auto p-4 mt-8">
-                    
-                    <article>
-                        @foreach ($ratings as $rating)
-                            @if ($rating->package_id == $package->package_id)
+                     <textarea id="commentText" name="comment" class="w-11/12 mt-2 h-56" required></textarea>
+                     {{-- id="appendButton" onclick="appendComment()" --}}
+                     <div class="w-11/12 flex justify-end items-end mt-4"><button type="submit"
+                             class="bg-pink-violet p-2 rounded-full">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                 <path stroke-linecap="round" stroke-linejoin="round"
+                                     d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                             </svg>
+                         </button></div>
+                     <div class="border border-gray-300 w-11/12 mt-4"></div>
+                 </form>
+                 <div id="commentContainer" class="w-11/12 h-[50rem] overflow-y-auto p-4 mt-8">
 
-                            <div class="flex items-center mb-4 space-x-4">
-                                <img class="w-10 h-10 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
-                                <div class="space-y-1 font-medium">
-                                    <p>{{ $rating->user->name }}<time datetime="{{ $rating->user->created_at->format('Y-m-d H:i') }}" class="block text-sm text-gray-500">Joined on {{ $rating->user->created_at->format('F j, Y') }}</time></p>
-                                </div>
-                            </div>
-                            <div class="flex items-center mb-1">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <svg class="w-4 h-4 text-{{ $i <= $rating->rating ? 'yellow' : 'gray' }}-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                                    </svg>
-                                @endfor
-                                <svg class="w-4 h-4 text-gray-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path d=""/>
-                                </svg>
-                                {{-- <h3 class="ml-2 text-sm font-semibold text-gray-900">Rating</h3> --}}
-                            </div>
-                            <footer class="mb-5 text-sm text-gray-500">
-                                <p>Reviewed on <time datetime="{{ $rating->created_at->format('Y-m-d H:i') }}">{{ $rating->created_at->format('F j, Y') }}</time></p>
-                            </footer>                            
-                            <p class="mb-10 text-gray-500 ">{!! nl2br(e($rating->comment)) !!}</p>
-                            <div class="border mb-5 border-gray-300 w-11/12 mt-4"></div>
-                            {{-- <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a> --}}
-                            {{-- <aside>
+                     <article>
+                         @foreach ($ratings as $rating)
+                         @if ($rating->package_id == $package->package_id)
+
+                         <div class="flex items-center mb-4 space-x-4">
+                             <img class="w-10 h-10 rounded-full" src="{{ asset('images/usericon.png') }}" alt="">
+                             <div class="space-y-1 font-medium">
+                                 <p>{{ $rating->user->name }}<time
+                                         datetime="{{ $rating->user->created_at->format('Y-m-d H:i') }}"
+                                         class="block text-sm text-gray-500">Joined on
+                                         {{ $rating->user->created_at->format('F j, Y') }}</time></p>
+                             </div>
+                         </div>
+                         <div class="flex items-center mb-1">
+                             @for ($i = 1; $i <= 5; $i++) <svg
+                                 class="w-4 h-4 text-{{ $i <= $rating->rating ? 'yellow' : 'gray' }}-300"
+                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                 viewBox="0 0 24 24">
+                                 <path
+                                     d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                 </svg>
+                                 @endfor
+                                 <svg class="w-4 h-4 text-gray-300 mr-1" aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                     <path d="" />
+                                 </svg>
+                                 {{-- <h3 class="ml-2 text-sm font-semibold text-gray-900">Rating</h3> --}}
+                         </div>
+                         <footer class="mb-5 text-sm text-gray-500">
+                             <p>Reviewed on <time
+                                     datetime="{{ $rating->created_at->format('Y-m-d H:i') }}">{{ $rating->created_at->format('F j, Y') }}</time>
+                             </p>
+                         </footer>
+                         <p class="mb-10 text-gray-500 ">{!! nl2br(e($rating->comment)) !!}</p>
+                         <div class="border mb-5 border-gray-300 w-11/12 mt-4"></div>
+                         {{-- <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a> --}}
+                         {{-- <aside>
                                 <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">19 people found this helpful</p>
                                 <div class="flex items-center mt-3 space-x-3 divide-x divide-gray-200 dark:divide-gray-600">
                                     <a href="#" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-2 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Helpful</a>
                                     <a href="#" class="pl-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Report abuse</a>
                                 </div>
                             </aside> --}}
-                        
-                            @endif
-                        @endforeach
 
-                    </article>
+                         @endif
+                         @endforeach
 
-                </div>
+                     </article>
+
+                 </div>
              </div>
          </div>
          </div>
@@ -238,35 +262,39 @@
              </div>
 
 
-         <div id="bookingSummary" class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[30rem] hidden custom-width">
-                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                <input type="hidden" name="package_id" id="package_id" value="{{ $package->package_id }}">
-                <input type="hidden" name="venue_id" id="venue_id" value="{{ $package->venue_id }}">
-                <label class="text-gold-highlight font-light text-xl tracking-wide">Contact Info</label>
-                <div class="flex">
-                    <div class="relative w-[50%]">
-                        <label class="text-sm font-light">Mobile Number *</label>
-                        <input type="number" name="mobile_number" class="w-full font-light text-sm" placeholder="Enter a valid mobile no." required />
-                    </div>
-                    <div class="relative w-[50%] ml-2">
-                        <label class="text-sm font-light">Email Address *</label>
-                        <input type="email" name="email" class="w-full font-light text-sm" placeholder="Enter a valid email address" value="{{ Auth::user()->email }}" required />
-                    </div>
-                </div>
+             <div id="bookingSummary"
+                 class="lg:w-max p-8 mx-auto bg-white rounded-xl shadow-lg sticky top-20 h-[30rem] hidden custom-width">
+                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                 <input type="hidden" name="package_id" id="package_id" value="{{ $package->package_id }}">
+                 <input type="hidden" name="venue_id" id="venue_id" value="{{ $package->venue_id }}">
+                 <label class="text-gold-highlight font-light text-xl tracking-wide">Contact Info</label>
+                 <div class="flex">
+                     <div class="relative w-[50%]">
+                         <label class="text-sm font-light">Mobile Number *</label>
+                         <input type="number" name="mobile_number" class="w-full font-light text-sm"
+                             placeholder="Enter a valid mobile no." required />
+                     </div>
+                     <div class="relative w-[50%] ml-2">
+                         <label class="text-sm font-light">Email Address *</label>
+                         <input type="email" name="email" class="w-full font-light text-sm"
+                             placeholder="Enter a valid email address" value="{{ Auth::user()->email }}" required />
+                     </div>
+                 </div>
 
-             <div class="2">
-                 <div class="p-4">
-                     <label class="text-gold-highlight font-light tracking-wide text-xl">Your Booking Summary</label>
-                     <div class="flex justify-between items-center mt-2">
-                         <div class="mr-10">
-                             <p class="font-semibold">Event Date</p>
-                             <p class="text-sm" name="selectedDate" id="selectedDate">Date will appear here</p>
-                         </div>
-                         <div class="ml-3">
-                            <p class="font-semibold">Venue</p>
-                            <p class="text-sm">{{ $package->venue->name }}</p>
-                        </div>
-                         {{-- <div>
+                 <div class="2">
+                     <div class="p-4">
+                         <label class="text-gold-highlight font-light tracking-wide text-xl">Your Booking
+                             Summary</label>
+                         <div class="flex justify-between items-center mt-2">
+                             <div class="mr-10">
+                                 <p class="font-semibold">Event Date</p>
+                                 <p class="text-sm" name="selectedDate" id="selectedDate">Date will appear here</p>
+                             </div>
+                             <div class="ml-3">
+                                 <p class="font-semibold">Venue</p>
+                                 <p class="text-sm">{{ $package->venue->name }}</p>
+                             </div>
+                             {{-- <div>
                             <p class="font-semibold">Venue</p>
                             <select
                                 name="venue_id"
@@ -277,43 +305,44 @@
                             >
                                 @foreach ($venues as $venue)
                                     <option value="{{ $venue->venue_id }}">{{ $venue->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>                                             --}}
+                             @endforeach
+                             </select>
+                         </div> --}}
                      </div>
                      <div id="amenities-container">
-                        <p class="font-semibold mt-3">Inclusions</p>
-                        {{-- <ul class="text-sm">
+                         <p class="font-semibold mt-3">Inclusions</p>
+                         {{-- <ul class="text-sm">
                             <li id="amenities-placeholder">Select a venue to see amenities.</li>
                         </ul> --}}
-                        <ul class="text-sm">
-                            <li>{!! nl2br(e($package->venue->amenities)) !!}</li>
-                        </ul>
-                    </div>
+                         <ul class="text-sm">
+                             <li>{!! nl2br(e($package->venue->amenities)) !!}</li>
+                         </ul>
+                     </div>
 
                  </div>
                  <center>
                      <div class="border-b-2 border-gray-200 w-11/12"></div>
                  </center>
                  <div class="p-4">
-                    <div class="flex justify-between items-center">
-                        <p class="font-semibold text-xs">Package:</p>
-                        <p class="font-semibold text-xs" id="package-price">{{ $package->price }}</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p class="font-semibold text-xs">Venue:</p>
-                        <p class="font-semibold text-xs" id="venue-price">{{ $package->venue->price }}</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p class="font-semibold text-lg">Total:</p>
-                        <p class="font-semibold text-lg" id="total-price">₱</p>
-                    </div>
-                    <input type="hidden" name="price" id="price" value="">                    
+                     <div class="flex justify-between items-center">
+                         <p class="font-semibold text-xs">Package:</p>
+                         <p class="font-semibold text-xs" id="package-price">{{ $package->price }}</p>
+                     </div>
+                     <div class="flex justify-between items-center">
+                         <p class="font-semibold text-xs">Venue:</p>
+                         <p class="font-semibold text-xs" id="venue-price">{{ $package->venue->price }}</p>
+                     </div>
+                     <div class="flex justify-between items-center">
+                         <p class="font-semibold text-lg">Total:</p>
+                         <p class="font-semibold text-lg" id="total-price">₱</p>
+                     </div>
+                     <input type="hidden" name="price" id="price" value="">
                  </div>
                  <div class="flex justify-between items-center p-2 w-full">
                      <button id="backButton" class="bg-pink-violet rounded-full p-2 w-24 text-white">
                          << Back</button>
-                             <button type="submit" class="bg-pink-violet rounded-full p-2 w-32 text-white">Proceed >></button>
+                             <button type="submit" class="bg-pink-violet rounded-full p-2 w-32 text-white">Proceed
+                                 >></button>
                  </div>
              </div>
          </form>
@@ -327,8 +356,60 @@
 
      @vite('resources/js/app.js')
      <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.js"></script>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <script>
+     const csrfToken = '{{ csrf_token() }}';
+     </script>
+     <script>
+     Pusher.logToConsole = true;
+
+     var pusher = new Pusher('f02f29b979136936b8a1', {
+         cluster: 'ap1'
+     });
+     var channel = pusher.subscribe('public');
+
+     //Receive messages
+     channel.bind('chat', function(data) {
+         $.post("/receive", {
+                 _token: csrfToken,
+                 message: data.message,
+             })
+             .done(function(res) {
+                 $(".messages > .message").last().after(res);
+                 $(document).scrollTop($(document).height());
+             });
+     });
+
+     //Broadcast messages
+     $("form").submit(function(event) {
+         event.preventDefault();
+
+         $.ajax({
+             url: "/broadcast",
+             method: 'POST',
+             headers: {
+                 'X-Socket-Id': pusher.connection.socket_id
+             },
+             data: {
+                 _token: csrfToken,
+                 message: $("form #message").val(),
+             }
+         }).done(function(res) {
+             $(".messages > .message").last().after(res);
+             $("form #message").val('');
+             $(document).scrollTop($(document).height());
+         });
+     });
+     </script>
+     <script>
+     const toggleChatButton = document.getElementById("toggleChatButton");
+     const toggleChatBox = document.getElementById("toggleChat");
+
+     toggleChatButton.addEventListener("click", () => {
+         toggleChatBox.classList.toggle("slide-in");
+         toggleChatBox.classList.toggle("slide-out");
+         toggleChatBox.classList.toggle("hidden");
+     });
+
      const commentContainer = document.getElementById('commentContainer');
      const commentText = document.getElementById('commentText');
 
@@ -491,22 +572,22 @@
      }
      </script>
 
-    <script>
-        function showTab(tabNumber) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
-            });
+     <script>
+     function showTab(tabNumber) {
+         document.querySelectorAll('.tab-content').forEach(content => {
+             content.classList.add('hidden');
+         });
 
-            document.querySelectorAll('.tab-link').forEach(tab => {
-                tab.classList.remove('active-tab-color');
-            });
+         document.querySelectorAll('.tab-link').forEach(tab => {
+             tab.classList.remove('active-tab-color');
+         });
 
-            document.getElementById(`tabContent${tabNumber}`).classList.remove('hidden');
-            document.querySelector(`button[onclick="showTab(${tabNumber})"]`).classList.add('active-tab-color');
-        }
+         document.getElementById(`tabContent${tabNumber}`).classList.remove('hidden');
+         document.querySelector(`button[onclick="showTab(${tabNumber})"]`).classList.add('active-tab-color');
+     }
 
-        showTab(1);
-    </script>
+     showTab(1);
+     </script>
 
 
      <script>
@@ -540,135 +621,135 @@
      });
 
      updateStep();
-    </script>
+     </script>
 
-    <script>
-        const toggleButtons = document.getElementById('toggle-buttons');
-        const contentToToggles = document.getElementById('toggle-divs');
+     <script>
+     const toggleButtons = document.getElementById('toggle-buttons');
+     const contentToToggles = document.getElementById('toggle-divs');
 
-        toggleButtons.addEventListener('click', function(event) {
-            event.stopPropagation();
-            contentToToggles.classList.toggle('hidden');
-        });
+     toggleButtons.addEventListener('click', function(event) {
+         event.stopPropagation();
+         contentToToggles.classList.toggle('hidden');
+     });
 
-        document.addEventListener('click', function(event) {
-            if (!toggleButtons.contains(event.target) && !contentToToggles.contains(event.target)) {
-                contentToToggles.classList.add('hidden');
-            }
-        });
-    </script>
+     document.addEventListener('click', function(event) {
+         if (!toggleButtons.contains(event.target) && !contentToToggles.contains(event.target)) {
+             contentToToggles.classList.add('hidden');
+         }
+     });
+     </script>
 
 
-    <script>
-        const packagePriceElement = document.getElementById('package-price');
-        const venuePriceElement = document.getElementById('venue-price');
-        const totalPriceElement = document.getElementById('total-price');
-        const priceInput = document.getElementById('price');
+     <script>
+     const packagePriceElement = document.getElementById('package-price');
+     const venuePriceElement = document.getElementById('venue-price');
+     const totalPriceElement = document.getElementById('total-price');
+     const priceInput = document.getElementById('price');
 
-        const packagePrice = parseFloat(packagePriceElement.textContent);
-        const venuePrice = parseFloat(venuePriceElement.textContent);
+     const packagePrice = parseFloat(packagePriceElement.textContent);
+     const venuePrice = parseFloat(venuePriceElement.textContent);
 
-        const totalPrice = packagePrice + venuePrice;
+     const totalPrice = packagePrice + venuePrice;
 
-        totalPriceElement.textContent = `₱${totalPrice.toFixed(2)}`;
+     totalPriceElement.textContent = `₱${totalPrice.toFixed(2)}`;
 
-        priceInput.value = totalPrice.toFixed(2);
-    </script>
+     priceInput.value = totalPrice.toFixed(2);
+     </script>
 
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    <script>
-        $(document).ready(function () {
-        let currentRating = 0;
-        let currentPackageId = null;
+     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+     <script>
+     $(document).ready(function() {
+         let currentRating = 0;
+         let currentPackageId = null;
 
-        // Handle star rating clicks
-        $('.star').on('click', function () {
-            const newRating = parseInt($(this).data('rating'));
-            const packageId = parseInt($(this).data('package-id'));
+         // Handle star rating clicks
+         $('.star').on('click', function() {
+             const newRating = parseInt($(this).data('rating'));
+             const packageId = parseInt($(this).data('package-id'));
 
-            // Update the current rating and package ID
-            currentRating = newRating;
-            currentPackageId = packageId;
+             // Update the current rating and package ID
+             currentRating = newRating;
+             currentPackageId = packageId;
 
-            // Update the visual representation of the rating
-            $('.star').each(function () {
-                const rating = parseInt($(this).data('rating'));
-                if (rating <= newRating) {
-                    $(this).addClass('text-yellow-300');
-                } else {
-                    $(this).removeClass('text-yellow-300');
-                }
-            });
+             // Update the visual representation of the rating
+             $('.star').each(function() {
+                 const rating = parseInt($(this).data('rating'));
+                 if (rating <= newRating) {
+                     $(this).addClass('text-yellow-300');
+                 } else {
+                     $(this).removeClass('text-yellow-300');
+                 }
+             });
 
-            // Display the new rating text
-            $('.starcount').text(currentRating + ' out of 5');
+             // Display the new rating text
+             $('.starcount').text(currentRating + ' out of 5');
 
-            $('#rating').val(currentRating);
+             $('#rating').val(currentRating);
 
-            // Here, you can add code to submit the current rating and package ID to your server via AJAX when the user clicks a submit button or takes any action to submit their rating.
-            // For example, you can send the `currentRating` and `currentPackageId` to your Laravel route for storing ratings.
-        });
-    });
-    </script>
+             // Here, you can add code to submit the current rating and package ID to your server via AJAX when the user clicks a submit button or takes any action to submit their rating.
+             // For example, you can send the `currentRating` and `currentPackageId` to your Laravel route for storing ratings.
+         });
+     });
+     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const toggleScrollDivs = document.getElementById("toggle-scroll-divs");
-            const toggleScrollButton = document.getElementById("toggle-scroll-buttons");
+     <script>
+     document.addEventListener("DOMContentLoaded", function() {
+         const toggleScrollDivs = document.getElementById("toggle-scroll-divs");
+         const toggleScrollButton = document.getElementById("toggle-scroll-buttons");
 
-            function toggleDropdown() {
-                toggleScrollDivs.classList.toggle("hidden");
-            }
+         function toggleDropdown() {
+             toggleScrollDivs.classList.toggle("hidden");
+         }
 
-            toggleScrollButton.addEventListener("click", function(e) {
-                e.stopPropagation(); // Prevent button click from immediately closing the dropdown
-                toggleDropdown();
-            });
+         toggleScrollButton.addEventListener("click", function(e) {
+             e.stopPropagation(); // Prevent button click from immediately closing the dropdown
+             toggleDropdown();
+         });
 
-            document.addEventListener("click", function(e) {
-                if (!toggleScrollDivs.contains(e.target)) {
-                    // Close the dropdown if the click is outside of it
-                    toggleScrollDivs.classList.add("hidden");
-                }
-            });
+         document.addEventListener("click", function(e) {
+             if (!toggleScrollDivs.contains(e.target)) {
+                 // Close the dropdown if the click is outside of it
+                 toggleScrollDivs.classList.add("hidden");
+             }
+         });
 
-            // Close the dropdown when the overlay is clicked
-            overlay.addEventListener("click", toggleDropdown);
-        });
-    </script>
+         // Close the dropdown when the overlay is clicked
+         overlay.addEventListener("click", toggleDropdown);
+     });
+     </script>
 
-    {{-- <script>
+     {{-- <script>
         var venues = [
             @foreach ($venues as $venue)
                 {
                     id: {{ $venue->venue_id }},
-                    amenities: {!! json_encode($venue->amenities) !!}
-                },
-            @endforeach
-        ];
+     amenities: {!! json_encode($venue->amenities) !!}
+     },
+     @endforeach
+     ];
 
-        function fetchAmenities() {
-            // Get the selected venue_id
-            var selectedVenueId = document.getElementById("venue_id").value;
+     function fetchAmenities() {
+     // Get the selected venue_id
+     var selectedVenueId = document.getElementById("venue_id").value;
 
-            // Find the venue with the selected ID in the venues array
-            var selectedVenue = venues.find(function (venue) {
-                return venue.id == selectedVenueId;
-            });
+     // Find the venue with the selected ID in the venues array
+     var selectedVenue = venues.find(function (venue) {
+     return venue.id == selectedVenueId;
+     });
 
-            // Display the amenities for the selected venue
-            var amenitiesContainer = document.getElementById("amenities-container");
-            var amenitiesPlaceholder = document.getElementById("amenities-placeholder");
+     // Display the amenities for the selected venue
+     var amenitiesContainer = document.getElementById("amenities-container");
+     var amenitiesPlaceholder = document.getElementById("amenities-placeholder");
 
-            if (selectedVenue) {
-                amenitiesPlaceholder.style.display = "none";
-                amenitiesContainer.innerHTML = selectedVenue.amenities;
-            } else {
-                amenitiesPlaceholder.style.display = "block";
-                amenitiesContainer.innerHTML = '';
-            }
-        }
-    </script> --}}
+     if (selectedVenue) {
+     amenitiesPlaceholder.style.display = "none";
+     amenitiesContainer.innerHTML = selectedVenue.amenities;
+     } else {
+     amenitiesPlaceholder.style.display = "block";
+     amenitiesContainer.innerHTML = '';
+     }
+     }
+     </script> --}}
 
 
 
