@@ -14,7 +14,7 @@
         <header id="toggleHeader"
             class="flex bg-pink-violet uppercase p-2 font-semibold justify-between items-center cursor-pointer">
             <img class="w-8 rounded-full object-cover"
-                src="https://www.disneyplusinformer.com/wp-content/uploads/2021/06/Luca-Profile-Avatars-3.png">
+                src="https://e7.pngegg.com/pngimages/527/663/png-clipart-logo-person-user-person-icon-rectangle-photography.png">
 
             <button id="" class="text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 384 512">
