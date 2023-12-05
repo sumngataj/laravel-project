@@ -304,6 +304,76 @@ input::placeholder {
     max-height: 1500px;
 }
 
+#slideInPhotographers {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInPhotographers.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
+#slideInMakeups {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInMakeups.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
+#slideInLightings {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInLightings.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
+#slideInSounds {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInSounds.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
+#slideInVehicles {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInVehicles.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
+#slideInSweets {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInSweets.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
+#slideInBotiques {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#slideInBotiques.open {
+    max-height: 1500px; /* Adjust the max height as needed */
+}
+
 .slide-in {
     animation-name: slideFromBottom;
 }
