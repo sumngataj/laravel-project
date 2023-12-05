@@ -10,14 +10,15 @@
      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
      <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+     <link rel="stylesheet" type="text/css"
+         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 
      <script type="module" src="/path-to-your-vite-assets/js/main.js"></script>
      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
      @vite('resources/css/app.css')
@@ -67,7 +68,7 @@
      @endif
      @if($errors->has('email'))
      <script>
-     console.log('Script is executing'); 
+     console.log('Script is executing');
      window.alert('{{ $errors->first('
          email ') }}');
      </script>
@@ -96,271 +97,269 @@
 
      @vite('resources/js/app.js')
 
- 
      <script>
-    Pusher.logToConsole = true;
+     const csrfToken = '{{ csrf_token() }}';
+     </script>
+     <script>
+     Pusher.logToConsole = true;
 
-var pusher = new Pusher('f02f29b979136936b8a1', {
-    cluster: 'ap1'
-});
-  var channel = pusher.subscribe('public');
-
-  //Receive messages
-  channel.bind('chat', function (data) {
-    $.post("/receive", {
-      _token:  '{{csrf_token()}}',
-      message: data.message,
-    })
-     .done(function (res) {
-       $(".messages > .message").last().after(res);
-       $(document).scrollTop($(document).height());
+     var pusher = new Pusher('f02f29b979136936b8a1', {
+         cluster: 'ap1'
      });
-  });
+     var channel = pusher.subscribe('public');
 
-  //Broadcast messages
-  $("form").submit(function (event) {
-    event.preventDefault();
+     //Receive messages
+     channel.bind('chat', function(data) {
+         $.post("/receive", {
+                 _token: csrfToken,
+                 message: data.message,
+             })
+             .done(function(res) {
+                 $(".messages > .message").last().after(res);
+                 $(document).scrollTop($(document).height());
+             });
+     });
 
-    $.ajax({
-      url:     "/broadcast",
-      method:  'POST',
-      headers: {
-        'X-Socket-Id': pusher.connection.socket_id
-      },
-      data:    {
-        _token:  '{{csrf_token()}}',
-        message: $("form #message").val(),
-      }
-    }).done(function (res) {
-      $(".messages > .message").last().after(res);
-      $("form #message").val('');
-      $(document).scrollTop($(document).height());
-    });
-  });
+     //Broadcast messages
+     $("form").submit(function(event) {
+         event.preventDefault();
 
-</script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-    $(document).ready(function () {
-    const navbar = $('#navbar');
-    
-    // Function to toggle the 'border-b' class based on scroll position
-    function toggleBorder() {
-        if (window.scrollY > 500) {
-            navbar.addClass('border-b');
-        } else {
-            navbar.removeClass('border-b');
-        }
-    }
-    
-    // Initial check for scroll position on page load
-    toggleBorder();
-
-    // Listen for scroll events and call the toggleBorder function
-    $(window).scroll(function () {
-        toggleBorder();
-    });
-
-    // Rest of your existing code...
-});
-
-</script>
-<script>
-    $(document).ready(function(){
-        const slider = $('.sliderHeader');
-        const indicators = $('.header-indicator');
-        slider.slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-        });
-        indicators.each(function(index) {
-        $(this).on('click', function() {
-            slider.slick('slickGoTo', index); 
-        });
-        slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-      
-      indicators.removeClass('active-white');
-      
-     
-      indicators.eq(nextSlide).addClass('active-white');
-  });
-    });
-    });
-</script>
-<script>
-    $(document).ready(function(){
-        const slider = $('.sliderVenue');
-
-        slider.slick({
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true,
-        });
-        indicators.each(function(index) {
-        $(this).on('click', function() {
-            slider.slick('slickGoTo', index); 
-        });
-        slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-      
-      indicators.removeClass('active-white');
-      
-     
-      indicators.eq(nextSlide).addClass('active-white');
-  });
-    });
-    });
-</script>
-<script>
-$(document).ready(function () {
-    const slider = $('.sliders');
-    const indicators = $('.indicators');
-    const prevButton = $('#prevButtons');
-    const nextButton = $('#nextButtons');
-
-    slider.slick({
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        adaptiveHeight: true,
-    });
-
-    indicators.each(function(index) {
-        $(this).on('click', function() {
-            slider.slick('slickGoTo', index); 
-        });
-    });
-
-    indicators.first().addClass('active');
-    prevButton.click(function () {
-        slider.slick('slickPrev');
-    });
-
-
-    nextButton.click(function () {
-        slider.slick('slickNext');
-    });
-
-    slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-      
-        indicators.removeClass('active');
-        
-       
-        indicators.eq(nextSlide).addClass('active');
-    });
-});
-</script>
+         $.ajax({
+             url: "/broadcast",
+             method: 'POST',
+             headers: {
+                 'X-Socket-Id': pusher.connection.socket_id
+             },
+             data: {
+                 _token: csrfToken,
+                 message: $("form #message").val(),
+             }
+         }).done(function(res) {
+             $(".messages > .message").last().after(res);
+             $("form #message").val('');
+             $(document).scrollTop($(document).height());
+         });
+     });
+     </script>
+     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
      <script>
- $(document).ready(function () {
-  var slider = $('#slider');
-  var indicatorContainer = $('.indicator-containers');
+     $(document).ready(function() {
+         const navbar = $('#navbar');
 
-  slider.slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    prevArrow: $('#prevButton'),
-    nextArrow: $('#nextButton'),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 567,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
-  indicatorContainer.find('.indicator').eq(0).addClass('active');
+         // Function to toggle the 'border-b' class based on scroll position
+         function toggleBorder() {
+             if (window.scrollY > 500) {
+                 navbar.addClass('border-b');
+             } else {
+                 navbar.removeClass('border-b');
+             }
+         }
 
-  slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-    // Find the indicators and remove the 'active' class from all
-    indicatorContainer.find('.indicator').removeClass('active');
-    
-    // Add the 'active' class to the indicator of the next slide
-    indicatorContainer.find('.indicator').eq(nextSlide).addClass('active');
-  });
-});
+         // Initial check for scroll position on page load
+         toggleBorder();
 
-</script>
+         // Listen for scroll events and call the toggleBorder function
+         $(window).scroll(function() {
+             toggleBorder();
+         });
+
+         // Rest of your existing code...
+     });
+     </script>
+     <script>
+     $(document).ready(function() {
+         const slider = $('.sliderHeader');
+         const indicators = $('.header-indicator');
+         slider.slick({
+             slidesToShow: 1,
+             slidesToScroll: 1,
+             infinite: true,
+         });
+         indicators.each(function(index) {
+             $(this).on('click', function() {
+                 slider.slick('slickGoTo', index);
+             });
+             slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+
+                 indicators.removeClass('active-white');
+
+
+                 indicators.eq(nextSlide).addClass('active-white');
+             });
+         });
+     });
+     </script>
+     <script>
+     $(document).ready(function() {
+         const slider = $('.sliderVenue');
+
+         slider.slick({
+             slidesToShow: 2,
+             slidesToScroll: 1,
+             infinite: true,
+         });
+         indicators.each(function(index) {
+             $(this).on('click', function() {
+                 slider.slick('slickGoTo', index);
+             });
+             slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+
+                 indicators.removeClass('active-white');
+
+
+                 indicators.eq(nextSlide).addClass('active-white');
+             });
+         });
+     });
+     </script>
+     <script>
+     $(document).ready(function() {
+         const slider = $('.sliders');
+         const indicators = $('.indicators');
+         const prevButton = $('#prevButtons');
+         const nextButton = $('#nextButtons');
+
+         slider.slick({
+             slidesToShow: 2,
+             slidesToScroll: 1,
+             autoplay: true,
+             autoplaySpeed: 2000,
+             adaptiveHeight: true,
+         });
+
+         indicators.each(function(index) {
+             $(this).on('click', function() {
+                 slider.slick('slickGoTo', index);
+             });
+         });
+
+         indicators.first().addClass('active');
+         prevButton.click(function() {
+             slider.slick('slickPrev');
+         });
+
+
+         nextButton.click(function() {
+             slider.slick('slickNext');
+         });
+
+         slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+
+             indicators.removeClass('active');
+
+
+             indicators.eq(nextSlide).addClass('active');
+         });
+     });
+     </script>
+     <script>
+     $(document).ready(function() {
+         var slider = $('#slider');
+         var indicatorContainer = $('.indicator-containers');
+
+         slider.slick({
+             slidesToShow: 3,
+             slidesToScroll: 1,
+             prevArrow: $('#prevButton'),
+             nextArrow: $('#nextButton'),
+             responsive: [{
+                     breakpoint: 1024,
+                     settings: {
+                         slidesToShow: 2,
+                     },
+                 },
+                 {
+                     breakpoint: 768,
+                     settings: {
+                         slidesToShow: 2,
+                     },
+                 },
+                 {
+                     breakpoint: 567,
+                     settings: {
+                         slidesToShow: 1,
+                     },
+                 },
+             ],
+         });
+         indicatorContainer.find('.indicator').eq(0).addClass('active');
+
+         slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+             // Find the indicators and remove the 'active' class from all
+             indicatorContainer.find('.indicator').removeClass('active');
+
+             // Add the 'active' class to the indicator of the next slide
+             indicatorContainer.find('.indicator').eq(nextSlide).addClass('active');
+         });
+     });
+     </script>
 
      <script>
-        const toggleChatButton = document.getElementById("toggleChatButton");
-const toggleChatBox = document.getElementById("toggleChat");
+     const toggleChatButton = document.getElementById("toggleChatButton");
+     const toggleChatBox = document.getElementById("toggleChat");
 
-toggleChatButton.addEventListener("click", () => {
-    toggleChatBox.classList.toggle("slide-in");
-    toggleChatBox.classList.toggle("slide-out");
-    toggleChatBox.classList.toggle("hidden");
-});
+     toggleChatButton.addEventListener("click", () => {
+         toggleChatBox.classList.toggle("slide-in");
+         toggleChatBox.classList.toggle("slide-out");
+         toggleChatBox.classList.toggle("hidden");
+     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const carousel = document.getElementById("default-carousel");
-        const carouselItems = carousel.querySelectorAll("[data-carousel-item]");
-        const slideButtons = carousel.querySelectorAll("[data-carousel-slide-to]");
-        const prevButton = carousel.querySelector("[data-carousel-prev]");
-        const nextButton = carousel.querySelector("[data-carousel-next]");
-        let currentIndex = 0;
+     document.addEventListener("DOMContentLoaded", function() {
+         const carousel = document.getElementById("default-carousel");
+         const carouselItems = carousel.querySelectorAll("[data-carousel-item]");
+         const slideButtons = carousel.querySelectorAll("[data-carousel-slide-to]");
+         const prevButton = carousel.querySelector("[data-carousel-prev]");
+         const nextButton = carousel.querySelector("[data-carousel-next]");
+         let currentIndex = 0;
 
-        // Function to show the current slide and update the indicators
-        function showSlide(index) {
-            carouselItems.forEach((item, i) => {
-                if (i === index) {
-                    item.classList.remove("translate-x-full");
-                    item.classList.add("translate-x-0");
-                    item.style.opacity = 1;
-                    slideButtons[i].setAttribute("aria-current", "true");
-                } else {
-                    item.classList.remove("translate-x-0");
-                    item.classList.add("translate-x-full");
-                    item.style.opacity = 0;
-                    slideButtons[i].setAttribute("aria-current", "false");
-                }
-            });
-        }
+         // Function to show the current slide and update the indicators
+         function showSlide(index) {
+             carouselItems.forEach((item, i) => {
+                 if (i === index) {
+                     item.classList.remove("translate-x-full");
+                     item.classList.add("translate-x-0");
+                     item.style.opacity = 1;
+                     slideButtons[i].setAttribute("aria-current", "true");
+                 } else {
+                     item.classList.remove("translate-x-0");
+                     item.classList.add("translate-x-full");
+                     item.style.opacity = 0;
+                     slideButtons[i].setAttribute("aria-current", "false");
+                 }
+             });
+         }
 
-        // Function to show the next slide
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % carouselItems.length;
-            showSlide(currentIndex);
-        }
+         // Function to show the next slide
+         function nextSlide() {
+             currentIndex = (currentIndex + 1) % carouselItems.length;
+             showSlide(currentIndex);
+         }
 
-        // Function to show the previous slide
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-            showSlide(currentIndex);
-        }
+         // Function to show the previous slide
+         function prevSlide() {
+             currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+             showSlide(currentIndex);
+         }
 
-        // Event listeners for slide buttons
-        slideButtons.forEach((button, index) => {
-            button.addEventListener("click", function () {
-                currentIndex = index;
-                showSlide(currentIndex);
-            });
-        });
+         // Event listeners for slide buttons
+         slideButtons.forEach((button, index) => {
+             button.addEventListener("click", function() {
+                 currentIndex = index;
+                 showSlide(currentIndex);
+             });
+         });
 
-        // Event listeners for next and previous buttons
-        nextButton.addEventListener("click", nextSlide);
-        prevButton.addEventListener("click", prevSlide);
+         // Event listeners for next and previous buttons
+         nextButton.addEventListener("click", nextSlide);
+         prevButton.addEventListener("click", prevSlide);
 
-        // Initial display
-        showSlide(currentIndex);
+         // Initial display
+         showSlide(currentIndex);
 
-        // Automatic slide change (e.g., every 5 seconds)
-        setInterval(nextSlide, 5000); // Adjust the interval as needed
-    });
-</script>
+         // Automatic slide change (e.g., every 5 seconds)
+         setInterval(nextSlide, 5000); // Adjust the interval as needed
+     });
+     </script>
 
      <script>
      var slideIndex = 1;
@@ -378,27 +377,27 @@ toggleChatButton.addEventListener("click", () => {
      function showDivs(n) {
          var i;
          var slides = document.getElementsByClassName("mySlides");
-        var indicators = document.getElementsByClassName("indicator");
-        if (n > slides.length) {
-            slideIndex = 1;
-        }
-        if (n < 1) {
-            slideIndex = slides.length;
-        }
+         var indicators = document.getElementsByClassName("indicator");
+         if (n > slides.length) {
+             slideIndex = 1;
+         }
+         if (n < 1) {
+             slideIndex = slides.length;
+         }
 
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-            slides[i].style.left = "100%";
-            
-        }
-        slides[slideIndex - 1].style.left = "0";
+         for (i = 0; i < slides.length; i++) {
+             slides[i].style.display = "none";
+             slides[i].style.left = "100%";
 
-        for (i = 0; i < indicators.length; i++) {
-            indicators[i].classList.remove("active-indicator");
-        }
+         }
+         slides[slideIndex - 1].style.left = "0";
 
-        slides[slideIndex - 1].style.display = "block";
-        indicators[slideIndex - 1].classList.add("active-indicator");
+         for (i = 0; i < indicators.length; i++) {
+             indicators[i].classList.remove("active-indicator");
+         }
+
+         slides[slideIndex - 1].style.display = "block";
+         indicators[slideIndex - 1].classList.add("active-indicator");
      }
 
      // Clear the auto slide interval when the user clicks on a navigation button
@@ -603,43 +602,42 @@ toggleChatButton.addEventListener("click", () => {
      }
      </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const myButton = document.getElementById("myButton");
-            const myButton2 = document.getElementById("myButton2");
-            const myButton3 = document.getElementById("myButton3");
+     <script>
+     document.addEventListener("DOMContentLoaded", function() {
+         const myButton = document.getElementById("myButton");
+         const myButton2 = document.getElementById("myButton2");
+         const myButton3 = document.getElementById("myButton3");
 
-            function showLoginRequiredMessage() {
-                Swal.fire({
-                    title: 'Login Required',
-                    text: 'You need to be logged in to perform this action.',
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                });
-            }
+         function showLoginRequiredMessage() {
+             Swal.fire({
+                 title: 'Login Required',
+                 text: 'You need to be logged in to perform this action.',
+                 icon: 'warning',
+                 confirmButtonText: 'OK'
+             });
+         }
 
-            myButton.addEventListener("click", function() {
-                @if(!Auth::check())
-                    showLoginRequiredMessage();
-                @endif
-            });
+         myButton.addEventListener("click", function() {
+             @if(!Auth::check())
+             showLoginRequiredMessage();
+             @endif
+         });
 
-            myButton2.addEventListener("click", function() {
-                @if(!Auth::check())
-                    showLoginRequiredMessage();
-                @endif
-            });
+         myButton2.addEventListener("click", function() {
+             @if(!Auth::check())
+             showLoginRequiredMessage();
+             @endif
+         });
 
-            myButton3.addEventListener("click", function() {
-                @if(!Auth::check())
-                    showLoginRequiredMessage();
-                @endif
-            });
-        });
-        
-    </script>
+         myButton3.addEventListener("click", function() {
+             @if(!Auth::check())
+             showLoginRequiredMessage();
+             @endif
+         });
+     });
+     </script>
 
-     
+
 
 
 
