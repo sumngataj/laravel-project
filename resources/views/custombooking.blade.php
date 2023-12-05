@@ -400,7 +400,112 @@
                             </div>
                             <div id="slideInMakeups" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="makeups" class="w-full font-lightbold">
-                                    @foreach($flower as $item)
+                                    @foreach($makeup as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="lightingsDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Lightings <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="lightingsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInLightings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="lightings" class="w-full font-lightbold">
+                                    @foreach($lighting as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="soundsDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Sound Systems <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="soundsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInSounds" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="sounds" class="w-full font-lightbold">
+                                    @foreach($sound as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="vehiclesDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Vehicles <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="vehiclesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInVehicles" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="vehicles" class="w-full font-lightbold">
+                                    @foreach($vehicles as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="sweetsDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Sweets and Desserts <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="sweetsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInSweets" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="sweets" class="w-full font-lightbold">
+                                    @foreach($sweets as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div id="botiquesDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Vehicles <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="botiquesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInBotiques" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="botiques" class="w-full font-lightbold">
+                                    @foreach($botiques as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
@@ -697,6 +802,21 @@
     const makeupsDivBtn = document.getElementById('makeupsDivBtn');
     const makeupsIcon = document.getElementById('makeupsIcon');
     const slideInMakeups = document.getElementById('slideInMakeups');
+    const lightingsDivBtn = document.getElementById('lightingsDivBtn');
+    const lightingsIcon = document.getElementById('lightingsIcon');
+    const slideInLightings = document.getElementById('slideInLightings');
+    const soundsDivBtn = document.getElementById('soundsDivBtn');
+    const soundsIcon = document.getElementById('soundsIcon');
+    const slideInSounds = document.getElementById('slideInSounds');
+    const vehiclesDivBtn = document.getElementById('vehiclesDivBtn');
+    const vehiclesIcon = document.getElementById('vehiclesIcon');
+    const slideInVehicles = document.getElementById('slideInVehicles');
+    const sweetsDivBtn = document.getElementById('sweetsDivBtn');
+    const sweetsIcon = document.getElementById('sweetsIcon');
+    const slideInSweets = document.getElementById('slideInSweets');
+    const botiquesDivBtn = document.getElementById('botiquesDivBtn');
+    const botiquesIcon = document.getElementById('botiquesIcon');
+    const slideInBotiques = document.getElementById('slideInBotiques');
 
     cateringsDivBtn.addEventListener('click', () => {
         const isOpen = slideInCaterings.classList.contains('open');
@@ -748,12 +868,10 @@
         const isOpen = slideInMakeups.classList.contains('open');
         slideInMakeups.classList.toggle('open');
         if (isOpen) {
-            // If it was open, change the icon to the original one
             makeupsIcon.innerHTML = `
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         `;
         } else {
-            // If it was closed, change the icon to the alternate one
             makeupsIcon.innerHTML = `
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
         `;
@@ -762,20 +880,87 @@
 
     photographersDivBtn.addEventListener('click', () => {
         const isOpen = slideInPhotographers.classList.contains('open');
-        slideInPhotographers.classList.toggle('open', !isOpen); // Change this line
+        slideInPhotographers.classList.toggle('open', !isOpen);
         if (isOpen) {
-            // If it was open, change the icon to the original one
             photographersIcon.innerHTML = `
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             `;
         } else {
-            // If it was closed, change the icon to the alternate one
             photographersIcon.innerHTML = `
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
             `;
         }
     });
 
+    lightingsDivBtn.addEventListener('click', () => {
+        const isOpen = slideInLightings.classList.contains('open');
+        slideInLightings.classList.toggle('open', !isOpen);
+        if (isOpen) {
+            lightingsIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            `;
+        } else {
+            lightingsIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            `;
+        }
+    });
+
+    soundsDivBtn.addEventListener('click', () => {
+        const isOpen = slideInSounds.classList.contains('open');
+        slideInSounds.classList.toggle('open', !isOpen);
+        if (isOpen) {
+            soundsIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            `;
+        } else {
+            soundsIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            `;
+        }
+    });
+
+    vehiclesDivBtn.addEventListener('click', () => {
+        const isOpen = slideInVehicles.classList.contains('open');
+        slideInVehicles.classList.toggle('open', !isOpen);
+        if (isOpen) {
+            vehiclesIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            `;
+        } else {
+            vehiclesIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            `;
+        }
+    });
+
+    sweetsDivBtn.addEventListener('click', () => {
+        const isOpen = slideInSweets.classList.contains('open');
+        slideInSweets.classList.toggle('open', !isOpen);
+        if (isOpen) {
+            sweetsIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            `;
+        } else {
+            sweetsIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            `;
+        }
+    });
+
+    botiquesDivBtn.addEventListener('click', () => {
+        const isOpen = slideInBotiques.classList.contains('open');
+        slideInBotiques.classList.toggle('open', !isOpen);
+        if (isOpen) {
+            botiquesIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            `;
+        } else {
+            botiquesIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            `;
+        }
+    });
 
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -1100,8 +1285,20 @@
     const caterItems = document.querySelectorAll('#cater li p');
     const caterItemsPrice = document.querySelectorAll(
         '#cater li span');
-    const photographersItems = document.querySelectorAll('#photographers li p');
-    const photographersItemsPrice = document.querySelectorAll('#photographers li span');
+    const photographerItems = document.querySelectorAll('#photographers li p');
+    const photographerItemsPrice = document.querySelectorAll('#photographers li span');
+    const makeupItems = document.querySelectorAll('#makeups li p');
+    const makeupItemsPrice = document.querySelectorAll('#makeups li span');
+    const lightingItems = document.querySelectorAll('#lightings li p');
+    const lightingItemsPrice = document.querySelectorAll('#lightings li span');
+    const soundItems = document.querySelectorAll('#sounds li p');
+    const soundItemsPrice = document.querySelectorAll('#sounds li span');
+    const vehicleItems = document.querySelectorAll('#vehicles li p');
+    const vehicleItemsPrice = document.querySelectorAll('#vehicles li span');
+    const sweetItems = document.querySelectorAll('#sweets li p');
+    const sweetItemsPrice = document.querySelectorAll('#sweets li span');
+    const botiqueItems = document.querySelectorAll('#botiques li p');
+    const botiqueItemsPrice = document.querySelectorAll('#botiques li span');
 
     const totalSummaryPriceElement = document.getElementById('totalSummaryPrice');
     const addOnList = document.getElementById('addOnList');
@@ -1187,38 +1384,92 @@
 
     // Event listener for flower items
     flowerItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            const clickedValue = item.textContent.trim();
-            const clickedPrice = flowerItemsPrice[index].textContent.trim();
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = flowerItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
         });
     });
 
-    cakeItems.forEach((cakeItem, index) => {
-        cakeItem.addEventListener('click', () => {
-            console.log('hello');
-            const clickedValues = cakeItem.textContent.trim();
-            const clickedPrices = cakeItemsPrice[index].textContent.trim();
-            addToAddOnList(clickedValues, clickedPrices);
+    cakeItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = cakeItemsPrice[index].textContent.trim();
 
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
         });
     });
 
-    caterItems.forEach((caterItem, index) => {
-        caterItem.addEventListener('click', () => {
-            console.log('hello');
-            const clickedValues = caterItem.textContent.trim();
-            const clickedPrices = caterItemsPrice[index].textContent.trim();
-            addToAddOnList(clickedValues, clickedPrices);
+    caterItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = caterItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
         });
     });
 
-    photographersItems.forEach((photographerItem, index) => {
-        photographerItem.addEventListener('click', () => {
-            console.log('hello');
-            const clickedValues = photographersItem.textContent.trim();
-            const clickedPrices = photographersItemsPrice[index].textContent.trim();
-            addToAddOnList(clickedValues, clickedPrices);
+    photographerItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = photographerItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
+        });
+    });
+
+    makeupItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = makeupItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
+        });
+    });
+
+    lightingItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = lightingItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
+        });
+    });
+
+    soundItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = soundItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
+        });
+    });
+
+    vehicleItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = vehicleItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
+        });
+    });
+
+    sweetItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = sweetItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
+        });
+    });
+
+    botiqueItems.forEach((item, index) => {
+        const clickedValue = item.textContent.trim();
+        const clickedPrice = botiqueItemsPrice[index].textContent.trim();
+
+        item.closest('li').addEventListener('click', () => {
+            addToAddOnList(clickedValue, clickedPrice);
         });
     });
 
