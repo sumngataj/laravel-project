@@ -18,7 +18,7 @@ class accept extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($mailDataBooked)
+    public function __construct($mailDataAccept)
     {
         $this->mailDataAccept = $mailDataAccept;
     }

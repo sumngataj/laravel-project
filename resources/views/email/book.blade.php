@@ -3,34 +3,17 @@
     <img src="{{ $message->embed(public_path().'/images/kaluhasLogo.png') }}" alt="{{ config('app.name') }}" style="width: 200px;">
     <h2>Hi {{ $mailDataBooked['user_name'] }},</h2>
 </div>
-<p style="text-indent:20px">{{ $mailDataBooked['book'] }} The date of your reservation is this coming {{ date('F j, Y', strtotime($mailDataBooked['reservation_date'])) }}, with a total amount of ₱{{ number_format($mailDataBooked['price'], 2) }}. 
-    In order to confirm your booking, we would like to ask the advance payment or reservation fee, to formally book the date. Just click the button below.</p>
-
-{{-- @component('mail::panel')
-    <h4 style="text-align: center;">PAYMENT FORM</h4>
-    <strong>Name:</strong> <br>
-    <strong>Address:</strong> <br>
-    <strong>Contact Number:</strong> <br>
-    <strong>Type of Payment:</strong> Full/Downpayment <br>
-    <div style="margin-top: 20px; ">
-        <strong>For GCash Payment:</strong> <br>
-        <div style="text-align: center;">
-            <img src="{{ $message->embed(public_path().'/images/qr.png') }}" alt="Payment Image" style="width: 100px;">
-        </div>
-    </div>
-    <div style="text-align: center; margin-top: 20px;">
-        <img src="{{ $message->embed(public_path().'/images/GCash-Logo.png') }}" alt="Payment Image" style="width: 100px;">
-    </div>
-@endcomponent --}}
+<p style="text-indent:20px">{{ $mailDataBooked['book'] }} The date of your booking is this coming {{ date('F j, Y', strtotime($mailDataBooked['reservation_date'])) }}. If there is any remaining balance please settle it 2 days before the event.</p>
 
 
 
 <p><span style="display:block">Thanks,</span><span>Kaluhas BHL</span></p>
 
 
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/payment'])
-Proceed for Online Payment
+@component('mail::button', ['url' => 'http://127.0.0.1:8000'])
+Click Here To Visit Page
 @endcomponent
 
 </div>
 @endcomponent
+

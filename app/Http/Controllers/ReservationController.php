@@ -333,7 +333,7 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::findOrFail($reservation_id);
 
-        $reservation->status = 'accept';
+        $reservation->status = 'pending';
         $price = $reservation->price;
         $userName = $reservation->name;
         $userMail = $reservation->email;
