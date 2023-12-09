@@ -14,7 +14,8 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js" defer></script>
     @vite('resources/css/app.css')
     <style>
 
@@ -45,26 +46,25 @@
     </div>
 
     @if(session('success'))
-    <script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-        }
-    });
+       <script>
+           const Toast = Swal.mixin({
+               toast: true,
+               position: 'top-end',
+               showConfirmButton: false,
+               timer: 3000,
+               timerProgressBar: true,
+               didOpen: (toast) => {
+                   toast.addEventListener('mouseenter', Swal.stopTimer);
+                   toast.addEventListener('mouseleave', Swal.resumeTimer);
+               }
+           });
 
-    Toast.fire({
-        icon: 'success',
-        title: '{{ session('
-        success ') }}'
-    });
-    </script>
-    @endif
+           Toast.fire({
+               icon: 'success',
+               title: '{{ session('success') }}'
+           });
+       </script>
+   @endif
 
     <form method="POST" action="{{ route('reservations.custom') }}" enctype="multipart/form-data">
         @csrf
@@ -435,6 +435,27 @@
                             </div>
                         </div>
                         <div class="relative">
+                            <div id="botiquesDivBtn"
+                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                Botiques <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    id="botiquesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                            <div id="slideInBotiques" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                <ul id="botiques" class="w-full font-lightbold">
+                                    @foreach($botiques as $item)
+                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                        <p class="w-full">{{ $item->name }}</p>
+                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
+                                        <span>{{ $item->price }}</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="relative">
                             <div id="lightingsDivBtn"
                                 class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Lightings <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -509,27 +530,6 @@
                             <div id="slideInSweets" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="sweets" class="w-full font-lightbold">
                                     @foreach($sweets as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
-                                        <p class="w-full">{{ $item->name }}</p>
-                                        <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <div id="botiquesDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
-                                Vehicles <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    id="botiquesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                </svg>
-                            </div>
-                            <div id="slideInBotiques" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
-                                <ul id="botiques" class="w-full font-lightbold">
-                                    @foreach($botiques as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>

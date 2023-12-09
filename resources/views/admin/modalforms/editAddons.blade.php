@@ -75,6 +75,13 @@
                                     <option value="Catering" {{ $addon->category === 'Catering' ? 'selected' : '' }}>Catering</option>
                                     <option value="Cake" {{ $addon->category  === 'Cake' ? 'selected' : '' }}>Cake</option>
                                     <option value="Flower" {{ $addon->category  === 'Flower' ? 'selected' : '' }}>Flower</option>
+                                    <option value="Photographers" {{ $addon->category === 'Photographers' ? 'selected' : '' }}>Photographers</option>
+                                    <option value="Makeup" {{ $addon->category === 'Makeup' ? 'selected' : '' }}>Make-up Artisst</option>
+                                    <option value="Lighting" {{ $addon->category === 'Lighting' ? 'selected' : '' }}>Lighting</option>
+                                    <option value="Sound" {{ $addon->category === 'Sound' ? 'selected' : '' }}>Sound System</option>
+                                    <option value="Vehicles" {{ $addon->category === 'Vehicles' ? 'selected' : '' }}>Vehicles</option>
+                                    <option value="Sweets" {{ $addon->category === 'Sweets' ? 'selected' : '' }}>Sweets and Desserts</option>
+                                    <option value="Botiques" {{ $addon->category === 'Botiques' ? 'selected' : '' }}>Botiques</option>
                                 </select>
                             </label>
                         </div>

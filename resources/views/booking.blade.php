@@ -13,7 +13,7 @@
      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+     <script src="https://js.pusher.com/8.2.0/pusher.min.js" defer></script>
      @vite('resources/css/app.css')
      <style>
      /* Add this CSS to control the image size within the comment */

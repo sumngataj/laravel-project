@@ -8,9 +8,9 @@
     <strong>Name:</strong> {{ $mailPayment['fullname'] }} <br>
     <strong>Address:</strong> {{ $mailPayment['address'] }} <br>
     <strong>Contact Number:</strong> {{ $mailPayment['mobile_number'] }} <br>
-    <strong>Payment Details:</strong> <br> @if ($mailPayment['account_number']) Account Number: {{ $mailPayment['account_number'] }} <br> @endif 
-                                        @if ($mailPayment['bank_details']) Bank Details: {{ $mailPayment['bank_details'] }} <br> @endif  
-                                        @if ($mailPayment['gcash']) Gcash Account Number: {{ $mailPayment['gcash'] }} <br> @endif
+    @if ($mailPayment['account_number']) <strong>Payment Details:</strong> <br> Account Number: {{ $mailPayment['account_number'] }} <br> Bank Details: {{ $mailPayment['bank_details'] }} <br> @endif
+    @if ($mailPayment['gcash']) <strong>Payment Details:</strong> <br> Gcash Account Number: {{ $mailPayment['gcash'] }}@endif
+    
     <div style="margin-top: 20px; ">
         <div style="text-align: center;">
             @if ($mailPayment['BnewFileName'])
