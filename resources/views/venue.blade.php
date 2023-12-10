@@ -412,6 +412,53 @@
 
 
 
+     <script>
+     const csrfToken = '{{ csrf_token() }}';
+     </script>
+     <script>
+     Pusher.logToConsole = true;
+
+     var pusher = new Pusher('f02f29b979136936b8a1', {
+         cluster: 'ap1'
+     });
+     var channel = pusher.subscribe('public');
+
+     //Receive messages
+     channel.bind('chat', function(data) {
+         $.post("/receive", {
+                 _token: csrfToken,
+                 message: data.message,
+             })
+             .done(function(res) {
+                 $(".messages > .message").last().after(res);
+                 $(document).scrollTop($(document).height());
+             });
+     });
+
+     //Broadcast messages
+     $("form").submit(function(event) {
+         event.preventDefault();
+
+         $.ajax({
+             url: "/broadcast",
+             method: 'POST',
+             headers: {
+                 'X-Socket-Id': pusher.connection.socket_id
+             },
+             data: {
+                 _token: csrfToken,
+                 message: $("form #message").val(),
+             }
+         }).done(function(res) {
+             $(".messages > .message").last().after(res);
+             $("form #message").val('');
+             $(document).scrollTop($(document).height());
+         });
+     });
+     </script>
+
+
+
 
  </body>
 
