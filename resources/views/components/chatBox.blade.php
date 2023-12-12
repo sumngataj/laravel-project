@@ -1,4 +1,7 @@
 @section('chatbox')
+@guest
+
+@else
 <button id="toggleChatButton"
     class="fixed bottom-4 right-4 overflow-hidden rounded-full bg-pink-violet p-2 text-lg uppercase"><svg
         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -11,10 +14,15 @@
 
 <div id="toggleChat" class="lg:w-3/12 lg:drop-shadow-2xl hidden overflow-hidden rounded-t-lg mx-0 p-0 bg-white chat">
     <div class="relative w-full">
+        @if(Auth::check() && Auth::user()->isAdmin())
         <header id="toggleHeader"
-            class="flex bg-pink-violet uppercase p-2 font-semibold justify-between items-center cursor-pointer">
-            <img class="w-8 rounded-full object-cover"
-                src="https://e7.pngegg.com/pngimages/527/663/png-clipart-logo-person-user-person-icon-rectangle-photography.png">
+            class="flex bg-pink-violet p-2 font-semibold justify-between items-center cursor-pointer">
+            <div class="flex items-center">
+                <div class="profile-pic" style="background-color:pink">
+                    <div class="initial text-md">U</div>
+                </div>
+                <p class="ml-2">User</p>
+            </div>
 
             <button id="" class="text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 384 512">
@@ -23,11 +31,34 @@
                 </svg>
             </button>
         </header>
-        <div class="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
-            <div class="flex flex-col flex-grow h-[20rem] p-4 overflow-auto messages">
+        @else
 
+        <header id="toggleHeader"
+            class="flex bg-pink-violet p-2 font-semibold justify-between items-center cursor-pointer">
+            <div class="flex items-center">
+                <div class="profile-pic">
+                    <div class="initial text-md">A</div>
+                </div>
+                <p class="ml-2">Admin</p>
+            </div>
+
+            <button id="" class="text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 384 512">
+                    <path
+                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+            </button>
+        </header>
+
+        @endif
+        <div id="slideInChat"
+            class="flex flex-col flex-grow w-full max-w-xl bg-white h-[23rem] shadow-xl rounded-lg overflow-hidden">
+            <div class="flex flex-col flex-grow p-4 overflow-auto messages">
+                @if(Auth::check() && Auth::user()->isAdmin())
+                @include('components.broadcast', ['message' => "Hi, how can i help you?"])
+                @else
                 @include('components.receive', ['message' => "Hi, how can i help you?"])
-
+                @endif
 
             </div>
             <div class="border-t border-gray-300 p-2 bg-white w-full">
@@ -51,4 +82,5 @@
     </div>
 </div>
 
+@endguest
 @endsection

@@ -171,11 +171,15 @@ body {
 #toggleChat {
     position: fixed;
     bottom: 0;
-    right: 20px;
-    height: 58vh;
+    right: 50px;
+    min-height: 58vh;
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
+    transition: transform 0.3s ease-in-out, bottom 0.3s ease-in-out;
     z-index: 998;
+}
+#toggleChat.open {
+    bottom: -51%;
 }
 
 input::placeholder {
