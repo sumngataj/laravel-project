@@ -46,25 +46,26 @@
     </div>
 
     @if(session('success'))
-       <script>
-           const Toast = Swal.mixin({
-               toast: true,
-               position: 'top-end',
-               showConfirmButton: false,
-               timer: 3000,
-               timerProgressBar: true,
-               didOpen: (toast) => {
-                   toast.addEventListener('mouseenter', Swal.stopTimer);
-                   toast.addEventListener('mouseleave', Swal.resumeTimer);
-               }
-           });
+    <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+    });
 
-           Toast.fire({
-               icon: 'success',
-               title: '{{ session('success') }}'
-           });
-       </script>
-   @endif
+    Toast.fire({
+        icon: 'success',
+        title: '{{ session('
+        success ') }}'
+    });
+    </script>
+    @endif
 
     <form method="POST" action="{{ route('reservations.custom') }}" enctype="multipart/form-data">
         @csrf
@@ -425,7 +426,8 @@
                             <div id="slideInMakeups" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="makeups" class="w-full font-lightbold">
                                     @foreach($makeup as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                    <li
+                                        class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
@@ -446,7 +448,8 @@
                             <div id="slideInBotiques" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="botiques" class="w-full font-lightbold">
                                     @foreach($botiques as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                    <li
+                                        class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
@@ -467,7 +470,8 @@
                             <div id="slideInLightings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="lightings" class="w-full font-lightbold">
                                     @foreach($lighting as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                    <li
+                                        class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
@@ -488,7 +492,8 @@
                             <div id="slideInSounds" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="sounds" class="w-full font-lightbold">
                                     @foreach($sound as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                    <li
+                                        class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
@@ -509,7 +514,8 @@
                             <div id="slideInVehicles" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="vehicles" class="w-full font-lightbold">
                                     @foreach($vehicles as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                    <li
+                                        class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
@@ -521,8 +527,9 @@
                         <div class="relative">
                             <div id="sweetsDivBtn"
                                 class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
-                                Sweets and Desserts <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    id="sweetsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
+                                Sweets and Desserts <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" id="sweetsIcon" stroke-width="3" stroke="currentColor"
+                                    class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
@@ -530,7 +537,8 @@
                             <div id="slideInSweets" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="sweets" class="w-full font-lightbold">
                                     @foreach($sweets as $item)
-                                    <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
+                                    <li
+                                        class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
                                         <span>{{ $item->price }}</span>
@@ -1045,11 +1053,12 @@
         function updateTotalSummaryPrice(price) {
             const addOns = calculateTotalPrice();
             const totalPrice = parseInt(price) + parseInt(addOns);
+            const formattedTotalPrice = totalPrice.toLocaleString();
             totalSummaryPriceElement.textContent = totalPrice;
             const priceInput = document.getElementById('price');
             const priceLabel = document.getElementById('display-price-venue');
             priceInput.value = totalPrice;
-            priceLabel.innerHTML = "₱" + price + ".00";
+            priceLabel.innerHTML = "₱" + formattedTotalPrice + ".00";
         }
 
         function enableStep1Button() {
@@ -1418,7 +1427,8 @@
         const priceInput = document.getElementById('price');
         const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
         const newTotalPrice = currentTotalPrice + parseFloat(clickedPrice);
-        totalSummaryPriceElement.textContent = newTotalPrice;
+        const totalToString = document.getElementById('totalamount');
+        totalSummaryPriceElement.textContent = newTotalPrice.toLocaleString();
         priceInput.value = newTotalPrice;
         const addOnsInput = document.getElementById('add_ons');
         addOnsInput.value = getAddOnsAsString();
