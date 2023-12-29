@@ -35,10 +35,12 @@ class ReservationController extends Controller
         $venues = Venues::all();
         
         $notifications = Notification::orderBy('created_at', 'desc')->get();
-        $reservations = Reservation::with(['user', 'venue'])
-        ->where('status', 'pending')
-        ->latest()
-        ->paginate(7);
+        
+        // Filter reservations with the 'booked' status
+        $reservations = Reservation::with(['user', 'venue', 'package'])
+            ->where('status', 'booked')
+            ->orderBy('reservation_date', 'asc')
+            ->paginate(100);
 
         $bookingsCount = Reservation::where('status', 'booked')->count();
         $usersCount = User::where('is_superuser', '0')->count();
@@ -54,9 +56,8 @@ class ReservationController extends Controller
         $venues = Venues::all();
         $notifications = Notification::orderBy('created_at', 'desc')->get();
 
-        // Filter reservations with the 'booked' status
-        $reservations = Reservation::with(['user', 'venue', 'package'])
-            ->where('status', 'booked')
+        $reservations = Reservation::with(['user', 'venue'])
+            ->whereIn('status', ['pending', 'accept'])
             ->latest()
             ->paginate(7);
 
@@ -333,7 +334,7 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::findOrFail($reservation_id);
 
-        $reservation->status = 'pending';
+        $reservation->status = 'accept';
         $price = $reservation->price;
         $userName = $reservation->name;
         $userMail = $reservation->email;
