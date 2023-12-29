@@ -64,7 +64,7 @@ Route::middleware('isSuperUser')->group(function(){
         Route::put('/reservation/{reservation_id}/update', [ReservationController::class, 'update'])-> name('reservation.update');
         Route::put('/reservation/{reservation_id}/book', [ReservationController::class, 'book'])-> name('reservation.book');
         Route::put('/reservation/{reservation_id}/decline', [ReservationController::class, 'decline'])-> name('reservation.decline');
-        Route::get('/bookings', [ReservationController::class, 'booked'])->name('admin.booked');
+        Route::get('/reservations', [ReservationController::class, 'booked'])->name('admin.booked');
         Route::put('/mark-notifications-as-read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
         Route::get('/payments', [ReservationController::class, 'allpayments'])->name('admin.payments');
 

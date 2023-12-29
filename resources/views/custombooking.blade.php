@@ -31,7 +31,6 @@
     @include('components.floatingNavbar')
     @include('components.searchToggle')
     @include('components.sideMenu')
-    @include('components.chatBox')
     @yield('sideMenu')
 
     @yield('loginSideModal')
@@ -338,7 +337,8 @@
                                         class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -360,7 +360,8 @@
                                         class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -382,7 +383,8 @@
                                         class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -406,7 +408,8 @@
                                         class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -428,7 +431,8 @@
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -449,7 +453,8 @@
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -470,7 +475,8 @@
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -491,7 +497,8 @@
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -512,7 +519,8 @@
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -533,7 +541,8 @@
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
                                         <p class="w-full">{{ $item->name }}</p>
                                         <h5 class="hidden group-hover:block">{{ $item->description }}</h5>
-                                        <span>{{ $item->price }}</span>
+                                        <h1 class="text-md">₱</h1>
+                                        <span>{{ number_format($item->price, 2) }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -640,7 +649,7 @@
                                             <span class="font-bold leading-wide text-xl text-right">₱</span>
                                             <p id="venuePrice" name="price"
                                                 class="font-bold leading-wide text-xl text-right">
-                                                {{$venue->price}}</p><span
+                                                {{ number_format($venue->price) }}</p><span
                                                 class="font-bold leading-wide text-xl text-right">.00</span>
                                         </div>
                                         <div id="bookNowButtonsContainer">
@@ -724,55 +733,10 @@
     </form>
 
 
-    @yield('chatbox')
     @yield('footer')
 
     @vite('resources/js/app.js')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.3/dist/flatpickr.min.js"></script>
-    <script>
-    const csrfToken = '{{ csrf_token() }}';
-    </script>
-    <script>
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('f02f29b979136936b8a1', {
-        cluster: 'ap1'
-    });
-    var channel = pusher.subscribe('public');
-
-    //Receive messages
-    channel.bind('chat', function(data) {
-        $.post("/receive", {
-                _token: csrfToken,
-                message: data.message,
-            })
-            .done(function(res) {
-                $(".messages > .message").last().after(res);
-                $(document).scrollTop($(document).height());
-            });
-    });
-
-    //Broadcast messages
-    $("form").submit(function(event) {
-        event.preventDefault();
-
-        $.ajax({
-            url: "/broadcast",
-            method: 'POST',
-            headers: {
-                'X-Socket-Id': pusher.connection.socket_id
-            },
-            data: {
-                _token: csrfToken,
-                message: $("form #message").val(),
-            }
-        }).done(function(res) {
-            $(".messages > .message").last().after(res);
-            $("form #message").val('');
-            $(document).scrollTop($(document).height());
-        });
-    });
-    </script>
     <script>
     const countrySelect = document.getElementById("countrySelect");
     const countryProvinceSelect = document.getElementById("countryProvince");
@@ -1045,11 +1009,18 @@
         function updateTotalSummaryPrice(price) {
             const addOns = calculateTotalPrice();
             const totalPrice = parseInt(price) + parseInt(addOns);
-            totalSummaryPriceElement.textContent = totalPrice;
+
+            const formattedPrice = totalPrice.toLocaleString(); 
+
+            totalSummaryPriceElement.textContent = formattedPrice;
+
             const priceInput = document.getElementById('price');
             const priceLabel = document.getElementById('display-price-venue');
-            priceInput.value = totalPrice;
-            priceLabel.innerHTML = "₱" + price + ".00";
+
+            const priceWithoutCommas = formattedPrice.replace(/,/g, '');
+            priceInput.value = priceWithoutCommas;
+
+            priceLabel.innerHTML = "₱" + formattedPrice + ".00";
         }
 
         function enableStep1Button() {
@@ -1291,7 +1262,7 @@
                 }
 
                 if (lastClickedButton) {
-                    lastClickedButton.textContent = 'Book Now'; // Revert the previous button
+                    lastClickedButton.textContent = 'Select'; // Revert the previous button
                 }
                 button.textContent = 'Keep Venue';
                 lastClickedButton = button;
@@ -1403,12 +1374,16 @@
 
         const specificText = clickedValues.get(clickedValue).count.toString();
         const priceText = clickedValues.get(clickedValue).price.toFixed(2);
+
+        // Format the priceText with commas
+        const formattedPriceText = parseFloat(priceText).toLocaleString() + ".00";
+
         const liElement = document.createElement('li');
-        liElement.textContent = "(" + specificText + ") " + clickedValue + " - ₱" + priceText;
+        liElement.textContent = `(${specificText}) ${clickedValue} - ₱${formattedPriceText}`;
 
         const existingLi = addOnList.querySelector(`li[data-value="${clickedValue}"]`);
         if (existingLi) {
-            existingLi.textContent = "(" + specificText + ") " + clickedValue + " - ₱" + priceText;
+            existingLi.textContent = `(${specificText}) ${clickedValue} - ₱${formattedPriceText}`;
         } else {
             liElement.setAttribute('data-value', clickedValue);
             addOnList.appendChild(liElement);
@@ -1416,10 +1391,16 @@
 
         const totalPrice = calculateTotalPrice();
         const priceInput = document.getElementById('price');
-        const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
+        const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace(/[^\d.]/g, '')); // Remove non-numeric characters
         const newTotalPrice = currentTotalPrice + parseFloat(clickedPrice);
-        totalSummaryPriceElement.textContent = newTotalPrice;
-        priceInput.value = newTotalPrice;
+
+        // Format the newTotalPrice with commas
+        const formattedNewTotalPrice = newTotalPrice.toLocaleString();
+
+        totalSummaryPriceElement.textContent = formattedNewTotalPrice;
+        const priceWithoutCommas = formattedNewTotalPrice.replace(/,/g, '');
+        priceInput.value = priceWithoutCommas;
+
         const addOnsInput = document.getElementById('add_ons');
         addOnsInput.value = getAddOnsAsString();
     }
@@ -1441,9 +1422,12 @@
         addOnsInput.value = '';
 
         // Subtract the removedPrice from the currentTotalPrice
-        const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace('₱', ''));
+        const currentTotalPrice = parseFloat(totalSummaryPriceElement.textContent.replace(/[^\d.]/g, '')); // Remove non-numeric characters
         const newTotalPrice = currentTotalPrice - removedPrice;
-        totalSummaryPriceElement.textContent = newTotalPrice;
+
+        const formattedNewTotalPrice = newTotalPrice.toLocaleString();
+
+        totalSummaryPriceElement.textContent = formattedNewTotalPrice;
 
         const headingDisplay = document.getElementById('addOnHeading');
         headingDisplay.classList.add('hidden');
@@ -1452,7 +1436,7 @@
     // Event listener for flower items
     flowerItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = flowerItemsPrice[index].textContent.trim();
+        const clickedPrice = flowerItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1461,7 +1445,7 @@
 
     cakeItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = cakeItemsPrice[index].textContent.trim();
+        const clickedPrice = cakeItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1470,7 +1454,7 @@
 
     caterItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = caterItemsPrice[index].textContent.trim();
+        const clickedPrice = caterItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1479,7 +1463,7 @@
 
     photographerItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = photographerItemsPrice[index].textContent.trim();
+        const clickedPrice = photographerItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1488,7 +1472,7 @@
 
     makeupItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = makeupItemsPrice[index].textContent.trim();
+        const clickedPrice = makeupItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1497,7 +1481,7 @@
 
     lightingItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = lightingItemsPrice[index].textContent.trim();
+        const clickedPrice = lightingItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1506,7 +1490,7 @@
 
     soundItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = soundItemsPrice[index].textContent.trim();
+        const clickedPrice = soundItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1515,7 +1499,7 @@
 
     vehicleItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = vehicleItemsPrice[index].textContent.trim();
+        const clickedPrice = vehicleItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1524,7 +1508,7 @@
 
     sweetItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = sweetItemsPrice[index].textContent.trim();
+        const clickedPrice = sweetItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
@@ -1533,7 +1517,7 @@
 
     botiqueItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = botiqueItemsPrice[index].textContent.trim();
+        const clickedPrice = botiqueItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
             addToAddOnList(clickedValue, clickedPrice);
