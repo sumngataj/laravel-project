@@ -226,7 +226,7 @@
                                                             </form> --}}
 
 
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ route('reservation.decline', $reservation->reservation_id) }}"
                                                                 method="POST"
                                                                 onsubmit="return confirm('{{ trans('Do you really want to decline reservation? ') }}');">
@@ -256,7 +256,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                            </form>
+                                                            </form> --}}
 
 
                                                             {{-- <form action="{{ route('packages.destroy',$package->package_id) }}"
@@ -432,7 +432,7 @@
                                                             </form>
 
 
-                                                            <form
+                                                            {{-- <form
                                                                 action="{{ route('reservation.decline', $reservation->reservation_id) }}"
                                                                 method="POST"
                                                                 onsubmit="return confirm('{{ trans('Do you really want to decline reservation? ') }}');">
@@ -462,7 +462,7 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                            </form>
+                                                            </form> --}}
 
                                                         </div>
                                                     </td>
