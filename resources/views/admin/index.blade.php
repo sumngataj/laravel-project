@@ -257,7 +257,7 @@
                             </td>
                             <td class="px-4 py-3">
                               <div class="flex items-center text-sm">
-                                  <p class="font-semibold">{{ $reservation->venue->name }}</p>
+                                  <p class="font-semibold">{{ $reservation->venue_name }}</p>
                               </div>
                             </td>
                             <td class="px-4 py-3">

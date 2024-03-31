@@ -201,6 +201,7 @@ class ReservationController extends Controller
             'mobile_number' => 'required',
             'email' => 'required',
             'address' => 'required',
+            'venues_name' => 'required',
         ]);
 
         $reservation = new Reservation();
@@ -216,6 +217,7 @@ class ReservationController extends Controller
         $reservation->mobile_number = $validatedData['mobile_number'];
         $reservation->email = $validatedData['email'];
         $reservation->address = $validatedData['address'];
+        $reservation->venue_name = $validatedData['venues_name'];
         $reservation->status = 'pending';
 
         $name = $request->first_name;
