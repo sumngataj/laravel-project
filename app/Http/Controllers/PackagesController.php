@@ -33,11 +33,15 @@ class PackagesController extends Controller
         $packages = Packages::all();
         $venues = Venues::all();
         $notifications = Notification::all();
+        $ratings = Ratings::inRandomOrder()
+    ->take(3)
+    ->get();
+
         $averageRatings = Ratings::select('package_id', DB::raw('AVG(rating) as average_rating'))
         ->groupBy('package_id')
         ->get();
 
-    return view('home', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings, 'notifications' => $notifications]);
+    return view('home', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings, 'notifications' => $notifications, 'ratings' => $ratings]);
     }
 
 
