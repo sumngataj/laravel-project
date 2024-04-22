@@ -33,6 +33,10 @@ use App\Http\Controllers\PusherController;
 Route::get('/payment', function () {
     return view('payment-form');
 });
+
+Route::get('/packages-view', function () {
+    return view('allpackages');
+});
 Route::post('/payment', [ReservationController::class, 'sendpayment'])->name('reservation.sendpayment');
 // Route::put('/reservation/{reservation_id}/sendpayment', [ReservationController::class, 'sendpayment'])-> name('reservation.sendpayment');
 
