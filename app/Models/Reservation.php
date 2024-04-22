@@ -28,6 +28,7 @@ class Reservation extends Model
         'mobile_number',
         'email',
         'address',
+        'venue_name',
         
     ];
 
