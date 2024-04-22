@@ -329,7 +329,7 @@
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInCaterings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInCaterings" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
 
                                 <ul id="cater" class="w-full font-lightbold">
                                     @foreach($catering as $item)
@@ -346,14 +346,14 @@
                         </div>
                         <div class="relative">
                             <div id="cakesDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Cakes <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="cakesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInCakes" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInCakes" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="cakes" class="w-full font-lightbold">
                                     @foreach($cake as $item)
                                     <li
@@ -369,14 +369,14 @@
                         </div>
                         <div class="relative">
                             <div id="flowersDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Flowers <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="flowersIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInFlowers" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInFlowers" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="flowers" class="w-full font-lightbold">
                                     @foreach($flower as $item)
                                     <li
@@ -392,7 +392,7 @@
                         </div>
                         <div class="relative">
                             <div id="photographersDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Photographers
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="photographersIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
@@ -401,7 +401,7 @@
                                 </svg>
                             </div>
                             <div id="slideInPhotographers"
-                                class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                                class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="photographers" class="w-full font-lightbold">
                                     @foreach($photographers as $item)
                                     <li
@@ -417,7 +417,7 @@
                         </div>
                         <div class="relative">
                             <div id="makeupsDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Hair and Makeup Artists <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" id="makeupsIcon" stroke-width="3" stroke="currentColor"
                                     class="ml-2 w-4 h-4">
@@ -425,7 +425,7 @@
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInMakeups" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInMakeups" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="makeups" class="w-full font-lightbold">
                                     @foreach($makeup as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
@@ -440,14 +440,14 @@
                         </div>
                         <div class="relative">
                             <div id="botiquesDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Botiques <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="botiquesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInBotiques" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInBotiques" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="botiques" class="w-full font-lightbold">
                                     @foreach($botiques as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
@@ -462,14 +462,14 @@
                         </div>
                         <div class="relative">
                             <div id="lightingsDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Lightings <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="lightingsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInLightings" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInLightings" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="lightings" class="w-full font-lightbold">
                                     @foreach($lighting as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
@@ -484,14 +484,14 @@
                         </div>
                         <div class="relative">
                             <div id="soundsDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Sound Systems <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="soundsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInSounds" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInSounds" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="sounds" class="w-full font-lightbold">
                                     @foreach($sound as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
@@ -506,14 +506,14 @@
                         </div>
                         <div class="relative">
                             <div id="vehiclesDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Vehicles <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="vehiclesIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInVehicles" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInVehicles" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="vehicles" class="w-full font-lightbold">
                                     @foreach($vehicles as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
@@ -528,14 +528,14 @@
                         </div>
                         <div class="relative">
                             <div id="sweetsDivBtn"
-                                class="flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
+                                class="section-btn flex justify-between items-center border-2 border-gold-highlight p-4 font-bold uppercase text-gold-highlight">
                                 Sweets and Desserts <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     id="sweetsIcon" stroke-width="3" stroke="currentColor" class="ml-2 w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </div>
-                            <div id="slideInSweets" class="border-b-2 border-r-2 border-l-2 border-gold-highlight">
+                            <div id="slideInSweets" class="slide-in-section border-b-2 border-r-2 border-l-2 border-gold-highlight">
                                 <ul id="sweets" class="w-full font-lightbold">
                                     @foreach($sweets as $item)
                                     <li class="group flex justify-between items-center hover:text-white hover:bg-gold-highlight border-b border-gold-highlight p-4 cursor-pointer">
@@ -850,149 +850,53 @@
     const botiquesIcon = document.getElementById('botiquesIcon');
     const slideInBotiques = document.getElementById('slideInBotiques');
 
-    cateringsDivBtn.addEventListener('click', () => {
-        const isOpen = slideInCaterings.classList.contains('open');
-        slideInCaterings.classList.toggle('open');
+    function toggleSection(button, icon, section) {
+        const isOpen = section.classList.contains('open');
+        section.classList.toggle('open');
         if (isOpen) {
-            // If it was open, change the icon to the original one
-            cateringsIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        `;
-        } else {
-            // If it was closed, change the icon to the alternate one
-            cateringsIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        `;
-        }
-    });
-
-    cakesDivBtn.addEventListener('click', () => {
-        const isOpen = slideInCakes.classList.contains('open');
-        slideInCakes.classList.toggle('open');
-        if (isOpen) {
-            // If it was open, change the icon to the original one
-            cakesIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        `;
-        } else {
-            // If it was closed, change the icon to the alternate one
-            cakesIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        `;
-        }
-    });
-    flowersDivBtn.addEventListener('click', () => {
-        const isOpen = slideInFlowers.classList.contains('open');
-        slideInFlowers.classList.toggle('open');
-        if (isOpen) {
-            // If it was open, change the icon to the original one
-            flowersIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        `;
-        } else {
-            // If it was closed, change the icon to the alternate one
-            flowersIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        `;
-        }
-    });
-    makeupsDivBtn.addEventListener('click', () => {
-        const isOpen = slideInMakeups.classList.contains('open');
-        slideInMakeups.classList.toggle('open');
-        if (isOpen) {
-            makeupsIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        `;
-        } else {
-            makeupsIcon.innerHTML = `
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        `;
-        }
-    });
-
-    photographersDivBtn.addEventListener('click', () => {
-        const isOpen = slideInPhotographers.classList.contains('open');
-        slideInPhotographers.classList.toggle('open', !isOpen);
-        if (isOpen) {
-            photographersIcon.innerHTML = `
+            icon.innerHTML = `
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             `;
         } else {
-            photographersIcon.innerHTML = `
+            icon.innerHTML = `
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
             `;
         }
-    });
+    }
 
-    lightingsDivBtn.addEventListener('click', () => {
-        const isOpen = slideInLightings.classList.contains('open');
-        slideInLightings.classList.toggle('open', !isOpen);
-        if (isOpen) {
-            lightingsIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            `;
-        } else {
-            lightingsIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-            `;
-        }
-    });
+    function closeOtherSections(currentSection) {
+        const allSections = document.querySelectorAll('.slide-in-section');
+        allSections.forEach(section => {
+            if (section !== currentSection && section.classList.contains('open')) {
+                section.classList.remove('open');
+                const button = section.previousElementSibling;
+                const icon = button.querySelector('svg');
+                icon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                `;
+            }
+        });
+    }
 
-    soundsDivBtn.addEventListener('click', () => {
-        const isOpen = slideInSounds.classList.contains('open');
-        slideInSounds.classList.toggle('open', !isOpen);
-        if (isOpen) {
-            soundsIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            `;
-        } else {
-            soundsIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-            `;
-        }
-    });
+    function addToggleListener(btn, icon, section) {
+        btn.addEventListener('click', () => {
+            toggleSection(btn, icon, section);
+            closeOtherSections(section);
+        });
+    }
 
-    vehiclesDivBtn.addEventListener('click', () => {
-        const isOpen = slideInVehicles.classList.contains('open');
-        slideInVehicles.classList.toggle('open', !isOpen);
-        if (isOpen) {
-            vehiclesIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            `;
-        } else {
-            vehiclesIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-            `;
-        }
-    });
+  
+    addToggleListener(cateringsDivBtn, cateringsIcon, slideInCaterings);
+    addToggleListener(cakesDivBtn, cakesIcon, slideInCakes);
+    addToggleListener(flowersDivBtn, flowersIcon, slideInFlowers);
+    addToggleListener(makeupsDivBtn, makeupsIcon, slideInMakeups);
+    addToggleListener(photographersDivBtn, photographersIcon, slideInPhotographers);
+    addToggleListener(lightingsDivBtn, lightingsIcon, slideInLightings);
+    addToggleListener(soundsDivBtn, soundsIcon, slideInSounds);
+    addToggleListener(vehiclesDivBtn, vehiclesIcon, slideInVehicles);
+    addToggleListener(sweetsDivBtn, sweetsIcon, slideInSweets);
+    addToggleListener(botiquesDivBtn, botiquesIcon, slideInBotiques);
 
-    sweetsDivBtn.addEventListener('click', () => {
-        const isOpen = slideInSweets.classList.contains('open');
-        slideInSweets.classList.toggle('open', !isOpen);
-        if (isOpen) {
-            sweetsIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            `;
-        } else {
-            sweetsIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-            `;
-        }
-    });
-
-    botiquesDivBtn.addEventListener('click', () => {
-        const isOpen = slideInBotiques.classList.contains('open');
-        slideInBotiques.classList.toggle('open', !isOpen);
-        if (isOpen) {
-            botiquesIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            `;
-        } else {
-            botiquesIcon.innerHTML = `
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-            `;
-        }
-    });
 
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -1318,6 +1222,7 @@
     let clickCount = 0;
     const clickedValues = new Map(); // Map to store clicked values and their counts
 
+
     const flowerItems = document.querySelectorAll('#flowers li p');
     const flowerItemsPrice = document.querySelectorAll('#flowers li span');
     const cakeItems = document.querySelectorAll('#cakes li p');
@@ -1457,9 +1362,13 @@
 
     caterItems.forEach((item, index) => {
         const clickedValue = item.textContent.trim();
-        const clickedPrice = caterItemsPrice[index].textContent.trim().replace(/,/g, '');
+        const clickedPrices = caterItemsPrice[index].textContent.trim().replace(/,/g, '');
 
         item.closest('li').addEventListener('click', () => {
+            const guests = document.getElementById('guestCount').value;
+            
+            const clickedPrice = clickedPrices * guests;
+
             addToAddOnList(clickedValue, clickedPrice);
         });
     });
@@ -1583,7 +1492,7 @@
             // Get the selected capacity from the guestCount input field
             const guestCountInput = document.getElementById("guestCount");
             const selectedCapacity = parseInt(guestCountInput.value);
-
+            
             // Simulate an asynchronous operation (e.g., an AJAX request)
             setTimeout(function() {
                 // Call the updateVenueVisibility function with the selected capacity
@@ -1693,6 +1602,7 @@
         if (datepicker.value === "") {
             // If no date is chosen, set the default date to today
             const today = new Date();
+            today.setDate(today.getDate() + 5);
             const options = {
                 weekday: 'short',
                 month: 'long',
@@ -1748,12 +1658,17 @@
     });
     </script>
     <script>
-    flatpickr("#datepicker", {
-        inline: true,
-        minDate: "today",
-        defaultDate: "today",
-    });
+        var currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 5);
+        var fiveDaysFromNow = currentDate.toISOString().slice(0, 10);
+    
+        flatpickr("#datepicker", {
+            inline: true,
+            minDate: fiveDaysFromNow,
+            defaultDate: fiveDaysFromNow,
+        });
     </script>
+    
 
     <script>
     function showTab(tabNumber) {
