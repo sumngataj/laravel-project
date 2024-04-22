@@ -496,12 +496,15 @@
      });
      </script>
      <script>
-     flatpickr("#datepicker", {
-         dateFormat: "Y-m-d",
-         inline: true,
-         minDate: "today",
-         defaultDate: "today",
-     });
+        var currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 5);
+        var fiveDaysFromNow = currentDate.toISOString().slice(0, 10);
+    
+        flatpickr("#datepicker", {
+            inline: true,
+            minDate: fiveDaysFromNow,
+            defaultDate: fiveDaysFromNow,
+        });
      </script>
      <script>
      const bookNowButton = document.getElementById('bookNowButton');

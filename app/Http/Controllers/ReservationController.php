@@ -150,6 +150,7 @@ class ReservationController extends Controller
         $reservation->email = $validatedData['email'];
         $reservation->price = $validatedData['price'];
         $reservation->status = 'pending';
+        $reservation->venue_name = '';
 
 
         $user = User::find($validatedData['user_id']);
