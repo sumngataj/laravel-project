@@ -95,7 +95,7 @@
                             </a>
                         </li> --}}
                         <li class="flex">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="w-full">
+                            <form id="logout-form" action="{{ route('adminlogout') }}" method="POST" class="w-full">
                                 @csrf
                                 <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800">

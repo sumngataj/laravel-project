@@ -41,7 +41,27 @@ class PackagesController extends Controller
         ->groupBy('package_id')
         ->get();
 
+    return view('allpackages', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings, 'notifications' => $notifications, 'ratings' => $ratings]);
+    }
+
+    public function displayRate(): View
+    {
+        $packages = Packages::all();
+        $venues = Venues::all();
+        $notifications = Notification::all();
+        $ratings = Ratings::inRandomOrder()
+    ->take(3)
+    ->get();
+
+        $averageRatings = Ratings::select('package_id', DB::raw('AVG(rating) as average_rating'))
+        ->groupBy('package_id')
+        ->get();
+
     return view('home', ['packages' => $packages, 'venues' => $venues, 'averageRatings' => $averageRatings, 'notifications' => $notifications, 'ratings' => $ratings]);
+    }
+
+    public function loginNi () {
+        return view('loginpage');
     }
 
 

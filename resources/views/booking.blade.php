@@ -40,14 +40,18 @@
 
  <body>
 
-     @include('components.bookingNav')
+     {{-- @include('components.bookingNav') --}}
      @include('components.footer')
      @include('components.loginSideModal')
      @include('components.searchToggle')
      @include('components.sideMenu')
      @include('components.chatBox')
+
+     @include('components.nav')
+     @yield('nav')
+
      @yield('sideMenu')
-     @yield('bookingNav')
+     {{-- @yield('bookingNav') --}}
      @yield('content')
      @yield('loginSideModal')
      @yield('toggleSearch')
@@ -101,7 +105,7 @@
                      alt="Image 3"
                      onclick="displayImage(this, 'https://images.unsplash.com/photo-1437226104525-c08c6dd0cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80')">
              </div> -->
-             <div class="flex justify-between w-[90%]">
+             <div class="flex justify-between w-[60%]">
                  <img id="displayed-image" src="{{ asset('images/package_images/' . $package->image_path) }}"
                      alt="Displayed Image">
              </div>

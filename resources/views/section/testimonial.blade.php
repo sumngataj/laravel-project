@@ -1,5 +1,31 @@
 @section('testimonial')
-<div class="min-w-screen min-h-screen flex items-center justify-center py-5">
+{{-- <div class="min-w-screen min-h-screen flex items-center justify-center py-5" id="about"> --}}
+<div class="min-w-screen min-h-screen py-5" id="about">
+    <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-16 md:py-24 text-gray-800">
+        <div class="w-full max-w-6xl mx-auto">
+            <div class="text-center max-w-6xl mx-auto">
+                <h1 class="text-3xl font-bold tracking-widest mb-4">
+                    <span class="text-5xl text-red-500">A</span>bout 
+                    <span class="text-5xl text-red-500">K</span>ALUHAS 
+                    <span class="text-5xl text-red-500">W</span>EDDING 
+                    <span class="text-5xl text-red-500">E</span>VENT
+                </h1>                  
+                <p class="mb-4">Welcome to KALUHAS WEDDING EVENT, your premier choice for creating unforgettable and magical
+                    weddings. We are dedicated to making your dream wedding a reality and turning your special
+                    day into an extraordinary celebration of love.</p>
+                <p class="mb-4">With years of experience in event planning and a passion for creating stunning weddings, we
+                    take pride in our attention to detail, creativity, and commitment to excellence. Your vision
+                    is our inspiration, and we work tirelessly to bring it to life.</p>
+                <p class="mb-4">Our team of expert wedding planners, decorators, and coordinators will work closely with you
+                    to design a wedding that reflects your unique style and personality. From breathtaking
+                    venues to exquisite floral arrangements, from delectable catering to seamless logistics, we
+                    handle every aspect of your wedding with care and precision.</p>
+                <p class="mb-4">At KALUHAS WEDDING EVENT, we understand that your wedding day is one of the most important
+                    moments in your life, and we are honored to be part of it. Let us turn your dreams into
+                    cherished memories.</p>
+            </div>
+        </div>
+    </div>
     <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-16 md:py-24 text-gray-800">
         <div class="w-full max-w-6xl mx-auto">
             <div class="text-center max-w-xl mx-auto">

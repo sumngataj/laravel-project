@@ -35,11 +35,12 @@
                             <p><i class="fa-solid fa-location-arrow"></i>&nbsp Select your wanted add-ons</p>
                         </div>
                     </div>
+                    <a href="{{route('custom.booking')}}">
                     <button type="button"
-                        class="mt-10 w-full text-white bg-red-600 font-medium rounded-lg text-md px-5 py-4 text-center hover:bg-red-700 hover:drop-shadow-md transition duration-300 ease-in-out"><a
-                            href="{{route('custom.booking')}}"> Customize &nbsp <i
-                                class="fa-solid fa-arrow-right"></i></a>
+                        class="mt-10 w-full text-white bg-red-600 font-medium rounded-lg text-md px-5 py-4 text-center hover:bg-red-700 hover:drop-shadow-md transition duration-300 ease-in-out">
+                         Customize &nbsp <i class="fa-solid fa-arrow-right"></i>
                     </button>
+                    </a>
                 </div>
 
             </div>
