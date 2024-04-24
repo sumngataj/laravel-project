@@ -1,5 +1,5 @@
 @section('events')
-<div class="md:px-12 text-center mt-10">
+<div class="md:px-12 text-center pt-28" id="eventlist">
     <h1 class="text-2xl font-bold mb-2 text-center text-gray-600">What kind of <span class="text-red-500">Events</span>
         do we
         offer?
@@ -16,16 +16,16 @@
             <img src="{{ asset('images/2.jpg') }}" class="h-96 object-cover w-full rounded" alt="logo">
         </div>
         <div id="div3" class="content hidden border-solid border-3 border-gray-500 w-full">
-            <img src="{{ asset('images/3.jpg') }}" class="h-96 w-auto rounded" alt="logo">
+            <img src="{{ asset('images/3.jpg') }}" class="h-96 object-cover w-full rounded" alt="logo">
         </div>
         <div id="div4" class="content hidden border-solid border-3 border-gray-500 w-full">
-            <img src="{{ asset('images/4.jpg') }}" class="h-96 w-auto rounded" alt="logo">
+            <img src="{{ asset('images/4.jpg') }}" class="h-96 object-cover w-full rounded" alt="logo">
         </div>
         <div id="div5" class="content hidden border-solid border-3 border-gray-500 w-full">
-            <img src="{{ asset('images/5.jpg') }}" class="h-96 w-auto rounded" alt="logo">
+            <img src="{{ asset('images/5.jpg') }}" class="h-96 object-cover w-full rounded" alt="logo">
         </div>
         <div id="div6" class="content hidden border-solid border-3 border-gray-500 w-full">
-            <img src="{{ asset('images/6.jpg') }}" class="h-96 w-auto rounded" alt="logo">
+            <img src="{{ asset('images/6.jpg') }}" class="h-96 object-cover w-full rounded" alt="logo">
         </div>
     </div>
     <!-- Add more divs with unique IDs and content as needed -->
@@ -33,26 +33,26 @@
     <div class="btns" class="lg:w-1/2 flex flex-col">
         <div class="flex flex-row space-x-10 w-full">
             <button id="btn1"
-                class="bg-gray-200 text-black-500 rounded w-32 flex flex-col items-center justify-center"><img
+                class="text-gray-500 rounded w-32 flex flex-col items-center justify-center"><img
                     width="24" height="24" src="https://img.icons8.com/material-rounded/24/birthday.png"
                     alt="birthday" />Birthdays</button>
             <button id="btn2" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="50"
                     height="50" src="https://img.icons8.com/ios-filled/50/meeting.png"
                     alt="meeting" />Conferences</button>
-            <button id="btn2" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="64"
+            <button id="btn3" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="64"
                     height="64"
                     src="https://img.icons8.com/external-icongeek26-glyph-icongeek26/64/external-rings-honeymoon-icongeek26-glyph-icongeek26.png"
                     alt="external-rings-honeymoon-icongeek26-glyph-icongeek26" />Weddings</button>
         </div>
         <div class="flex flex-row space-x-10 w-full mt-10">
-            <button id="btn1" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="50"
+            <button id="btn4" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="50"
                     height="50" src="https://img.icons8.com/ios/50/disco-ball.png" alt="disco-ball" />Debut</button>
-            <button id="btn2" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center">
+            <button id="btn5" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center">
                 <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/workshop.png"
                     alt="workshop" class="text-gray-500 invert-0" />
                 Workshops
             </button>
-            <button id="btn2" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="64"
+            <button id="btn6" class="py-8 text-gray-500 w-32 rounded flex flex-col items-center"><img width="64"
                     height="64" src="https://img.icons8.com/pastel-glyph/64/footgear--v1.png"
                     alt="footgear--v1" />Sports
                 Events</button>

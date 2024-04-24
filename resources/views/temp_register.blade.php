@@ -16,20 +16,23 @@
 
 <body>
 
-    @include('components.newNav')    
+    {{-- @include('components.newNav')     --}}
     @include('components.footer')
     @include('components.loginSideModal')
     @include('components.searchToggle')
     @include('components.sideMenu')
     @include('components.chatBox')
-    @yield('newNav')
+    {{-- @yield('newNav') --}}
+    @include('components.nav')
+    @yield('nav')
+
     @yield('sideMenu')
     @yield('content')
     @yield('loginSideModal')
     @yield('toggleSearch')
 
 
-<div class="flex items-center min-h-screen p-6 mt-32 bg-gray-50">
+<div class="flex items-center min-h-screen p-6 bg-gray-50">
     <div
       class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl"
     >

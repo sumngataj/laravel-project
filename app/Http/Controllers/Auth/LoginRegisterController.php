@@ -19,7 +19,7 @@ class LoginRegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except([
-            'logout', 'dashboard'
+            'logout', 'dashboard', 'adminlogout'
         ]);
     }
 
@@ -66,7 +66,7 @@ class LoginRegisterController extends Controller
      */
     public function login()
     {
-        return view('home');
+        return view('adminlogin');
     }
 
     /**

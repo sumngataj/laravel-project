@@ -26,21 +26,20 @@ use App\Http\Controllers\PusherController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/', [PackagesController::class, 'displayRate']);
 
 Route::get('/payment', function () {
     return view('payment-form');
 });
 
-Route::get('/packages-view', function () {
-    return view('allpackages');
-});
+
+// Route::get('/packages-view', function () {
+//     return view('allpackages');
+// });
 Route::post('/payment', [ReservationController::class, 'sendpayment'])->name('reservation.sendpayment');
 // Route::put('/reservation/{reservation_id}/sendpayment', [ReservationController::class, 'sendpayment'])-> name('reservation.sendpayment');
 
-Route::get('/', [PackagesController::class, 'displayAll']);
+Route::get('/packages-view', [PackagesController::class, 'displayAll'])->name('packages-view');
 Route::get('/venue/{venue_id}', [VenuesController::class, 'displayById'])->name('venues.displayById');
 Route::get('/profile/{user_id}',[ProfileController::class, 'displayByProfileId'])->name('profile.displayByProfileId');
 Route::post('/cancel-reservation/{id}', [ReservationController::class, 'cancelReservation'])->name('reservation.cancelReservation');
@@ -51,10 +50,11 @@ Route::get('/search', [SearchController::class, 'search'])->name('searchResult')
 Route::post('/receive', [PusherController::class, 'receive'])->name('receive');
 
 
-Route::get('/adminlogin', function () {
-    return view('admin.login');
+Route::middleware('guest')->group(function(){
+    Route::get('/adminlogin', function () {
+        return view('admin.login');
+    });
 });
-
 
 Route::middleware('isSuperUser')->group(function(){
 
@@ -78,7 +78,7 @@ Route::middleware('isSuperUser')->group(function(){
 });
    
 
-
+//user
 Route::middleware('auth')->group(function(){
     Route::get('/booking/{package_id}', [PackagesController::class, 'displayById'])->name('packages.displayById');
 
@@ -100,13 +100,20 @@ Route::middleware('auth')->group(function(){
     });
 });
 
-    Route::controller(LoginRegisterController::class)->group(function() {
-        Route::get('/login', [PackagesController::class, 'displayAll'])->name('login');
-   
-    });
 
+Route::middleware('guest')->group(function(){
+    Route::get('/login', [PackagesController::class, 'loginNi'])->name('login');
+});
+
+//daan
+    // Route::controller(LoginRegisterController::class)->group(function() {
+    //     Route::get('/login', [PackagesController::class, 'loginNi'])->name('login');
+   
+    // });
+///
 
     Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
     Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');   
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
+    Route::post('/adminlogout', [LoginRegisterController::class, 'adminlogout'])->name('adminlogout');

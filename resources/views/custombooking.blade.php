@@ -25,17 +25,20 @@
 <body>
 
     @include('components.newNav')
-    @include('components.bookingNav')
+    {{-- @include('components.bookingNav') --}}
     @include('components.footer')
     @include('components.loginSideModal')
     @include('components.floatingNavbar')
     @include('components.searchToggle')
     @include('components.sideMenu')
-    @yield('sideMenu')
 
+    @include('components.nav')
+    @yield('nav')
+
+    @yield('sideMenu')
     @yield('loginSideModal')
     @yield('toggleSearch')
-    @yield('bookingNav')
+    {{-- @yield('bookingNav') --}}
 
 
 
@@ -1296,16 +1299,16 @@
         const formattedPriceText = parseFloat(priceText).toLocaleString() + ".00";
 
         const liElement = document.createElement('li');
-        liElement.textContent = `(${specificText}) ${clickedValue} - ₱${formattedPriceText} - ${removeButton}`;
+        liElement.textContent = `(${specificText}) ${clickedValue} - ₱${formattedPriceText}`;
 
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remove';
-        removeButton.addEventListener('click', () => {
-            removeItem(clickedValue, clickedPrice);
-        });
+        // const removeButton = document.createElement('button');
+        // removeButton.textContent = 'Remove';
+        // removeButton.addEventListener('click', () => {
+        //     removeItem(clickedValue, clickedPrice);
+        // });
 
-        // Append the remove button to the list item
-        liElement.appendChild(removeButton);
+        // // Append the remove button to the list item
+        // liElement.appendChild(removeButton);
 
         const existingLi = addOnList.querySelector(`li[data-value="${clickedValue}"]`);
         if (existingLi) {

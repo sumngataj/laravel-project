@@ -8,10 +8,31 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/kaluhasLogoIcon.png') }}">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="../assets/js/init-alpine.js"></script>
 </head>
 
 <body>
-    <div class="flex h-screen">
+    @if (session('message'))
+      <script>
+      Swal.fire({
+          icon: 'warning',
+          title: 'Login Required',
+          text: "{{ session('message') }}",
+          confirmButtonText: 'OK'
+      });
+      </script>
+    @endif
+    
+
+    @include('components.nav')
+    @include('components.footer')
+    
+    @yield('nav')
+    
+    <div class="flex h-screen mb-28">
         <!-- Left Pane -->
         <div class="hidden lg:flex items-center justify-center flex-1 bg-white text-black">
             <div class="max-w-md text-center">
@@ -176,13 +197,18 @@
                 <h1 class="text-3xl font-semibold mb-6 text-black text-center">Sign In</h1>
                 <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">Sign in here using your credentials.
                 </h1>
-                <form action="#" method="POST" class="space-y-4">
+                <form action="{{ route('authenticate') }}" method="POST" class="space-y-4">
+                @csrf
                     <!-- Your form elements go here -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="text" id="email" name="email"
-                            class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email/Username</label>
+                        <input type="text"
+                            class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300" id="email_or_name" name="email_or_name" value="{{ old('email_or_name') }}"
+                            autocomplete="email" required>
                     </div>
+                    @if ($errors->has('email_or_name'))
+                    <span class="text-red-500">{{ $errors->first('email_or_name') }}</span>
+                    @endif
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                         <input type="password" id="password" name="password"
@@ -195,12 +221,14 @@
                     </div>
                 </form>
                 <div class="mt-4 text-sm text-gray-600 text-center">
-                    <p>Don't have an account yet? <a href="#" class="text-black hover:underline">Sign up here</a>
+                    <p>Don't have an account yet? <a href="{{ url('register') }}" class="text-black hover:underline">Sign up here</a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+    @yield('footer')
 </body>
 
 </html>
