@@ -48,25 +48,24 @@
     </div>
 
     @if(session('success'))
-    <script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-        }
-    });
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
 
-    Toast.fire({
-        icon: 'success',
-        title: '{{ session('
-        success ') }}'
-    });
-    </script>
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            });
+        </script>
     @endif
 
     <form method="POST" action="{{ route('reservations.custom') }}" enctype="multipart/form-data">
